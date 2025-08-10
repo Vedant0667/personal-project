@@ -7,27 +7,11 @@ export const metadata: Metadata = {
   description: "Personal site",
 };
 
-// Modern/techy font stack
-const sans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const display = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
+const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const display = Space_Grotesk({ subsets: ["latin"], variable: "--font-display", display: "swap" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Site-wide cream dot grid
   const bgStyle: React.CSSProperties = {
     backgroundColor: "#FFFBEB",
     backgroundImage: `
@@ -40,7 +24,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   };
 
   return (
-    <html lang="en" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
+    <html
+      lang="en"
+      className={`${sans.variable} ${display.variable} ${mono.variable} scroll-smooth`}
+    >
       <body style={bgStyle} className="text-slate-900 antialiased">
         {children}
       </body>
