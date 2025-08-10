@@ -58,13 +58,20 @@ export default function ProjectCard({
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.25 }}
-        className="rounded-2xl shadow-sm ring-1 ring-amber-200 p-5 sm:p-6 hover:shadow-md transition sm:flex sm:gap-5 sm:items-stretch"
+        whileHover={{ 
+          y: -5,
+          scale: 1.02,
+          boxShadow: "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04)"
+        }}
+        transition={{ duration: 0.3 }}
+        className="rounded-3xl shadow-lg ring-1 ring-amber-200 p-6 sm:p-8 sm:flex sm:gap-6 sm:items-stretch group cursor-pointer"
         style={{ backgroundColor: "#FFFDF2" }}
       >
         {/* Image */}
         <motion.div
           variants={item}
-          className="relative rounded-xl overflow-hidden cursor-zoom-in sm:basis-1/2 sm:self-stretch w-full h-[220px] sm:h-auto sm:min-h-[260px] sm:max-h-[520px]"
+          whileHover={{ scale: 1.03 }}
+          className="relative rounded-2xl overflow-hidden cursor-zoom-in sm:basis-1/2 sm:self-stretch w-full h-[220px] sm:h-auto sm:min-h-[280px] sm:max-h-[520px] shadow-lg group-hover:shadow-xl transition-all duration-300"
           onClick={() => setOpen(true)}
           role="button"
           aria-label="Expand image"
@@ -82,7 +89,10 @@ export default function ProjectCard({
 
         {/* Text */}
         <div className="sm:basis-1/2 mt-4 sm:mt-0 flex flex-col">
-          <motion.h3 variants={item} className="font-display text-xl sm:text-2xl font-semibold text-slate-900">
+          <motion.h3 
+            variants={item} 
+            className="font-display text-xl sm:text-2xl font-bold text-slate-900 group-hover:text-orange-700 transition-colors duration-200"
+          >
             {title}
           </motion.h3>
 
@@ -117,10 +127,12 @@ export default function ProjectCard({
                 <motion.a
                   key={i}
                   variants={item}
+                  whileHover={{ scale: 1.05, y: -1 }}
+                  whileTap={{ scale: 0.95 }}
                   href={l.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm ring-1 ring-orange-200 text-orange-800 hover:bg-orange-50 font-mono-var"
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm ring-2 ring-orange-200 text-orange-800 hover:bg-orange-50 hover:ring-orange-300 font-mono-var font-medium transition-all duration-200 shadow-sm hover:shadow-md"
                 >
                   {l.label}
                 </motion.a>

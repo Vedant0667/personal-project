@@ -11,6 +11,9 @@ export const TAG_STYLES: Record<string, string> = {
   CSS: "bg-cyan-100 text-cyan-800 ring-cyan-200",
   Python: "bg-rose-100 text-rose-800 ring-rose-200",
   "Next.js": "bg-teal-100 text-teal-800 ring-teal-200",
+  "React Native": "bg-blue-100 text-blue-800 ring-blue-200",
+  "Node.js": "bg-green-100 text-green-800 ring-green-200",
+  "Expo": "bg-purple-100 text-purple-800 ring-purple-200",
   Economics: "bg-lime-100 text-lime-800 ring-lime-200",
   "Policy Analysis": "bg-orange-100 text-orange-800 ring-orange-200",
 };

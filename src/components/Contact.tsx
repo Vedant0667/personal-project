@@ -18,6 +18,28 @@ const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const container = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { 
+      type: "spring",
+      stiffness: 120,
+      damping: 15,
+      duration: 0.6
+    },
+  },
+};
+
 export default function Contact() {
   const email = "vedant.subramanian@gmail.com";
   const [copied, setCopied] = React.useState(false);
@@ -35,46 +57,75 @@ export default function Contact() {
   return (
     <Section id="contact" title="Contact">
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        variants={container}
+        initial="hidden"
+        whileInView="show"
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.45, ease: "easeOut" }}
         className="max-w-3xl"
       >
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+        <motion.div 
+          variants={item}
+          className="flex flex-col sm:flex-row items-start sm:items-center gap-3"
+        >
           {/* Email button */}
-          <a
+          <motion.a
             href={`mailto:${email}`}
-            className="inline-flex items-center gap-2 rounded-full bg-orange-600 text-white px-5 py-2.5 text-sm shadow hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-200"
+            whileHover={{ 
+              scale: 1.05, 
+              boxShadow: "0 10px 25px -5px rgb(251 146 60 / 0.4), 0 4px 6px -2px rgb(251 146 60 / 0.05)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-600 to-red-600 text-white px-6 py-3 text-sm font-medium shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-orange-200 transition-all duration-200"
           >
             <EmailIcon />
             Email me
-          </a>
+          </motion.a>
 
           {/* LinkedIn button */}
-          <a
+          <motion.a
             href="https://www.linkedin.com/in/vedant-subramanian-762715300/"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm text-[#0A66C2] ring-1 ring-[#0A66C2]/30 hover:bg-[#0A66C2]/5 focus:outline-none focus:ring-2 focus:ring-[#0A66C2]/30"
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 10px 25px -5px rgb(10 102 194 / 0.3), 0 4px 6px -2px rgb(10 102 194 / 0.05)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-[#0A66C2] ring-2 ring-[#0A66C2]/20 hover:bg-[#0A66C2]/5 hover:ring-[#0A66C2]/40 focus:outline-none focus:ring-2 focus:ring-[#0A66C2]/30 transition-all duration-200 shadow-md hover:shadow-lg"
             aria-label="View my LinkedIn profile"
           >
             <LinkedInIcon />
             LinkedIn
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
         {/* Email address line with copy */}
-        <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/70 ring-1 ring-amber-200 px-3 py-1.5">
-          <span className="font-mono-var text-sm text-slate-900">{email}</span>
-          <button
+        <motion.div 
+          variants={item}
+          className="mt-6 inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 ring-1 ring-amber-200/60 px-4 py-3 shadow-sm"
+        >
+          <span className="font-mono-var text-sm text-slate-800 font-medium">{email}</span>
+          <motion.button
             onClick={copy}
-            className="text-xs rounded-full px-2 py-1 ring-1 ring-amber-300 text-slate-700 hover:bg-amber-50"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={`text-xs rounded-full px-3 py-1.5 font-medium ring-1 transition-all duration-200 ${
+              copied 
+                ? "bg-green-100 ring-green-300 text-green-800" 
+                : "bg-white ring-amber-300 text-amber-800 hover:bg-amber-50 hover:ring-amber-400 shadow-sm hover:shadow-md"
+            }`}
             aria-label="Copy email address"
           >
             {copied ? "Copied!" : "Copy"}
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
+
+        <motion.p
+          variants={item}
+          className="mt-4 text-sm text-slate-600 leading-relaxed"
+        >
+          Let's connect! I'm always excited to discuss new opportunities, collaborate on projects, or just chat about technology and entrepreneurship.
+        </motion.p>
       </motion.div>
     </Section>
   );
