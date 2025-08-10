@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { createPortal } from "react-dom";
 import Image, { StaticImageData } from "next/image";
 
 import shelteraidCheck from "@/app/assets/shelteraid-check.webp";
@@ -52,7 +53,7 @@ function Section({
   );
 }
 
-/* ---------- Lightbox (full-viewport + Fit/Fill toggle) ---------- */
+/* ---------- Lightbox (portal + auto-fit + full overlay) ---------- */
 function Lightbox({
   open,
   onClose,
@@ -64,14 +65,7 @@ function Lightbox({
   src: StaticImageData | null;
   alt: string;
 }) {
-  const [mode, setMode] = React.useState<"fit" | "fill">("fill"); // default: fill to hide page margins
-
-  // reset mode on open
-  React.useEffect(() => {
-    if (open) setMode("fill");
-  }, [open]);
-
-  // Lock body scroll while open
+  // lock body scroll
   React.useEffect(() => {
     if (!open) return;
     const orig = document.body.style.overflow;
@@ -81,7 +75,7 @@ function Lightbox({
     };
   }, [open]);
 
-  // ESC to close
+  // esc to close
   React.useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -91,46 +85,61 @@ function Lightbox({
 
   if (!open || !src) return null;
 
-  return (
-    <div
-      className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm"
-      onClick={onClose}
-      role="dialog"
-      aria-modal="true"
-    >
-      {/* Controls */}
-      <div className="absolute top-3 right-3 flex gap-2">
+  const natW = (src as StaticImageData).width;
+  const natH = (src as StaticImageData).height;
+
+  // never upscale; fit inside viewport minus padding
+  const fitStyle: React.CSSProperties = {
+    width: natW,
+    height: "auto",
+    maxWidth: "calc(100svw - 48px)",   // 24 px each side
+    maxHeight: "calc(100svh - 112px)", // 56 px top and bottom
+    display: "block",
+  };
+
+  const overlay = (
+    <div className="fixed inset-0 z-[9999] pointer-events-none">
+      {/* Backdrop that fully covers viewport */}
+      <div
+        className="fixed left-0 top-0 w-screen h-[100svh] bg-black/85 backdrop-blur-sm pointer-events-auto"
+        onClick={onClose}
+      />
+
+      {/* Close button above everything */}
+      <div className="fixed top-3 right-3 pointer-events-auto">
         <button
+          type="button"
           onClick={(e) => {
-            e.stopPropagation();
-            setMode((m) => (m === "fit" ? "fill" : "fit"));
-          }}
-          className="rounded-full bg-white/95 text-gray-900 px-3 py-1 text-sm shadow"
-        >
-          {mode === "fit" ? "Fill" : "Fit"}
-        </button>
-        <button
-          onClick={(e) => {
+            e.preventDefault();
             e.stopPropagation();
             onClose();
           }}
-          className="rounded-full bg-white/95 text-gray-900 px-3 py-1 text-sm shadow"
+          className="rounded-full bg-white/95 text-gray-900 px-3 py-1 text-sm shadow hover:bg-white"
+          aria-label="Close"
         >
           Close
         </button>
       </div>
 
-      {/* Image area with extra transparent space at bottom */}
+      {/* Centered content with safe padding and scroll if needed */}
       <div
-        className="w-screen h-screen flex items-center justify-center p-3"
+        className="fixed left-0 top-0 w-screen h-[100svh] flex items-center justify-center overflow-auto overscroll-contain pointer-events-none"
+        style={{
+          paddingTop: "max(56px, env(safe-area-inset-top))",
+          paddingBottom: "max(56px, env(safe-area-inset-bottom))",
+          paddingLeft: "max(24px, env(safe-area-inset-left))",
+          paddingRight: "max(24px, env(safe-area-inset-right))",
+        }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative w-full h-full pb-[5vh]">
+        <div className="pointer-events-auto">
           <Image
             src={src}
             alt={alt}
-            fill
-            className={`${mode === "fit" ? "object-contain" : "object-cover"} rounded-lg`}
+            width={natW}
+            height={natH}
+            style={fitStyle}
+            className="rounded-2xl object-contain select-none"
             sizes="100vw"
             priority
           />
@@ -138,9 +147,12 @@ function Lightbox({
       </div>
     </div>
   );
+
+  // render outside any parent overflow or stacking context
+  return createPortal(overlay, document.body);
 }
 
-/* ---------- Project Card (image height matches/clamped to text) ---------- */
+/* ---------- Project Card ---------- */
 function ProjectCard({
   imageSrc,
   imageAlt,
@@ -168,14 +180,15 @@ function ProjectCard({
           sm:flex sm:gap-5 sm:items-stretch
         "
       >
-        {/* Image column — fills and clamps to keep parity with text column */}
+        {/* Image column */}
         <div
           className="
-            relative rounded-xl overflow-hidden
+            relative rounded-xl overflow-hidden cursor-zoom-in
             sm:basis-1/2 sm:self-stretch
             w-full h-[220px] sm:h-auto
             sm:min-h-[260px] sm:max-h-[520px]
           "
+          style={{ aspectRatio: `${imageSrc.width}/${imageSrc.height}` }}
           onClick={() => setOpen(true)}
           role="button"
           aria-label="Expand image"
@@ -264,14 +277,14 @@ export default function PersonalSite() {
             title="Shelter Aid TX"
             tags={["Nonprofit", "Operations", "Community"]}
             story={
-              "Shelters kept telling me the same thing: they needed shoes. After cold-calling ~50 shelters across DFW and hearing that ~75% ranked shoes among the biggest needs, I started Shelter Aid TX. I designed a ‘shoe match’ system so donations aren’t random; the right pairs go to the right shelters. I run ops and partnerships, and I’m scoping an app to replace our Google Sheets tracking."
+              "Shelters kept telling me the same thing: they needed shoes. After cold-calling ~50 shelters across DFW and hearing that ~75% ranked shoes among the biggest needs, I started Shelter Aid TX. I designed a shoe match system so donations are not random. The right pairs go to the right shelters. I run ops and partnerships, and I am scoping an app to replace our Google Sheets tracking."
             }
             bullets={[
               { strong: "Impact", text: "1000+ shoes donated; 7+ shelters served" },
               {
                 strong: "Partners",
                 text:
-                  "Fleet Feet Plano & Preston/Forest; CISV Dallas youth project; Greenhill annual drives; Prince of Peace Plano XC drive",
+                  "Fleet Feet Plano and Preston/Forest; CISV Dallas youth project; Greenhill annual drives; Prince of Peace Plano XC drive",
               },
               { strong: "Funding", text: "$7,000 from a school pitch competition" },
             ]}
@@ -291,12 +304,12 @@ export default function PersonalSite() {
             title="Rally"
             tags={["PHP", "HTML", "CSS"]}
             story={
-              "Our athletics department wanted fuller stands, so in Advanced CS we built Rally. Students check in at games and earn more points for the less-attended ones. My favorite part was the redemption flow: our random code meant nothing — staff just checked the moving seconds bar to make sure it wasn’t a recording, then entered a preset code to deduct from the athletics budget."
+              "Our athletics department wanted fuller stands, so in Advanced CS we built Rally. Students check in at games and earn more points for the less attended ones. My favorite part was the redemption flow. Our random code meant nothing. Staff checked the moving seconds bar to ensure it was not a recording, then entered a preset code to deduct from the athletics budget."
             }
             bullets={[
               { strong: "Adoption", text: ">50% of the student body signed up" },
-              { strong: "Perks", text: "Breakfast coupons, school store credits, skip-the-line pass" },
-              { strong: "Culture", text: "Year-end ESPY-style awards; 3D powder-printed trophies" },
+              { strong: "Perks", text: "Breakfast coupons, school store credits, skip the line pass" },
+              { strong: "Culture", text: "Year end ESPY style awards; 3D powder printed trophies" },
             ]}
           />
 
@@ -307,11 +320,11 @@ export default function PersonalSite() {
             title="THIɅK Clear"
             tags={["Python", "Next.js"]}
             story={
-              "At UPenn’s M&TSI, our team kept circling one idea we loved: glasses that help with memory cues. We surveyed 60+ people and spoke with industry folks — including Raj Amin and a former Fort Worth VITAS Medical Director — plus a local nursing home director. We built sleek frames with bone conduction so names can be delivered even with some hearing loss, and a companion matching game to reinforce faces and objects. I led market research, financial modeling, and produced our marketing video."
+              "At UPenn M&TSI, our team circled one idea we liked. Glasses that help with memory cues. We surveyed 60+ people and spoke with industry folks, including Raj Amin and a former Fort Worth VITAS Medical Director, plus a local nursing home director. We built sleek frames with bone conduction so names can be delivered even with some hearing loss, and a companion matching game to reinforce faces and objects. I led market research, financial modeling, and produced our marketing video."
             }
             bullets={[
               { strong: "Core flow", text: "See a person → name is sent via bone conduction" },
-              { strong: "Companion app", text: "Matching faces→names and objects (objects mode inspired by VITAS Director)" },
+              { strong: "Companion app", text: "Matching faces to names and objects" },
             ]}
             links={[
               {
@@ -344,7 +357,7 @@ export default function PersonalSite() {
         <div className="mx-auto max-w-6xl px-5 py-8 text-sm text-gray-600">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <p>© {new Date().getFullYear()} Vedant Subramanian</p>
-            <p className="text-gray-500">Built with Next.js + Tailwind.</p>
+            <p className="text-gray-500">Built with Next.js and Tailwind.</p>
           </div>
         </div>
       </footer>
