@@ -46,7 +46,7 @@ export const projects: ProjectProps[] = [
     ],
   },
   {
-    imageSrc: "/campus-life-app.png",
+    imageSrc: "/campus-life-new.png",
     imageAlt: "CampusLife family wellness app interface",
     title: "CampusLife",
     tags: ["React Native", "Node.js", "Expo"],
