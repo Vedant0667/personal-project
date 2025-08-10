@@ -1,21 +1,43 @@
 "use client";
 
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import Lightbox from "@/components/Lightbox";
 import Tag from "@/components/Tag";
+import { motion } from "framer-motion";
 
 type Bullet = { strong?: string; text: string };
 type Link = { href: string; label: string };
 
 export type ProjectProps = {
-  imageSrc: StaticImageData;
+  imageSrc: string;   // served from /public
   imageAlt: string;
   title: string;
   story: string;
   bullets?: Bullet[];
   links?: Link[];
   tags?: string[];
+};
+
+const container = {
+  hidden: { opacity: 0, y: 52, scale: 0.98 },
+  show: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 120,
+      damping: 18,
+      delayChildren: 0.05,
+      staggerChildren: 0.06,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
 };
 
 export default function ProjectCard({
@@ -31,13 +53,18 @@ export default function ProjectCard({
 
   return (
     <>
-      <article
+      <motion.article
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.25 }}
         className="rounded-2xl shadow-sm ring-1 ring-amber-200 p-5 sm:p-6 hover:shadow-md transition sm:flex sm:gap-5 sm:items-stretch"
         style={{ backgroundColor: "#FFFDF2" }}
       >
-        <div
+        {/* Image */}
+        <motion.div
+          variants={item}
           className="relative rounded-xl overflow-hidden cursor-zoom-in sm:basis-1/2 sm:self-stretch w-full h-[220px] sm:h-auto sm:min-h-[260px] sm:max-h-[520px]"
-          style={{ aspectRatio: `${imageSrc.width}/${imageSrc.height}` }}
           onClick={() => setOpen(true)}
           role="button"
           aria-label="Expand image"
@@ -49,29 +76,37 @@ export default function ProjectCard({
             fill
             className="object-cover"
             sizes="(min-width: 1024px) 520px, (min-width: 640px) 50vw, 100vw"
+            priority={false}
           />
-        </div>
+        </motion.div>
 
+        {/* Text */}
         <div className="sm:basis-1/2 mt-4 sm:mt-0 flex flex-col">
-          <h3 className="font-display text-xl sm:text-2xl font-semibold text-slate-900">
+          <motion.h3 variants={item} className="font-display text-xl sm:text-2xl font-semibold text-slate-900">
             {title}
-          </h3>
+          </motion.h3>
 
           {tags.length > 0 && (
             <div className="mt-2 flex flex-wrap gap-2">
-              {tags.map((t, i) => <Tag key={i} label={t} />)}
+              {tags.map((t, i) => (
+                <motion.span key={i} variants={item} className="inline-block">
+                  <Tag label={t} />
+                </motion.span>
+              ))}
             </div>
           )}
 
-          <p className="mt-3 text-slate-700 leading-relaxed">{story}</p>
+          <motion.p variants={item} className="mt-3 text-slate-700 leading-relaxed">
+            {story}
+          </motion.p>
 
           {bullets.length > 0 && (
             <ul className="mt-4 space-y-2 list-disc pl-5 text-slate-700">
               {bullets.map((b, i) => (
-                <li key={i}>
+                <motion.li key={i} variants={item}>
                   {b.strong && <span className="font-medium">{b.strong}: </span>}
                   {b.text}
-                </li>
+                </motion.li>
               ))}
             </ul>
           )}
@@ -79,20 +114,21 @@ export default function ProjectCard({
           {links.length > 0 && (
             <div className="mt-4 flex flex-wrap gap-3">
               {links.map((l, i) => (
-                <a
+                <motion.a
                   key={i}
+                  variants={item}
                   href={l.href}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm ring-1 ring-orange-200 text-orange-800 hover:bg-orange-50 font-mono-var"
                 >
                   {l.label}
-                </a>
+                </motion.a>
               ))}
             </div>
           )}
         </div>
-      </article>
+      </motion.article>
 
       <Lightbox open={open} onClose={() => setOpen(false)} src={imageSrc} alt={imageAlt} />
     </>
