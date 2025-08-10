@@ -48,7 +48,7 @@ body {
       linear-gradient(to right, var(--line) 1px, transparent 1px),
       linear-gradient(to bottom, var(--line) 1px, transparent 1px);
     background-size: 28px 28px;
-    background-attachment: fixed;
+    background-attachment: local;
   }
 
   /* Option B: offset micro-dots (toggle in layout if you want) */
@@ -59,7 +59,7 @@ body {
       radial-gradient(var(--dot) 1.25px, transparent 1.25px);
     background-position: 0 0, 14px 14px;
     background-size: 28px 28px;
-    background-attachment: fixed;
+    background-attachment: local;
   }
 
   /* Option C: subtle diagonal hatch (45deg) */
@@ -71,7 +71,7 @@ body {
         var(--hatch) 0 2px,
         transparent 2px 14px
       );
-    background-attachment: fixed;
+    background-attachment: local;
   }
 }
 
