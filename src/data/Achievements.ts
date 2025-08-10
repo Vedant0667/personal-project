@@ -39,8 +39,8 @@ export const achievements: Achievement[] = [
   },
   {
     kicker: "Journalism",
-    title: "CSPA Silver Crown Award 2023-2024",
-    detail: "National recognition for overall excellence in high school print journalism from Columbia Scholastic Press Association.",
+    title: "CSPA Silver Crown Award 2025",
+    detail: "National recognition for overall excellence in high school print journalism.",
     link: { href: "https://precollege.sps.columbia.edu/news/announcing-2025-silver-and-gold-crown-awardees", label: "Crown Awards" },
     color: "orange",
   },
