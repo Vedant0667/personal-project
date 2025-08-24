@@ -1,15 +1,13 @@
-"use client";
+import { memo } from "react";
 
-import React from "react";
-
-type Props = {
+interface SectionProps {
   id?: string;
   title?: string;
   subtitle?: string;
   children: React.ReactNode;
-};
+}
 
-export default function Section({ id, title, subtitle, children }: Props) {
+function Section({ id, title, subtitle, children }: SectionProps) {
   return (
     <section id={id} className="w-full">
       <div className="mx-auto max-w-6xl px-5 py-14 sm:py-16">
@@ -26,3 +24,5 @@ export default function Section({ id, title, subtitle, children }: Props) {
     </section>
   );
 }
+
+export default memo(Section);

@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(npm install)",
+      "WebSearch",
+      "Bash(npm install:*)",
+      "Read(/c:\\Users\\vedan\\Downloads/**)",
+      "Read(/c:\\Users\\vedan\\Downloads/**)",
+      "Read(/c:\\Users\\vedan\\OneDrive\\Pictures\\Screenshots/**)",
+      "WebFetch(domain:css-tricks.com)",
+      "Bash(npm run build:*)",
+      "Bash(curl:*)",
+      "Bash(npm run lint)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,13 +1,14 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { MNav, MLink, MSpan } from "@/components/motion/Motion";
 
 const LINKS = [
-  { id: "achievements", label: "Highlights" },
+  { id: "timeline", label: "Timeline" },
   { id: "projects", label: "Projects" },
+  { id: "achievements", label: "Recognition" },
   { id: "contact", label: "Contact" },
-];
+] as const;
 
 export default function NavBar() {
   const [active, setActive] = React.useState<string>("");
@@ -33,16 +34,16 @@ export default function NavBar() {
     return () => io.disconnect();
   }, []);
 
-  const linkCls = (id: string) =>
+  const linkCls = React.useCallback((id: string) =>
     [
       "text-sm rounded-full px-4 py-2 transition-all duration-200 font-medium",
       active === id
         ? "bg-gradient-to-r from-orange-100 to-amber-100 text-orange-900 ring-2 ring-orange-200 shadow-sm"
         : "text-slate-700 hover:text-orange-700 hover:bg-orange-50",
-    ].join(" ");
+    ].join(" "), [active]);
 
   return (
-    <motion.nav
+    <MNav
       initial={{ y: -50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut", type: "spring", stiffness: 100 }}
@@ -50,13 +51,13 @@ export default function NavBar() {
       style={{ backgroundColor: "rgba(255, 253, 242, 0.95)" }}
     >
       <div className="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between">
-        <motion.a 
+        <MLink 
           href="#home" 
           className="inline-flex items-center gap-2"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <motion.span 
+          <MSpan 
             className="font-display text-xl font-bold bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent"
             animate={{ 
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
@@ -68,13 +69,13 @@ export default function NavBar() {
             }}
           >
             VS
-          </motion.span>
+          </MSpan>
           <span className="sr-only">Vedant Subramanian</span>
-        </motion.a>
+        </MLink>
 
         <div className="hidden sm:flex items-center gap-6">
           {LINKS.map((l, index) => (
-            <motion.a 
+            <MLink 
               key={l.id} 
               href={`#${l.id}`} 
               className={linkCls(l.id)}
@@ -85,9 +86,9 @@ export default function NavBar() {
               transition={{ delay: 0.1 * index + 0.3, duration: 0.5, type: "spring" }}
             >
               {l.label}
-            </motion.a>
+            </MLink>
           ))}
-          <motion.a
+          <MLink
             href="mailto:vedant.subramanian@gmail.com"
             className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-600 to-red-600 text-white px-4 py-2 text-sm font-medium shadow-lg"
             whileHover={{ 
@@ -101,12 +102,12 @@ export default function NavBar() {
             transition={{ delay: 0.6, duration: 0.5, type: "spring" }}
           >
             Email
-          </motion.a>
+          </MLink>
         </div>
 
         {/* Mobile menu */}
         <div className="sm:hidden">
-          <motion.a
+          <MLink
             href="mailto:vedant.subramanian@gmail.com"
             className="inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-orange-600 to-red-600 text-white px-4 py-2 text-sm font-medium shadow-lg"
             whileHover={{ 
@@ -117,9 +118,9 @@ export default function NavBar() {
             whileTap={{ scale: 0.95 }}
           >
             Email
-          </motion.a>
+          </MLink>
         </div>
       </div>
-    </motion.nav>
+    </MNav>
   );
 }

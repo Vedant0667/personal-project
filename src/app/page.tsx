@@ -5,6 +5,7 @@ import Section from "@/components/Section";
 import ProjectCard from "@/components/ProjectCard";
 import Achievements from "@/components/Achievements";
 import Contact from "@/components/Contact";
+import Timeline from "@/components/ClientTimelineWrapper";
 import { projects } from "@/data/projects";
 
 export default function Page() {
@@ -14,9 +15,9 @@ export default function Page() {
 
       <Hero />
 
-      <SectionDivider />
+      <Timeline />
 
-      <Achievements />
+      <SectionDivider />
 
       <Section id="projects" title="Projects">
         <div className="space-y-8">
@@ -25,6 +26,8 @@ export default function Page() {
           ))}
         </div>
       </Section>
+
+      <Achievements />
 
       <Contact />
 

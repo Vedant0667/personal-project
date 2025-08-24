@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+import { memo } from "react";
 
 export const TAG_STYLES: Record<string, string> = {
   Nonprofit: "bg-emerald-100 text-emerald-800 ring-emerald-200",
@@ -16,9 +14,18 @@ export const TAG_STYLES: Record<string, string> = {
   "Expo": "bg-purple-100 text-purple-800 ring-purple-200",
   Economics: "bg-lime-100 text-lime-800 ring-lime-200",
   "Policy Analysis": "bg-orange-100 text-orange-800 ring-orange-200",
+  YouTube: "bg-red-100 text-red-800 ring-red-200",
+  TikTok: "bg-pink-100 text-pink-800 ring-pink-200",
+  "Video Editing": "bg-violet-100 text-violet-800 ring-violet-200",
 };
 
-export default function Tag({ label }: { label: string }) {
+interface TagProps {
+  label: string;
+}
+
+function Tag({ label }: TagProps) {
   const cls = TAG_STYLES[label] || "bg-gray-100 text-gray-800 ring-gray-200";
   return <span className={`text-xs px-2 py-1 rounded-full ring-1 ${cls}`}>{label}</span>;
 }
+
+export default memo(Tag);

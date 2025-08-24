@@ -1,6 +1,6 @@
-"use client";
+import { memo } from "react";
 
-export default function SectionDivider() {
+function SectionDivider() {
   // A subtle 1px gradient line across the content width
   return (
     <div className="relative">
@@ -10,3 +10,5 @@ export default function SectionDivider() {
     </div>
   );
 }
+
+export default memo(SectionDivider);

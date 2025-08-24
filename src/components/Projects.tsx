@@ -31,7 +31,7 @@ export default function Projects() {
         <div className="text-center" style={{ marginBottom: '3rem' }}>
           <h2>Featured Projects</h2>
           <p style={{ fontSize: '1.125rem', color: '#6b7280' }}>
-            Here are some of the projects I've been working on
+            Here are some of the projects I&apos;ve been working on
           </p>
         </div>
 

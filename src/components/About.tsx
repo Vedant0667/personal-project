@@ -1,57 +1,51 @@
-export default function About() {
+import Section from "@/components/Section";
+import Tag from "@/components/Tag";
+
+type Props = {
+  selectedSkills: string[];
+  setSelectedSkills: (skills: string[]) => void;
+};
+
+export default function About({ selectedSkills, setSelectedSkills }: Props) {
   const skills = [
-    "JavaScript", "TypeScript", "React", "Next.js", 
-    "Python", "Node.js", "Git", "Tailwind CSS"
+    "Nonprofit", "Operations", "Community", "Python", "Next.js",
+    "React Native", "Node.js", "Expo", "PHP", "HTML", "CSS",
+    "YouTube", "TikTok", "Video Editing"
   ];
 
   return (
-    <section id="about" className="section">
-      <div className="container">
-        <div className="text-center" style={{ marginBottom: '3rem' }}>
-          <h2>About Me</h2>
-          <p style={{ fontSize: '1.125rem', color: '#6b7280', maxWidth: '700px', margin: '0 auto' }}>
-            I'm a passionate student developer who loves creating digital experiences 
-            and solving complex problems through code.
+    <Section id="about" title="About Me">
+      <div className="space-y-8">
+        <div className="text-center">
+          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+            From creating guitar tutorials at 9 to building apps that serve thousands, 
+            I&apos;m driven by the belief that technology should solve real problems and bring people together.
           </p>
         </div>
 
-        <div className="grid grid-2">
-          <div className="card">
-            <h3>My Story</h3>
-            <p style={{ color: '#6b7280', marginBottom: '1rem' }}>
-              Currently studying at Greenhill School, I'm deeply passionate about technology 
-              and its potential to make a positive impact. I love building projects that combine 
-              creativity with functionality.
+        <div className="rounded-3xl shadow-lg ring-1 ring-amber-200 p-6 sm:p-8" style={{ backgroundColor: "#FFFDF2" }}>
+          <h3 className="font-display text-xl font-bold text-slate-900 mb-4">My Story</h3>
+          <div className="space-y-4 text-slate-700 leading-relaxed">
+            <p>
+              My journey started young. At 9, I was teaching myself guitar and creating tutorials 
+              on my iPad mini, editing everything in iMovie. That spark of creating content that 
+              people actually wanted to watch never left me. It just evolved.
             </p>
-            <p style={{ color: '#6b7280' }}>
-              When I'm not coding, you can find me exploring new technologies, 
-              working on personal projects, or collaborating with fellow developers 
-              to create something meaningful.
+            <p>
+              Fast forward to today: I&apos;ve built apps used by my entire school, launched a nonprofit 
+              that&apos;s donated 1000+ shoes to shelters, and created content that&apos;s reached 700k+ views 
+              across platforms. At UPenn&apos;s M&TSI program, I learned that the best solutions come from 
+              deeply understanding real problems.
             </p>
-          </div>
-
-          <div className="card">
-            <h3>Skills & Technologies</h3>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem' }}>
-              {skills.map((skill, index) => (
-                <span
-                  key={index}
-                  style={{
-                    background: '#f3f4f6',
-                    color: '#374151',
-                    padding: '0.5rem 1rem',
-                    borderRadius: '20px',
-                    fontSize: '0.875rem',
-                    fontWeight: '500'
-                  }}
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
+            <p>
+              Whether I&apos;m cold-calling shelters to understand their needs, building bone conduction 
+              prototypes, or creating troll edits that somehow get massive views, I&apos;m always asking: 
+              how can I make something that actually matters to people?
+            </p>
           </div>
         </div>
+
       </div>
-    </section>
+    </Section>
   );
 }

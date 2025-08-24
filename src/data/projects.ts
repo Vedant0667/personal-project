@@ -37,12 +37,14 @@ export const projects: ProjectProps[] = [
     story:
       "At UPenn's M&TSI, our team kept circling one idea we loved: glasses that help with memory cues. We surveyed 60+ people and spoke with industry professionals including Raj Amin and a former Fort Worth VITAS Medical Director, plus a local nursing home director. We built sleek frames with bone conduction so names can be delivered even with some hearing loss, and a companion matching game to reinforce faces and objects. I co-led market research, financial modeling, and produced our marketing video.",
     bullets: [
-      { strong: "Core flow", text: "See a person → name is sent via bone conduction" },
+      { strong: "Core flow", text: "See a person → name is sent via bone conduction to mastoid bone, designed to aid those with conductive hearing loss" },
       { strong: "Companion app", text: "Matching faces→names and objects (objects mode inspired by VITAS Director)" },
     ],
     links: [
       { href: "https://www.youtube.com/watch?v=kr45kQ00uWc&ab_channel=VedantSubramanian", label: "YouTube Demo" },
       { href: "https://devpost.com/software/thi-k-clear", label: "Devpost" },
+      { href: "/thinkclear-financial-model.xlsx", label: "Financial Model" },
+      { href: "/thinkclear-gtm-strategy.pdf", label: "Go-to-Market Strategy" },
     ],
   },
   {
@@ -55,7 +57,7 @@ export const projects: ProjectProps[] = [
     bullets: [
       { strong: "Core Features", text: "Sleep, meal, exercise tracking with family connection features" },
       { strong: "Gamification", text: "Levels (Freshman → Graduate), streaks, achievements, and family support" },
-      { strong: "Tech Stack", text: "React Native, Expo, planned Supabase backend" },
+      { strong: "Tech Stack", text: "React Native, Expo, Firebase/Firestore backend" },
     ],
     links: [
       { href: "https://github.com/kentsubra71/campus-life", label: "GitHub" },
@@ -72,6 +74,24 @@ export const projects: ProjectProps[] = [
       { strong: "Adoption", text: ">50% of the student body signed up" },
       { strong: "Perks", text: "Breakfast coupons, school store credits, skip-the-line pass" },
       { strong: "Culture", text: "Year-end ESPY-style awards; 3D powder-printed trophies" },
+    ],
+  },
+  {
+    imageSrc: "/vidrant-content.jpg", // You can add your photo here
+    imageAlt: "Vedant creating YouTube and TikTok content",
+    title: "Content Creation",
+    tags: ["YouTube", "TikTok", "Video Editing"],
+    story:
+      "I started my first YouTube channel when I was 9, just me, my guitar, and my iPad mini creating guitar tutorials and editing them with iMovie. Since then, I've explored many different channels: music, video game streaming, and more. Most recently, I launched YouTube and TikTok editing accounts. Vidrant Prod hit 364.5k lifetime views on YouTube, while my TikTok accounts Vidrant Prod and Vidrant Edits reached 265k+ and 100k+ views respectively.",
+    bullets: [
+      { strong: "YouTube", text: "Vidrant Prod: 364.5k lifetime views" },
+      { strong: "TikTok", text: "Vidrant Prod: 265k+ views; Vidrant Edits: 100k+ views" },
+      { strong: "Evolution", text: "Guitar tutorials to gaming streams to professional editing content" },
+    ],
+    links: [
+      { href: "https://www.youtube.com/@vidrantprod/shorts", label: "YouTube Channel" },
+      { href: "https://www.tiktok.com/@vidrantprod1", label: "TikTok Vidrant Prod" },
+      { href: "https://www.tiktok.com/@vidrant.edits", label: "TikTok Vidrant Edits" },
     ],
   },
 ];
