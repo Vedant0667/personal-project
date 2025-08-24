@@ -8,9 +8,14 @@ interface SectionProps {
 }
 
 function Section({ id, title, subtitle, children }: SectionProps) {
+  const isAboutSection = id === "about";
+  const paddingClass = isAboutSection 
+    ? "mx-auto max-w-6xl px-5 pt-32 pb-14 sm:pt-40 sm:pb-16"
+    : "mx-auto max-w-6xl px-5 py-14 sm:py-16";
+    
   return (
     <section id={id} className="w-full">
-      <div className="mx-auto max-w-6xl px-5 py-14 sm:py-16">
+      <div className={paddingClass}>
         {title && (
           <header className="mb-6 sm:mb-8">
             <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900">

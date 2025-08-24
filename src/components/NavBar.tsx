@@ -4,6 +4,7 @@ import React from "react";
 import { MNav, MLink, MSpan } from "@/components/motion/Motion";
 
 const LINKS = [
+  { id: "home", label: "Hero" }, // Added to detect hero section
   { id: "timeline", label: "Timeline" },
   { id: "projects", label: "Projects" },
   { id: "achievements", label: "Recognition" },
@@ -22,12 +23,24 @@ export default function NavBar() {
 
     const io = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target?.id) setActive(visible.target.id);
+        const intersecting = entries.filter(e => e.isIntersecting);
+        
+        if (intersecting.length > 0) {
+          const visible = intersecting.sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          const detectedId = visible.target.id;
+          
+          // If we detect hero, don't highlight anything in navbar
+          if (detectedId === 'home') {
+            setActive('');
+          } else {
+            setActive(detectedId);
+          }
+        } else {
+          // If no sections detected, we must be in timeline (between hero and projects)
+          setActive('timeline');
+        }
       },
-      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.2, 0.6, 1] }
+      { rootMargin: "-60% 0px -50% 0px", threshold: [0, 0.5, 1] }
     );
 
     els.forEach((el) => io.observe(el));
@@ -52,8 +65,12 @@ export default function NavBar() {
     >
       <div className="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between">
         <MLink 
-          href="#home" 
+          href="#" 
           className="inline-flex items-center gap-2"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -74,7 +91,7 @@ export default function NavBar() {
         </MLink>
 
         <div className="hidden sm:flex items-center gap-6">
-          {LINKS.map((l, index) => (
+          {LINKS.filter(l => l.id !== 'home').map((l, index) => (
             <MLink 
               key={l.id} 
               href={`#${l.id}`} 

@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import ScrollReset from "@/components/ScrollReset";
 
 export const metadata: Metadata = {
   title: "Vedant Subramanian",
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${sans.variable} ${display.variable} ${mono.variable} scroll-smooth`}
     >
       <body style={bgStyle} className="text-slate-900 antialiased">
+        <ScrollReset />
         {children}
       </body>
     </html>

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Reveal from "@/components/Reveal";
 
 /**
  * === TUNING KNOBS ===
@@ -87,18 +88,21 @@ export default function Timeline() {
 
   return (
     <section
+      id="timeline"
       ref={containerRef}
-      className="w-full py-20 relative" // NOTE: no overflow-hidden; sticky needs visible overflow up the chain
+      className="w-full pt-20 pb-20 sm:pt-24 relative" // NOTE: no overflow-hidden; sticky needs visible overflow up the chain
       style={{
         backgroundColor: "#FFFBEB",
       }}
     >
       <div className="mx-auto max-w-6xl px-5">
-        {/* Header (kept simple) */}
-        <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">My Journey</h2>
-          <p className="text-lg text-slate-600">From a 9-year-old creator to building solutions that impact thousands</p>
-        </div>
+        {/* Header */}
+        <Reveal>
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900">My Journey</h2>
+            <p className="text-lg text-slate-600">From a 9-year-old creator to building solutions that impact thousands</p>
+          </div>
+        </Reveal>
 
         {/* Simple 2-col layout so sticky is painless */}
         <div className="grid grid-cols-12 gap-8">
@@ -112,25 +116,27 @@ export default function Timeline() {
               />
             </div>
 
-            {/* Cards (no hover/fancy stuff) */}
+            {/* Cards with reveal animations */}
             <div className="ml-6 space-y-12">
-              {journeyData.map((point) => (
-                <div key={point.id} className="relative">
-                  {/* Dot */}
-                  <div
-                    className="absolute -left-3 w-4 h-4 rounded-full border-4 border-white shadow z-10"
-                    style={{ backgroundColor: point.color }}
-                  />
-                  {/* Card */}
-                  <div className="ml-6 rounded-2xl border border-amber-200 bg-[#FFFDF2] p-6 max-w-xl">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="w-3 h-3 rounded-full" style={{ backgroundColor: point.color }} />
-                      <span className="text-sm font-mono text-slate-600">{point.year}</span>
+              {journeyData.map((point, index) => (
+                <Reveal key={point.id} delay={index * 0.1}>
+                  <div className="relative">
+                    {/* Dot */}
+                    <div
+                      className="absolute -left-3 w-4 h-4 rounded-full border-4 border-white shadow z-10"
+                      style={{ backgroundColor: point.color }}
+                    />
+                    {/* Card */}
+                    <div className="ml-6 rounded-2xl border border-amber-200 bg-[#FFFDF2] p-6 max-w-xl hover:shadow-lg transition-shadow duration-300">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-3 h-3 rounded-full" style={{ backgroundColor: point.color }} />
+                        <span className="text-sm font-mono text-slate-600">{point.year}</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-slate-900 mb-1">{point.title}</h3>
+                      <p className="text-slate-700">{point.description}</p>
                     </div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-1">{point.title}</h3>
-                    <p className="text-slate-700">{point.description}</p>
                   </div>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -141,7 +147,12 @@ export default function Timeline() {
             style={{ position: "sticky", top: `${STICKY_OFFSET_VH}vh` }}
           >
             {/* Age / Year */}
-            <div className="mb-8 text-center lg:text-right">
+            <motion.div 
+              className="mb-8 text-center lg:text-right"
+              style={{ 
+                opacity: useTransform(scrollYProgress, [0, 0.2], [0, 1])
+              }}
+            >
               <motion.span className="text-6xl font-bold text-orange-500">
                 {useTransform(currentAge, (v) => Math.round(v))}
               </motion.span>
@@ -149,7 +160,7 @@ export default function Timeline() {
               <motion.span className="text-5xl font-medium text-orange-500">
                 {useTransform(currentYear, (v) => Math.round(v))}
               </motion.span>
-            </div>
+            </motion.div>
 
             {/* Photos (stacked crossfade) */}
             <div className="relative w-80 h-80 lg:ml-auto lg:mr-0 mx-auto">
