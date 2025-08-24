@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import { MBox, MH1, MP, MLink, useReducedMotionSafe } from "@/components/motion/Motion";
-
-// Generate a simple blur data URL for the hero image
-const blurDataURL = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==";
+import blurData from "@/data/blurData.json";
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotionSafe();
@@ -82,7 +80,7 @@ export default function Hero() {
                 sizes="(max-width: 640px) 112px, 128px"
                 priority
                 placeholder="blur"
-                blurDataURL={blurDataURL}
+                blurDataURL={blurData["headshot-vedant"]}
               />
             </MBox>
 

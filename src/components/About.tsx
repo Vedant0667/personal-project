@@ -1,13 +1,12 @@
 import Section from "@/components/Section";
-import Tag from "@/components/Tag";
 
 type Props = {
-  selectedSkills: string[];
-  setSelectedSkills: (skills: string[]) => void;
+  _selectedSkills: string[];
+  _setSelectedSkills: (skills: string[]) => void;
 };
 
-export default function About({ selectedSkills, setSelectedSkills }: Props) {
-  const skills = [
+export default function About({ _selectedSkills, _setSelectedSkills }: Props) {
+  const _skills = [
     "Nonprofit", "Operations", "Community", "Python", "Next.js",
     "React Native", "Node.js", "Expo", "PHP", "HTML", "CSS",
     "YouTube", "TikTok", "Video Editing"

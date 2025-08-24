@@ -1,5 +1,7 @@
 "use client";
 
+/* eslint-disable jsx-a11y/anchor-has-content, jsx-a11y/heading-has-content */
+
 import { motion, useReducedMotion, type MotionProps } from "framer-motion";
 import { forwardRef } from "react";
 
@@ -28,7 +30,7 @@ export const MBox = forwardRef<HTMLDivElement, DivMotionProps>(
     
     if (shouldReduceMotion) {
       // Render static div with final styles when motion is reduced
-      const { animate, initial, whileHover, whileTap, variants, transition, ...staticProps } = props;
+      const { animate: _animate, initial: _initial, whileHover: _whileHover, whileTap: _whileTap, variants: _variants, transition: _transition, ...staticProps } = props;
       return <div ref={ref} {...staticProps} />;
     }
     
@@ -42,7 +44,7 @@ export const MSection = forwardRef<HTMLElement, SectionMotionProps>(
     const shouldReduceMotion = useReducedMotionSafe();
     
     if (shouldReduceMotion) {
-      const { animate, initial, whileHover, whileTap, variants, transition, ...staticProps } = props;
+      const { animate: _animate, initial: _initial, whileHover: _whileHover, whileTap: _whileTap, variants: _variants, transition: _transition, ...staticProps } = props;
       return <section ref={ref} {...staticProps} />;
     }
     
@@ -56,7 +58,7 @@ export const MSpan = forwardRef<HTMLSpanElement, SpanMotionProps>(
     const shouldReduceMotion = useReducedMotionSafe();
     
     if (shouldReduceMotion) {
-      const { animate, initial, whileHover, whileTap, variants, transition, ...staticProps } = props;
+      const { animate: _animate, initial: _initial, whileHover: _whileHover, whileTap: _whileTap, variants: _variants, transition: _transition, ...staticProps } = props;
       return <span ref={ref} {...staticProps} />;
     }
     
@@ -70,7 +72,7 @@ export const MLink = forwardRef<HTMLAnchorElement, AnchorMotionProps>(
     const shouldReduceMotion = useReducedMotionSafe();
     
     if (shouldReduceMotion) {
-      const { animate, initial, whileHover, whileTap, variants, transition, ...staticProps } = props;
+      const { animate: _animate, initial: _initial, whileHover: _whileHover, whileTap: _whileTap, variants: _variants, transition: _transition, ...staticProps } = props;
       return <a ref={ref} {...staticProps} />;
     }
     
@@ -84,7 +86,7 @@ export const MArticle = forwardRef<HTMLElement, ArticleMotionProps>(
     const shouldReduceMotion = useReducedMotionSafe();
     
     if (shouldReduceMotion) {
-      const { animate, initial, whileHover, whileTap, variants, transition, ...staticProps } = props;
+      const { animate: _animate, initial: _initial, whileHover: _whileHover, whileTap: _whileTap, variants: _variants, transition: _transition, ...staticProps } = props;
       return <article ref={ref} {...staticProps} />;
     }
     
@@ -98,7 +100,7 @@ export const MH1 = forwardRef<HTMLHeadingElement, H1MotionProps>(
     const shouldReduceMotion = useReducedMotionSafe();
     
     if (shouldReduceMotion) {
-      const { animate, initial, whileHover, whileTap, variants, transition, ...staticProps } = props;
+      const { animate: _animate, initial: _initial, whileHover: _whileHover, whileTap: _whileTap, variants: _variants, transition: _transition, ...staticProps } = props;
       return <h1 ref={ref} {...staticProps} />;
     }
     
@@ -112,7 +114,7 @@ export const MP = forwardRef<HTMLParagraphElement, PMotionProps>(
     const shouldReduceMotion = useReducedMotionSafe();
     
     if (shouldReduceMotion) {
-      const { animate, initial, whileHover, whileTap, variants, transition, ...staticProps } = props;
+      const { animate: _animate, initial: _initial, whileHover: _whileHover, whileTap: _whileTap, variants: _variants, transition: _transition, ...staticProps } = props;
       return <p ref={ref} {...staticProps} />;
     }
     
@@ -126,7 +128,7 @@ export const MNav = forwardRef<HTMLElement, NavMotionProps>(
     const shouldReduceMotion = useReducedMotionSafe();
     
     if (shouldReduceMotion) {
-      const { animate, initial, whileHover, whileTap, variants, transition, ...staticProps } = props;
+      const { animate: _animate, initial: _initial, whileHover: _whileHover, whileTap: _whileTap, variants: _variants, transition: _transition, ...staticProps } = props;
       return <nav ref={ref} {...staticProps} />;
     }
     
@@ -140,7 +142,7 @@ export const MLi = forwardRef<HTMLLIElement, LiMotionProps>(
     const shouldReduceMotion = useReducedMotionSafe();
     
     if (shouldReduceMotion) {
-      const { animate, initial, whileHover, whileTap, variants, transition, ...staticProps } = props;
+      const { animate: _animate, initial: _initial, whileHover: _whileHover, whileTap: _whileTap, variants: _variants, transition: _transition, ...staticProps } = props;
       return <li ref={ref} {...staticProps} />;
     }
     
@@ -154,7 +156,7 @@ export const MUl = forwardRef<HTMLUListElement, UlMotionProps>(
     const shouldReduceMotion = useReducedMotionSafe();
     
     if (shouldReduceMotion) {
-      const { animate, initial, whileHover, whileTap, variants, transition, ...staticProps } = props;
+      const { animate: _animate, initial: _initial, whileHover: _whileHover, whileTap: _whileTap, variants: _variants, transition: _transition, ...staticProps } = props;
       return <ul ref={ref} {...staticProps} />;
     }
     

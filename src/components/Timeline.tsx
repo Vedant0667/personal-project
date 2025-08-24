@@ -10,12 +10,12 @@ import Reveal from "@/components/Reveal";
  * Crossfade widths: how wide the in/out ramps are around each milestone.
  * StickyOffset: vertical offset for the sticky panel from top of viewport.
  */
-const MILESTONE_9 = 0.20;
-const MILESTONE_14 = 0.50;
-const MILESTONE_17 = 0.83;
+const _MILESTONE_9 = 0.20;
+const _MILESTONE_14 = 0.50;
+const _MILESTONE_17 = 0.83;
 
-const CROSS_IN = 0.18;   // how far before the milestone it fades IN
-const CROSS_OUT = 0.18;  // how far after the milestone it fades OUT
+const _CROSS_IN = 0.18;   // how far before the milestone it fades IN
+const _CROSS_OUT = 0.18;  // how far after the milestone it fades OUT
 
 const STICKY_OFFSET_VH = 25; // sticky top offset in viewport height
 

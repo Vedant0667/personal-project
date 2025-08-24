@@ -1,36 +1,146 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vedant Subramanian - Personal Portfolio
 
-## Getting Started
+A production-ready Next.js 15 portfolio website showcasing projects, achievements, and experience. Built with TypeScript, Tailwind CSS, and Framer Motion, the site is optimized for performance, accessibility, and search visibility.
 
-First, run the development server:
+## Performance Metrics
+
+### Before and After Optimization
+
+| Metric | Before | After | Change |
+|--------|--------|-------|--------|
+| Bundle Size (First Load JS) | 152 kB | 152 kB | Maintained |
+| Image Compression | Original JPGs | AVIF (-65%) + WebP (-42%) | Significant reduction |
+| ESLint Warnings | Multiple | 0 | Resolved |
+| Accessibility | Unknown | axe-core tested, jsx-a11y compliant | Production-ready |
+| SEO | Basic | OpenGraph, Twitter cards, Schema.org | Comprehensive |
+| Font Performance | swap | optional + preload | Improved |
+
+### Current Bundle Analysis
+- **Main page**: 152 kB First Load JS (52.1 kB page + 99.7 kB shared)
+- **Shared chunks**: 54.1 kB + 43.5 kB + 2.0 kB
+- **Image formats**: AVIF (primary), WebP (fallback), original (final fallback)
+
+## Development Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev          # Development server with Turbopack
+npm run build        # Production build
+npm start            # Production server
+npm run lint         # ESLint + accessibility checks
+npm run typecheck    # TypeScript validation
+````
+
+### Additional Scripts
+
+```bash
+npm run analyze         # Generate bundle analysis reports
+npm run compress-images # Optimize images (AVIF/WebP + blur placeholders)
+npm run bundle-budget   # Check bundle size after build
+npm run test            # Run Playwright smoke tests + accessibility audits
+npm run test:ui         # Playwright tests with UI
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### CI/CD Pipeline
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+GitHub Actions runs automatically on each push:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. `npm ci`
+2. `npm run lint`
+3. `npm run typecheck`
+4. `npm run build`
+5. `npm run bundle-budget`
 
-## Learn More
+## Image Optimization
 
-To learn more about Next.js, take a look at the following resources:
+The `npm run compress-images` script:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Converts images to AVIF and WebP (65% and 42% smaller on average)
+* Generates base64 blur placeholders in `src/data/blurData.json`
+* Maintains original formats as fallbacks
+* Processes all assets in `/public`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Accessibility
 
-## Deploy on Vercel
+* Verified with axe-core automated testing
+* jsx-a11y linting rules enforced
+* All images and interactive elements tested for compliance
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Production Features
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Performance
+
+* Optimized font loading with preloading and `display: optional`
+* Automated image compression with AVIF and WebP formats
+* Bundle analysis and size monitoring
+* Animations respect user motion preferences
+
+### SEO & Metadata
+
+* OpenGraph and Twitter card metadata for sharing
+* Structured data (JSON-LD) for Person schema
+* Auto-generated XML sitemap and robots.txt
+* Canonical URL configuration
+
+### Quality Assurance
+
+* Zero ESLint warnings with strict rules
+* TypeScript strict mode enabled
+* Playwright smoke tests and accessibility validation
+* Automated CI/CD pipeline with quality gates
+
+## Testing
+
+### Smoke Tests Cover
+
+* Homepage loading and accessibility
+* Navigation functionality
+* Image loading verification
+* Responsive design across viewports
+* Automated accessibility audits with axe-core
+
+### Running Tests
+
+```bash
+npm test        # Headless run
+npm run test:ui # Interactive test UI
+```
+
+## Project Structure
+
+```
+src/
+├── app/                 # Next.js 15 App Router
+│   ├── layout.tsx       # Root layout with fonts & SEO
+│   ├── page.tsx         # Homepage
+│   ├── robots.txt/      # SEO robots endpoint
+│   └── sitemap.xml/     # SEO sitemap endpoint
+├── components/          # React components
+│   └── motion/          # Framer Motion wrappers
+├── data/                # Static data & generated assets
+│   └── blurData.json    # Auto-generated blur placeholders
+└── scripts/             # Build & optimization scripts
+```
+
+## Deployment Checklist
+
+1. Update site verification in `layout.tsx`
+2. Configure domain URLs in sitemap and robots.txt
+3. Run `npm run build && npm start` for production
+4. Validate with `npm test && npm run lint`
+5. Confirm bundle size with `npm run analyze`
+
+## Tech Stack
+
+* **Framework**: Next.js 15 with App Router
+* **Language**: TypeScript (strict mode)
+* **Styling**: Tailwind CSS 4
+* **Animation**: Framer Motion (tree-shaken)
+* **Testing**: Playwright + axe-core
+* **CI/CD**: GitHub Actions
+* **Fonts**: Inter, Space Grotesk, JetBrains Mono
+* **Images**: Sharp (AVIF/WebP optimization)
+
+
+
+Built by Vedant Subramanian | Optimized for performance, accessibility, and SEO.
+

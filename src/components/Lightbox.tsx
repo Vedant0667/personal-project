@@ -43,10 +43,10 @@ export default function Lightbox({
   const overlay = (
     <div
       className="fixed left-0 top-0 h-[100dvh] w-screen z-[1000] bg-black/75 backdrop-blur-sm
-                 flex items-center justify-center p-4 sm:p-6 cursor-zoom-out"
-      onClick={onClose}
+                 flex items-center justify-center p-4 sm:p-6"
       role="dialog"
       aria-modal="true"
+      aria-label="Image lightbox"
     >
       {/* Close */}
       <button
@@ -60,10 +60,16 @@ export default function Lightbox({
         Close
       </button>
 
+      {/* Overlay click area */}
+      <button
+        className="absolute inset-0 w-full h-full bg-transparent border-0 cursor-zoom-out"
+        onClick={onClose}
+        aria-label="Close lightbox"
+      />
+      
       {/* Image */}
       <div
-        className="relative w-full max-w-[1200px] h-[min(90dvh,1200px)]"
-        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-[1200px] h-[min(90dvh,1200px)] z-10"
       >
         <Image
           src={src}
