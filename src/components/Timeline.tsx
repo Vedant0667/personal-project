@@ -81,7 +81,7 @@ export default function Timeline() {
   );
   const age17Opacity = useTransform(
     scrollYProgress,
-    [0.55, 0.83, 1],
+    [0.5, 0.83, 1],
     [0,    1,    1]
   );
 
@@ -141,12 +141,7 @@ export default function Timeline() {
             style={{ position: "sticky", top: `${STICKY_OFFSET_VH}vh` }}
           >
             {/* Age / Year */}
-            <motion.div 
-              className="mb-8 text-center lg:text-right"
-              style={{ 
-                opacity: useTransform(scrollYProgress, [0, 0.2], [0, 1])
-              }}
-            >
+            <div className="mb-8 text-center lg:text-right">
               <motion.span className="text-6xl font-bold text-orange-500">
                 {useTransform(currentAge, (v) => Math.round(v))}
               </motion.span>
@@ -154,7 +149,7 @@ export default function Timeline() {
               <motion.span className="text-5xl font-medium text-orange-500">
                 {useTransform(currentYear, (v) => Math.round(v))}
               </motion.span>
-            </motion.div>
+            </div>
 
             {/* Photos (stacked crossfade) */}
             <div className="relative w-80 h-80 lg:ml-auto lg:mr-0 mx-auto">
