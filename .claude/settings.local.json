@@ -13,7 +13,8 @@
       "Bash(curl:*)",
       "Bash(npm run lint)",
       "Bash(npm run compress-images:*)",
-      "Bash(npm run analyze:*)"
+      "Bash(npm run analyze:*)",
+      "Bash(npm run typecheck:*)"
     ],
     "deny": [],
     "ask": []

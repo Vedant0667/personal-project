@@ -37,3 +37,9 @@ jobs:
       
     - name: Check bundle size
       run: npm run bundle-budget
+    
+    - name: Install Playwright browsers
+      run: npx playwright install --with-deps chromium
+    
+    - name: Run Playwright tests
+      run: npm run test

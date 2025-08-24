@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { injectAxe, checkA11y } from '@axe-core/playwright';
+import AxeBuilder from '@axe-core/playwright';
 
 test('homepage loads and is accessible', async ({ page }) => {
   await page.goto('/');
@@ -16,8 +16,8 @@ test('homepage loads and is accessible', async ({ page }) => {
   await expect(page.locator('#home')).toBeVisible();
   
   // Accessibility check
-  await injectAxe(page);
-  await checkA11y(page);
+  const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+  expect(accessibilityScanResults.violations).toEqual([]);
 });
 
 test('navigation sections exist', async ({ page }) => {
