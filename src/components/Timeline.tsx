@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Reveal from "@/components/Reveal";
 
@@ -146,9 +146,9 @@ export default function Timeline() {
             className="col-span-12 lg:col-span-5 self-start"
             style={{ position: "sticky", top: `${STICKY_OFFSET_VH}vh` }}
           >
-            {/* Age / Year */}
+            {/* Age / Year - Desktop only */}
             <motion.div 
-              className="mb-8 text-center lg:text-right"
+              className="hidden lg:block mb-8 text-center lg:text-right"
               style={{ 
                 opacity: useTransform(scrollYProgress, [0, 0.2], [0, 1])
               }}
@@ -162,8 +162,8 @@ export default function Timeline() {
               </motion.span>
             </motion.div>
 
-            {/* Photos (stacked crossfade) */}
-            <div className="relative w-80 h-80 lg:ml-auto lg:mr-0 mx-auto">
+            {/* Photos (stacked crossfade) - Desktop only */}
+            <div className="hidden lg:block relative w-80 h-80 lg:ml-auto lg:mr-0 mx-auto">
               <motion.img
                 src="/age-9-photo.jpg"
                 alt="Age 9"

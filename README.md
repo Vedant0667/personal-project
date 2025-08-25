@@ -92,8 +92,8 @@ The `npm run compress-images` script:
 
 ### Smoke Tests Cover
 
-* Homepage loading and accessibility
-* Navigation functionality
+* Homepage loading and accessibility (with region rule disabled for design flexibility)
+* Navigation functionality (#home, #timeline, #projects, #achievements, #contact)
 * Image loading verification
 * Responsive design across viewports
 * Automated accessibility audits with axe-core
