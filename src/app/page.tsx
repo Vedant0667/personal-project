@@ -13,23 +13,25 @@ export default function Page() {
     <div className="min-h-screen">
       <NavBar />
 
-      <Hero />
+      <main>
+        <Hero />
 
-      <Timeline />
+        <Timeline />
 
-      <SectionDivider />
+        <SectionDivider />
 
-      <Section id="projects" title="Projects">
-        <div className="space-y-8">
-          {projects.map((p) => (
-            <ProjectCard key={p.title} {...p} />
-          ))}
-        </div>
-      </Section>
+        <Section id="projects" title="Projects">
+          <div className="space-y-8">
+            {projects.map((p) => (
+              <ProjectCard key={p.title} {...p} />
+            ))}
+          </div>
+        </Section>
 
-      <Achievements />
+        <Achievements />
 
-      <Contact />
+        <Contact />
+      </main>
 
       <footer className="border-t border-stone-200">
         <div className="mx-auto max-w-6xl px-5 py-8 text-sm text-slate-600">

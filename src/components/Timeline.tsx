@@ -142,7 +142,7 @@ export default function Timeline() {
           </div>
 
           {/* RIGHT: sticky panel (behaves fixed inside section, releases at bottom) */}
-          <aside
+          <div
             className="col-span-12 lg:col-span-5 self-start"
             style={{ position: "sticky", top: `${STICKY_OFFSET_VH}vh` }}
           >
@@ -183,7 +183,7 @@ export default function Timeline() {
                 style={{ opacity: age17Opacity }}
               />
             </div>
-          </aside>
+          </div>
         </div>
       </div>
     </section>
