@@ -51,16 +51,16 @@ export const projects: ProjectProps[] = [
     imageSrc: "/campus-life-new.png",
     imageAlt: "CampusLife family wellness app interface",
     title: "CampusLife",
-    tags: ["React Native", "Node.js", "Expo"],
+    tags: ["React Native", "Expo"],
     story:
-      "I met Ronald at M&TSI and we instantly became best friends. After struggling through the program together, we knew we wanted to start something meaningful. We coded tirelessly in Node.js to create CampusLife, a family wellness tracker that focuses on connection over transactions. The app gamifies healthy habits while helping families stay connected through support messages, care packages, and wellness monitoring.",
+      "I met Ronald at M&TSI and we instantly became best friends. After struggling through the program together, we knew we wanted to start something meaningful. During conversations, we both realized we had brothers who weren't very talkative and we were worried about their communication with our parents when they went to college. This shared concern sparked the idea for CampusLife, a family wellness tracker that focuses on connection over transactions. We coded tirelessly to create an app that gamifies healthy habits while helping families stay connected through support messages, care packages, and wellness monitoring.",
     bullets: [
       { strong: "Core Features", text: "Sleep, meal, exercise tracking with family connection features" },
       { strong: "Gamification", text: "Levels (Freshman → Graduate), streaks, achievements, and family support" },
       { strong: "Tech Stack", text: "React Native, Expo, Firebase/Firestore backend" },
     ],
     links: [
-      { href: "https://github.com/kentsubra71/campus-life", label: "GitHub" },
+      { href: "https://apps.apple.com/us/app/campuslife-college-redefined/id6752628164", label: "App Store" },
     ],
   },
   {

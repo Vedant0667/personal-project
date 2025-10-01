@@ -4,6 +4,13 @@ import React from "react";
 import Image from "next/image";
 import { createPortal } from "react-dom";
 
+const EmailIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" {...props}>
+    <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z" />
+    <path d="m22 8-10 6L2 8" />
+  </svg>
+);
+
 export default function Lightbox({
   open,
   onClose,
@@ -16,6 +23,7 @@ export default function Lightbox({
   alt: string;
 }) {
   const [mounted, setMounted] = React.useState(false);
+  const email = "vedant.subramanian@gmail.com";
 
   // mount flag (portals need the browser)
   React.useEffect(() => setMounted(true), []);
@@ -59,6 +67,16 @@ export default function Lightbox({
       >
         Close
       </button>
+
+      {/* Email Button */}
+      <a
+        href={`mailto:${email}`}
+        onClick={(e) => e.stopPropagation()}
+        className="absolute top-3 left-3 z-[1001] inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-orange-600 to-red-600 text-white px-4 py-2 text-sm font-medium shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-orange-200 transition-all duration-200 hover:scale-105"
+      >
+        <EmailIcon />
+        Email me
+      </a>
 
       {/* Overlay click area */}
       <button
