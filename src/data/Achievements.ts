@@ -20,7 +20,7 @@ export const achievements: Achievement[] = [
   {
     kicker: "UPenn M&TSI",
     title: "Selected (≈3% acceptance)",
-    detail: "Built THIɅK Clear prototype with bone-conduction frames and companion app.",
+    detail: "Built THIɅK Clear prototype with bone-conduction frames and companion webapp.",
     link: { href: "https://fisher.wharton.upenn.edu/management-technology-summer-institute/", label: "Program Info" },
     color: "cream",
   },
