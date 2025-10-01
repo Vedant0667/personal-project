@@ -66,7 +66,16 @@ function ProjectCard({
 }: ProjectProps) {
   const [open, setOpen] = React.useState(false);
 
-  const handleImageClick = React.useCallback(() => setOpen(true), []);
+  const isPDF = imageSrc.endsWith('.pdf');
+
+  const handleImageClick = React.useCallback(() => {
+    if (isPDF) {
+      window.open(imageSrc, '_blank');
+    } else {
+      setOpen(true);
+    }
+  }, [isPDF, imageSrc]);
+
   const handleLightboxClose = React.useCallback(() => setOpen(false), []);
 
   return (
@@ -85,20 +94,28 @@ function ProjectCard({
         <MBox
           variants={itemVariants}
           whileHover={imageHoverVariants}
-          className="relative rounded-2xl overflow-hidden cursor-zoom-in sm:basis-1/2 sm:self-stretch w-full h-[220px] sm:h-auto sm:min-h-[280px] sm:max-h-[520px] shadow-lg group-hover:shadow-xl transition-all duration-300"
+          className={`relative rounded-2xl overflow-hidden ${isPDF ? 'cursor-pointer' : 'cursor-zoom-in'} sm:basis-1/2 sm:self-stretch w-full h-[220px] sm:h-auto sm:min-h-[280px] sm:max-h-[520px] shadow-lg group-hover:shadow-xl transition-all duration-300`}
           onClick={handleImageClick}
           role="button"
-          aria-label="Expand image"
-          title="Click to expand"
+          aria-label={isPDF ? "Open PDF" : "Expand image"}
+          title={isPDF ? "Click to open PDF" : "Click to expand"}
         >
-          <Image
-            src={imageSrc}
-            alt={imageAlt}
-            fill
-            className="object-cover"
-            sizes="(min-width: 1024px) 520px, (min-width: 640px) 50vw, 100vw"
-            priority={false}
-          />
+          {isPDF ? (
+            <iframe
+              src={imageSrc}
+              title={imageAlt}
+              className="w-full h-full pointer-events-none"
+            />
+          ) : (
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 520px, (min-width: 640px) 50vw, 100vw"
+              priority={false}
+            />
+          )}
         </MBox>
 
         {/* Text */}

@@ -7,7 +7,7 @@ export const projects: ProjectProps[] = [
     title: "Shelter Aid TX",
     tags: ["Nonprofit", "Operations", "Community"],
     story:
-      "Shelters kept telling me the same thing: they needed shoes. After cold-calling ~50 shelters across DFW and hearing that ~70% ranked shoes among the biggest needs, I started Shelter Aid TX with my brother and a friend. I designed a shoe match system so donations aren't random; the right pairs go to the right shelters. As president, I run ops and partnerships, and I'm scoping an app to replace our Google Sheets tracking.",
+      "Shelters kept telling me the same thing: they needed shoes. After cold-calling ~50 shelters across DFW and hearing that ~70% ranked shoes among the biggest needs, I started Shelter Aid TX with my brother and a friend. I designed a shoe match system so donations aren't random; the right pairs go to the right shelters. This matching system is what sets us apart—we're not just collecting shoes, we're solving specific needs. As president, I run ops and partnerships to keep this system running efficiently. I'm currently training the next generation of leaders for the organization and we've set up a strong succession plan to ensure long-term impact.",
     bullets: [
       { strong: "Impact", text: "1000+ shoes donated; 7+ shelters served" },
       {
@@ -30,7 +30,7 @@ export const projects: ProjectProps[] = [
     ],
   },
   {
-    imageSrc: "/thinkclear-frames.jpg",
+    imageSrc: "/thinkclear-frames.webp",
     imageAlt: "THIɅK Clear prototype glasses",
     title: "THIɅK Clear",
     tags: ["Python", "Next.js"],
@@ -48,7 +48,7 @@ export const projects: ProjectProps[] = [
     ],
   },
   {
-    imageSrc: "/campus-life-new.png",
+    imageSrc: "/campus-life-new.webp",
     imageAlt: "CampusLife family wellness app interface",
     title: "CampusLife",
     tags: ["React Native", "Expo"],
@@ -64,7 +64,7 @@ export const projects: ProjectProps[] = [
     ],
   },
   {
-    imageSrc: "/rally-trophy.jpg",
+    imageSrc: "/rally-trophy.webp",
     imageAlt: "3D-printed Rally app trophy",
     title: "Rally",
     tags: ["PHP", "HTML", "CSS"],
@@ -77,7 +77,7 @@ export const projects: ProjectProps[] = [
     ],
   },
   {
-    imageSrc: "/vidrant-content.jpg", // You can add your photo here
+    imageSrc: "/vidrant-content.webp",
     imageAlt: "Vedant creating YouTube and TikTok content",
     title: "Content Creation",
     tags: ["YouTube", "TikTok", "Video Editing"],
@@ -92,6 +92,23 @@ export const projects: ProjectProps[] = [
       { href: "https://www.youtube.com/@vidrantprod/shorts", label: "YouTube Channel" },
       { href: "https://www.tiktok.com/@vidrantprod1", label: "TikTok Vidrant Prod" },
       { href: "https://www.tiktok.com/@vidrant.edits", label: "TikTok Vidrant Edits" },
+    ],
+  },
+  {
+    imageSrc: "/tariffs-paper-cover.webp",
+    imageAlt: "US Tariffs Research Paper",
+    title: "Macroeconomic Effects of 2025 US Tariffs",
+    tags: ["Economics", "Research", "Policy Analysis"],
+    story:
+      "I conducted a 1-on-1 research internship under Professor Sanket Mohapatra at IIM Ahmedabad, a former Senior Economist at the World Bank with expertise in international macroeconomics and trade policy. My research analyzed the macroeconomic effects of the 2025 US tariffs, specifically examining their impact on inflation, consumption, reshoring, and substitution patterns. The paper was published on SSRN.",
+    bullets: [
+      { strong: "Research Focus", text: "Inflation dynamics, consumption patterns, reshoring effects, and substitution in response to 2025 tariff policy" },
+      { strong: "Advisor", text: "Prof. Sanket Mohapatra (PhD Columbia, former World Bank Senior Economist)" },
+      { strong: "Publication", text: "Published on SSRN" },
+    ],
+    links: [
+      { href: "/tariffs-paper.pdf", label: "Research Paper (PDF)" },
+      { href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5438034", label: "SSRN Publication" },
     ],
   },
 ];

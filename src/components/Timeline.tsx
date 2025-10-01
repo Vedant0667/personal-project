@@ -21,22 +21,22 @@ const STICKY_OFFSET_VH = 25; // sticky top offset in viewport height
 
 const journeyData = [
   { id: 1, year: "2017", age: 9,  title: "First YouTube Channel",
-    description: "Started creating guitar tutorials with my iPad mini and iMovie — the spark that started everything",
+    description: "Just me, my guitar, and my iPad mini creating guitar tutorials and editing them with iMovie.",
     color: "#ef4444" },
   { id: 2, year: "2020", age: 12, title: "Business Inspiration",
-    description: "Watching my dad lead client calls and manage teams — I started understanding what real leadership looks like",
+    description: "Sat in on my dad's client calls and watched how he ran things. Started understanding what real leadership looks like.",
     color: "#f97316" },
   { id: 3, year: "2022", age: 14, title: "First Organization: Shelter Aid TX",
-    description: "Founded my first nonprofit to donate shoes to shelters across DFW, inspired by my dad's approach to building relationships",
+    description: "Started a nonprofit to donate shoes to shelters around DFW. My dad's approach to building relationships shaped how I ran it.",
     color: "#22c55e" },
   { id: 4, year: "2022", age: 14, title: "First Big Coding Project: Rally",
-    description: "Built school attendance app adopted by 50%+ of student body — my first taste of real product impact",
+    description: "Built an attendance app for my school. Over half the student body signed up.",
     color: "#3b82f6" },
   { id: 5, year: "2025", age: 17, title: "Innovation at M&TSI: THIɅK Clear",
-    description: "Created memory-aid glasses with bone conduction at UPenn — learned how to turn crazy ideas into working prototypes",
+    description: "Built memory-aid glasses with bone conduction at UPenn. Learned how to turn ideas into working prototypes.",
     color: "#8b5cf6" },
   { id: 6, year: "2025", age: 17, title: "Scaling Up: CampusLife & Content",
-    description: "Co-built family wellness app and grew content to 700k+ views — combining technical skills with audience building",
+    description: "Co-built a family wellness app and grew my content to 700k+ views across YouTube and TikTok.",
     color: "#f59e0b" },
 ];
 
