@@ -7,9 +7,9 @@ export const projects: ProjectProps[] = [
     title: "Shelter Aid TX",
     tags: ["Nonprofit", "Operations", "Community"],
     story:
-      "Shelters kept telling me the same thing: they needed shoes. After cold-calling ~50 shelters across DFW and hearing that ~70% ranked shoes among the biggest needs, I started Shelter Aid TX with my brother and a friend. I designed a shoe match system so donations aren't random; the right pairs go to the right shelters. This matching system is what sets us apart—we're not just collecting shoes, we're solving specific needs. As president, I run ops and partnerships to keep this system running efficiently. I'm currently training the next generation of leaders for the organization and we've set up a strong succession plan to ensure long-term impact.",
+      "Shelters kept telling me the same thing: they needed shoes. After cold-calling ~50 shelters across DFW and hearing that ~70% ranked shoes among the biggest needs, I started Shelter Aid TX with my brother and a friend. I designed a shoe match system so donations aren't random; the right pairs go to the right shelters. This matching system is what sets us apart - we're not just collecting shoes, we're solving specific needs. As president, I run ops and partnerships to keep this system running efficiently. I'm currently training the next generation of leaders for the organization and we've set up a strong succession plan to ensure long-term impact.",
     bullets: [
-      { strong: "Impact", text: "1000+ shoes donated; 7+ shelters served" },
+      { strong: "Impact", text: "1200+ shoes donated; 7+ shelters served" },
       {
         strong: "Partners",
         text:
@@ -30,17 +30,31 @@ export const projects: ProjectProps[] = [
     ],
   },
   {
+    imageSrc: "/shelteraidtx-portal.png",
+    imageAlt: "Shelter Aid TX Portal dashboard interface",
+    title: "Shelter Aid TX Portal",
+    tags: ["React", "Operations"],
+    story:
+      "As I prepared to leave for college, I realized the next generation of Shelter Aid leaders needed more than just training - they needed systems. I built a custom operations portal to centralize everything: logging shoe collections, tracking incoming and outgoing donations in real-time, managing all our partnership and shelter relationships, and organizing critical documents. The portal ensures that when I'm gone, the organization's institutional knowledge and operational workflows stay intact, making the transition seamless for future leaders.",
+    bullets: [
+      { strong: "Core Features", text: "Collection logging, donation tracking (in/out), partner & shelter management, document storage" },
+      { strong: "Purpose", text: "Enable smooth leadership transitions and preserve institutional knowledge" },
+      { strong: "Tech Stack", text: "React" },
+    ],
+  },
+  {
     imageSrc: "/thinkclear-frames.webp",
     imageAlt: "THIɅK Clear prototype glasses",
     title: "THIɅK Clear",
     tags: ["Python", "Next.js"],
     story:
-      "At UPenn's M&TSI, our team kept circling one idea we loved: glasses that help with memory cues. We surveyed 60+ people and spoke with industry professionals including Raj Amin and a former Fort Worth VITAS Medical Director, plus a local nursing home director. We built sleek frames with bone conduction so names can be delivered even with some hearing loss, and a companion matching game to reinforce faces and objects. I co-led market research, financial modeling, and produced our marketing video.",
+      "At UPenn's M&TSI, our team kept circling one idea we loved: glasses that help with memory cues. We surveyed 60+ people and spoke with industry professionals including Raj Amin and a former Fort Worth VITAS Medical Director, plus a local nursing home director. We built sleek frames with bone conduction so names can be delivered even with some hearing loss, and a companion matching game to reinforce faces and objects. I co-led market research, financial modeling, and produced our marketing video. After the program, we re-engaged with our survey data, decided the game had stronger demand, and pivoted to focus on it.",
     bullets: [
-      { strong: "Core flow", text: "See a person → name is sent via bone conduction to mastoid bone, designed to aid those with conductive hearing loss" },
-      { strong: "Companion app", text: "Matching faces→names and objects (objects mode inspired by VITAS Director)" },
+      { strong: "Core flow", text: "See a person - name is sent via bone conduction to mastoid bone, designed to aid those with conductive hearing loss" },
+      { strong: "Companion app", text: "Matching faces-names and objects (objects mode inspired by VITAS Director)" },
     ],
     links: [
+      { href: "https://thinkclear.net", label: "Website" },
       { href: "https://www.youtube.com/watch?v=kr45kQ00uWc&ab_channel=VedantSubramanian", label: "YouTube Demo" },
       { href: "https://devpost.com/software/thi-k-clear", label: "Devpost" },
       { href: "/thinkclear-financial-model.xlsx", label: "Financial Model" },
@@ -56,10 +70,11 @@ export const projects: ProjectProps[] = [
       "I met Ronald at M&TSI and we instantly became best friends. After struggling through the program together, we knew we wanted to start something meaningful. During conversations, we both realized we had brothers who weren't very talkative and we were worried about their communication with our parents when they went to college. This shared concern sparked the idea for CampusLife, a family wellness tracker that focuses on connection over transactions. We coded tirelessly to create an app that gamifies healthy habits while helping families stay connected through support messages, care packages, and wellness monitoring.",
     bullets: [
       { strong: "Core Features", text: "Sleep, meal, exercise tracking with family connection features" },
-      { strong: "Gamification", text: "Levels (Freshman → Graduate), streaks, achievements, and family support" },
+      { strong: "Gamification", text: "Levels (Freshman - Graduate), streaks, achievements, and family support" },
       { strong: "Tech Stack", text: "React Native, Expo, Firebase/Firestore backend" },
     ],
     links: [
+      { href: "https://www.campuslifeapp.com/", label: "Website" },
       { href: "https://apps.apple.com/us/app/campuslife-college-redefined/id6752628164", label: "App Store" },
     ],
   },
@@ -74,6 +89,23 @@ export const projects: ProjectProps[] = [
       { strong: "Adoption", text: ">50% of the student body signed up" },
       { strong: "Perks", text: "Breakfast coupons, school store credits, skip-the-line pass" },
       { strong: "Culture", text: "Year-end ESPY-style awards; 3D powder-printed trophies" },
+    ],
+  },
+  {
+    imageSrc: "/tariffs-paper-cover.webp",
+    imageAlt: "US Tariffs Research Paper",
+    title: "Macroeconomic Effects of 2025 US Tariffs",
+    tags: ["Economics", "Research", "Policy Analysis"],
+    story:
+      "I conducted a 1-on-1 research internship under Professor Sanket Mohapatra at IIM Ahmedabad, a former Senior Economist at the World Bank with expertise in international macroeconomics and trade policy. My research analyzed the macroeconomic effects of the 2025 US tariffs, specifically examining their impact on inflation, consumption, reshoring, and substitution patterns. The paper was published on SSRN.",
+    bullets: [
+      { strong: "Research Focus", text: "Inflation dynamics, consumption patterns, reshoring effects, and substitution in response to 2025 tariff policy" },
+      { strong: "Advisor", text: "Prof. Sanket Mohapatra (PhD Columbia, former World Bank Senior Economist)" },
+      { strong: "Publication", text: "Published on SSRN" },
+    ],
+    links: [
+      { href: "/tariffs-paper.pdf", label: "Research Paper (PDF)" },
+      { href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5438034", label: "SSRN Publication" },
     ],
   },
   {
@@ -92,23 +124,6 @@ export const projects: ProjectProps[] = [
       { href: "https://www.youtube.com/@vidrantprod/shorts", label: "YouTube Channel" },
       { href: "https://www.tiktok.com/@vidrantprod1", label: "TikTok Vidrant Prod" },
       { href: "https://www.tiktok.com/@vidrant.edits", label: "TikTok Vidrant Edits" },
-    ],
-  },
-  {
-    imageSrc: "/tariffs-paper-cover.webp",
-    imageAlt: "US Tariffs Research Paper",
-    title: "Macroeconomic Effects of 2025 US Tariffs",
-    tags: ["Economics", "Research", "Policy Analysis"],
-    story:
-      "I conducted a 1-on-1 research internship under Professor Sanket Mohapatra at IIM Ahmedabad, a former Senior Economist at the World Bank with expertise in international macroeconomics and trade policy. My research analyzed the macroeconomic effects of the 2025 US tariffs, specifically examining their impact on inflation, consumption, reshoring, and substitution patterns. The paper was published on SSRN.",
-    bullets: [
-      { strong: "Research Focus", text: "Inflation dynamics, consumption patterns, reshoring effects, and substitution in response to 2025 tariff policy" },
-      { strong: "Advisor", text: "Prof. Sanket Mohapatra (PhD Columbia, former World Bank Senior Economist)" },
-      { strong: "Publication", text: "Published on SSRN" },
-    ],
-    links: [
-      { href: "/tariffs-paper.pdf", label: "Research Paper (PDF)" },
-      { href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5438034", label: "SSRN Publication" },
     ],
   },
 ];
