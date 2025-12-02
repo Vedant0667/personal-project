@@ -92,8 +92,8 @@ export const projects: ProjectProps[] = [
       { strong: "UX", text: "Robot config + framework toggles feed the prompts; localStorage keeps sessions and prefs" },
     ],
     links: [
-      { href: "/workbench", label: "Open Workbench" },
-      { href: "/api/ai", label: "SSE proxy" },
+      { href: "https://ai-ftc.vercel.app/workbench", label: "Open Workbench" },
+      { href: "https://github.com/Vedant0667/AI_FTC", label: "GitHub" },
     ],
   },
   {
