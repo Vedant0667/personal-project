@@ -115,7 +115,7 @@ export const projects: ProjectProps[] = [
     title: "Macroeconomic Effects of 2025 US Tariffs",
     tags: ["Economics", "Research", "Policy Analysis"],
     story:
-      "I conducted a 1-on-1 research internship under Professor Sanket Mohapatra at IIM Ahmedabad, a former Senior Economist at the World Bank with expertise in international macroeconomics and trade policy. My research analyzed the macroeconomic effects of the 2025 US tariffs, specifically examining their impact on inflation, consumption, reshoring, and substitution patterns. The paper was published on SSRN.",
+      "I conducted a 1-on-1 research internship under IIM Ahmedabad Professor Sanket Mohapatra, a former Senior Economist at the World Bank with expertise in international macroeconomics and trade policy. My research analyzed the macroeconomic effects of the 2025 US tariffs, specifically examining their impact on inflation, consumption, reshoring, and substitution patterns. The paper was published on SSRN.",
     bullets: [
       { strong: "Research Focus", text: "Inflation dynamics, consumption patterns, reshoring effects, and substitution in response to 2025 tariff policy" },
       { strong: "Advisor", text: "Prof. Sanket Mohapatra (PhD Columbia, former World Bank Senior Economist)" },
