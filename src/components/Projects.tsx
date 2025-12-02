@@ -22,6 +22,13 @@ export default function Projects() {
       image: "/rally-trophy.jpg",
       tech: ["React", "Firebase", "CSS"],
       link: "#"
+    },
+    {
+      title: "FTC AI Workbench",
+      description: "Anthropic-backed FTC assistant that streams Claude from a server-side proxy and pulls context from an FTC RAG cache at /workbench.",
+      image: "/ftc-workbench.jpg",
+      tech: ["Next.js 15", "Claude", "RAG"],
+      link: "/workbench"
     }
   ];
 

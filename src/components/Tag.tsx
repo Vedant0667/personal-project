@@ -17,6 +17,8 @@ export const TAG_STYLES: Record<string, string> = {
   YouTube: "bg-red-100 text-red-800 ring-red-200",
   TikTok: "bg-pink-100 text-pink-800 ring-pink-200",
   "Video Editing": "bg-violet-100 text-violet-800 ring-violet-200",
+  RAG: "bg-amber-100 text-amber-900 ring-amber-200",
+  FTC: "bg-slate-100 text-slate-900 ring-slate-200",
 };
 
 interface TagProps {

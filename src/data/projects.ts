@@ -7,7 +7,7 @@ export const projects: ProjectProps[] = [
     title: "Shelter Aid TX",
     tags: ["Nonprofit", "Operations", "Community"],
     story:
-      "Shelters kept telling me the same thing: they needed shoes. After cold-calling ~50 shelters across DFW and hearing that ~70% ranked shoes among the biggest needs, I started Shelter Aid TX with my brother and a friend. I designed a shoe match system so donations aren't random; the right pairs go to the right shelters. This matching system is what sets us apart - we're not just collecting shoes, we're solving specific needs. As president, I run ops and partnerships to keep this system running efficiently. I'm currently training the next generation of leaders for the organization and we've set up a strong succession plan to ensure long-term impact.",
+      "Shelters kept telling me the same thing: they needed shoes. After cold-calling ~50 shelters across DFW and hearing that ~70% ranked shoes among the biggest needs, I started Shelter Aid TX with my brother and a friend. I designed a shoe match system so donations aren't random; the right pairs go to the right shelters. This matching system is what sets us apart since we're solving specific needs. As president, I run ops and partnerships to keep this system running efficiently. I'm currently training the next generation of leaders for the organization and we've set up a strong succession plan to ensure long-term impact.",
     bullets: [
       { strong: "Impact", text: "1200+ shoes donated; 7+ shelters served" },
       {
@@ -35,7 +35,7 @@ export const projects: ProjectProps[] = [
     title: "Shelter Aid TX Portal",
     tags: ["React", "Operations"],
     story:
-      "As I prepared to leave for college, I realized the next generation of Shelter Aid leaders needed more than just training - they needed systems. I built a custom operations portal to centralize everything: logging shoe collections, tracking incoming and outgoing donations in real-time, managing all our partnership and shelter relationships, and organizing critical documents. The portal ensures that when I'm gone, the organization's institutional knowledge and operational workflows stay intact, making the transition seamless for future leaders.",
+      "As I prepared to leave for college, I realized the next generation of Shelter Aid leaders needed systems. I built a custom operations portal to centralize everything: logging shoe collections, tracking incoming and outgoing donations in real-time, managing all our partnership and shelter relationships, and organizing critical documents. The portal ensures that when I'm gone, the organization's institutional knowledge and operational workflows stay intact.",
     bullets: [
       { strong: "Core Features", text: "Collection logging, donation tracking (in/out), partner & shelter management, document storage" },
       { strong: "Purpose", text: "Enable smooth leadership transitions and preserve institutional knowledge" },
@@ -76,6 +76,24 @@ export const projects: ProjectProps[] = [
     links: [
       { href: "https://www.campuslifeapp.com/", label: "Website" },
       { href: "https://apps.apple.com/us/app/campuslife-college-redefined/id6752628164", label: "App Store" },
+    ],
+  },
+  {
+    imageSrc: "/Screenshot 2025-12-02 000551.png",
+    imageAlt: "FTC AI Workbench interface",
+    title: "FTC AI Workbench",
+    tags: ["Next.js", "RAG", "FTC"],
+    story:
+      "I noticed generic AI prompts breaking FTC code, so I built my own workbench at /workbench. It streams Claude through a server proxy and queries cached FTC documents (SDK, Road Runner/Pedro, FTCLib, Limelight, Game Manual 0, top team repos) to ensure accurate answers.",
+    bullets: [
+      { strong: "Why", text: "Mainstream AI kept hallucinating FTC details; I wanted something reliable for robot code" },
+      { strong: "How", text: "Claude runs server-side over SSE; RAG uses BM25 on a local FTC cache initialized at startup" },
+      { strong: "Safety", text: "Keys stay server-side; rate/daily caps with Redis or in-memory fallback; optional API auth" },
+      { strong: "UX", text: "Robot config + framework toggles feed the prompts; localStorage keeps sessions and prefs" },
+    ],
+    links: [
+      { href: "/workbench", label: "Open Workbench" },
+      { href: "/api/ai", label: "SSE proxy" },
     ],
   },
   {
