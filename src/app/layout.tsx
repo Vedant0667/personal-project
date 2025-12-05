@@ -1,7 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import ScrollReset from "@/components/ScrollReset";
+import Analytics from "./analytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://vedantsubramanian.com'),
@@ -108,6 +110,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body style={bgStyle} className="text-slate-900 antialiased font-sans-var">
+        {/* Google Analytics - External Script */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-VV120HEYG4"
+          strategy="afterInteractive"
+        />
+
+        {/* Google Analytics - Initialization Script */}
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-VV120HEYG4');
+          `}
+        </Script>
+
+        <Analytics />
         <ScrollReset />
         {children}
       </body>
