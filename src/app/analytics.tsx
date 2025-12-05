@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export default function Analytics() {
+function AnalyticsTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -18,10 +18,18 @@ export default function Analytics() {
   return null;
 }
 
+export default function Analytics() {
+  return (
+    <Suspense fallback={null}>
+      <AnalyticsTracker />
+    </Suspense>
+  );
+}
+
 // Extend Window interface for TypeScript
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void;
-    dataLayer: any[];
+    gtag: (command: string, targetId: string, config?: Record<string, unknown>) => void;
+    dataLayer: Record<string, unknown>[];
   }
 }
