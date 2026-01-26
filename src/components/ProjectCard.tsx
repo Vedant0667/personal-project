@@ -17,7 +17,8 @@ export interface ProjectProps {
   imageSrc: string;   // served from /public
   imageAlt: string;
   title: string;
-  story: string;
+  summary?: string;   // short version for card preview
+  story: string;      // full version for modal
   bullets?: Bullet[];
   links?: Link[];
   tags?: string[];
