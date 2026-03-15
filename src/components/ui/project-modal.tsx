@@ -79,9 +79,9 @@ export function ProjectModal({
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
         className={cn(
-          "relative w-full max-w-6xl max-h-[90vh] overflow-hidden",
+          "relative w-full max-w-6xl h-[90vh] overflow-hidden",
           "bg-black dark:bg-[#FFF8EC] border border-[#f5f5f5]/[0.08] dark:border-black/[0.08] rounded-xl shadow-2xl",
-          "grid grid-cols-1 lg:grid-cols-2"
+          "grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-2 lg:grid-rows-1"
         )}
         onClick={(e) => e.stopPropagation()}
         onKeyDown={(e) => e.stopPropagation()}
@@ -96,7 +96,7 @@ export function ProjectModal({
         </button>
 
         {/* Left Side: Image */}
-        <div className="relative h-64 lg:h-full">
+        <div className="relative h-48 lg:h-full">
           <img
             src={imageUrl}
             alt={imageAlt}
@@ -106,7 +106,7 @@ export function ProjectModal({
         </div>
 
         {/* Right Side: Content */}
-        <div className="overflow-y-auto p-8 space-y-6 min-w-0 min-h-0">
+        <div className="overflow-y-auto p-5 md:p-8 space-y-5 md:space-y-6 min-w-0 min-h-0">
           {/* Title and Tags */}
           <div>
             <h2 className="font-sans text-4xl font-bold text-[#f5f5f5] dark:text-black mb-3">{title}</h2>
