@@ -114,8 +114,8 @@ export default function JourneyTimeline() {
       {/* Two-column layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 px-8 md:px-16 lg:px-24">
 
-        {/* Left: Compact sticky photo + age counter */}
-        <div className="lg:col-span-3">
+        {/* Left: Compact sticky photo + age counter — hidden on mobile */}
+        <div className="hidden lg:block lg:col-span-3">
           <div className="sticky top-32 flex flex-col items-start space-y-5">
 
             {/* Photo — fills the column */}

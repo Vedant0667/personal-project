@@ -168,73 +168,77 @@ export default function Component() {
           </div>
         </div>
 
-        {/* Bottom group: tagline + CTAs + socials + scroll */}
-        <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 w-full px-6 flex flex-col items-center gap-4 md:gap-5">
+        {/* Bottom group */}
+        <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 w-full max-w-xs sm:max-w-sm md:max-w-none px-6 flex flex-col items-center gap-4 md:gap-5">
+
+
+          {/* Tagline — desktop only */}
           <BlurText
             text="Creating innovative solutions and meaningful digital experiences"
             delay={150}
             animateBy="words"
             direction="top"
-            className="text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-[#FFFBEB] dark:text-black"
+            className="hidden md:inline-flex text-[20px] lg:text-[22px] text-center text-[#FFFBEB]/70 dark:text-black/70"
             style={{ fontFamily: "'Antic', sans-serif" }}
           />
 
-          {/* CTAs */}
+          {/* Primary CTAs — 2-col grid on mobile, row on desktop */}
           <div
             style={{
               opacity: showButtons ? 1 : 0,
               transform: showButtons ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
             }}
-            className="flex items-center gap-3"
+            className="flex md:flex-row w-full md:w-auto gap-2 md:gap-3"
           >
             <a
               href="#projects"
-              className="px-5 py-2 rounded-md bg-amber-400 text-black text-sm font-semibold tracking-wide hover:bg-amber-300 transition-colors duration-200"
+              className="flex items-center justify-center w-full md:w-auto px-5 py-3 rounded-md bg-amber-400 text-black text-base font-semibold tracking-wide hover:bg-amber-300 transition-colors duration-200"
             >
               View My Work
             </a>
             <a
               href="#contact"
-              className="px-5 py-2 rounded-md border border-[#FFFBEB]/20 dark:border-black/20 text-[#FFFBEB] dark:text-black text-sm font-medium tracking-wide hover:bg-[#FFFBEB]/5 dark:hover:bg-black/5 hover:border-[#FFFBEB]/40 dark:hover:border-black/40 transition-colors duration-200"
+              className="hidden md:flex items-center justify-center px-5 py-3 rounded-md border border-[#FFFBEB]/20 dark:border-black/20 text-[#FFFBEB] dark:text-black text-base font-medium tracking-wide hover:bg-[#FFFBEB]/5 dark:hover:bg-black/5 hover:border-[#FFFBEB]/40 dark:hover:border-black/40 transition-colors duration-200"
             >
               Get In Touch
             </a>
-            <a
-              href="/Vedant_Subramanian_resume.pdf"
-              download
-              className="flex items-center gap-1.5 px-5 py-2 rounded-md border border-[#FFFBEB]/20 dark:border-black/20 text-[#FFFBEB] dark:text-black text-sm font-medium tracking-wide hover:bg-[#FFFBEB]/5 dark:hover:bg-black/5 hover:border-[#FFFBEB]/40 dark:hover:border-black/40 transition-colors duration-200"
-            >
-              <Download className="w-3.5 h-3.5" />
-              Resume
-            </a>
           </div>
 
-          {/* Social icons */}
+          {/* Tertiary row: Resume + socials — all in one line */}
           <div
             style={{
               opacity: showButtons ? 1 : 0,
               transform: showButtons ? "translateY(0)" : "translateY(10px)",
               transition: "opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s",
             }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-4"
           >
+            <a
+              href="/Vedant_Subramanian_resume.pdf"
+              download
+              className="flex items-center gap-1.5 text-[#FFFBEB]/45 dark:text-black/45 hover:text-[#FFFBEB] dark:hover:text-black transition-colors duration-200 text-sm tracking-wide"
+            >
+              <Download className="w-3.5 h-3.5" />
+              Resume
+            </a>
+            <span className="text-[#FFFBEB]/20 dark:text-black/20 text-sm">·</span>
             <a
               href="https://github.com/Vedant0667"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[#FFFBEB]/40 dark:text-black/40 hover:text-[#FFFBEB] dark:hover:text-black transition-colors duration-200 text-xs tracking-wide"
+              className="flex items-center gap-1.5 text-[#FFFBEB]/45 dark:text-black/45 hover:text-[#FFFBEB] dark:hover:text-black transition-colors duration-200 text-sm tracking-wide"
               aria-label="GitHub"
             >
               <Github className="w-3.5 h-3.5" />
               GitHub
             </a>
-            <span className="text-[#FFFBEB]/15 dark:text-black/15 text-xs">·</span>
+            <span className="hidden md:inline text-[#FFFBEB]/20 dark:text-black/20 text-sm">·</span>
             <a
               href="https://www.linkedin.com/in/vedant-subramanian-762715300/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[#FFFBEB]/40 dark:text-black/40 hover:text-[#FFFBEB] dark:hover:text-black transition-colors duration-200 text-xs tracking-wide"
+              className="hidden md:flex items-center gap-1.5 text-[#FFFBEB]/45 dark:text-black/45 hover:text-[#FFFBEB] dark:hover:text-black transition-colors duration-200 text-sm tracking-wide"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-3.5 h-3.5" />
@@ -243,7 +247,7 @@ export default function Component() {
           </div>
 
           {/* Scroll indicator */}
-          <ChevronDown className="w-5 h-5 text-[#f5f5f5]/30 dark:text-black/30 mt-1" />
+          <ChevronDown className="w-4 h-4 text-[#f5f5f5]/25 dark:text-black/25" />
         </div>
       </main>
     </div>

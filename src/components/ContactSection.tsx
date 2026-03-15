@@ -18,7 +18,7 @@ export default function ContactSection() {
     <>
       <section
         id="contact"
-        className="w-full bg-black dark:bg-[#FFF9F0] py-24 md:py-32 px-4 md:px-8 lg:px-10 transition-colors border-t border-[#FFFBEB]/5 dark:border-black/5"
+        className="w-full bg-black dark:bg-[#FFF9F0] py-24 md:py-32 px-8 md:px-8 lg:px-10 transition-colors border-t border-[#FFFBEB]/5 dark:border-black/5"
       >
         <div className="max-w-7xl mx-auto">
           <p className="text-xs tracking-[0.2em] uppercase text-amber-400 mb-5 font-medium">
@@ -37,8 +37,8 @@ export default function ContactSection() {
           </p>
 
           {/* Email copy row */}
-          <div className="flex items-stretch w-fit mb-8 rounded-lg overflow-hidden border border-[#FFFBEB]/10 dark:border-black/10">
-            <span className="px-5 py-3 text-[#FFFBEB]/70 dark:text-black/70 text-sm font-mono tracking-wide bg-[#FFFBEB]/3 dark:bg-black/3 select-all">
+          <div className="flex items-stretch w-full sm:w-fit mb-8 rounded-lg overflow-hidden border border-[#FFFBEB]/10 dark:border-black/10">
+            <span className="flex-1 min-w-0 px-3 sm:px-5 py-3 text-[#FFFBEB]/70 dark:text-black/70 text-xs sm:text-sm font-mono tracking-wide bg-[#FFFBEB]/3 dark:bg-black/3 select-all truncate">
               {EMAIL}
             </span>
             <button
@@ -61,12 +61,12 @@ export default function ContactSection() {
           </div>
 
           {/* Social links + Resume */}
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
             <a
               href="https://github.com/Vedant0667"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-md border border-[#FFFBEB]/10 dark:border-black/10 text-[#FFFBEB]/50 dark:text-black/50 hover:text-[#FFFBEB] dark:hover:text-black hover:border-[#FFFBEB]/30 dark:hover:border-black/30 text-sm transition-colors duration-200"
+              className="flex items-center justify-center sm:justify-start gap-2 px-5 py-3 sm:py-2.5 rounded-md border border-[#FFFBEB]/10 dark:border-black/10 text-[#FFFBEB]/50 dark:text-black/50 hover:text-[#FFFBEB] dark:hover:text-black hover:border-[#FFFBEB]/30 dark:hover:border-black/30 text-sm transition-colors duration-200"
             >
               <Github className="w-4 h-4" />
               GitHub
@@ -75,7 +75,7 @@ export default function ContactSection() {
               href="https://www.linkedin.com/in/vedant-subramanian-762715300/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-5 py-2.5 rounded-md border border-[#FFFBEB]/10 dark:border-black/10 text-[#FFFBEB]/50 dark:text-black/50 hover:text-[#FFFBEB] dark:hover:text-black hover:border-[#FFFBEB]/30 dark:hover:border-black/30 text-sm transition-colors duration-200"
+              className="flex items-center justify-center sm:justify-start gap-2 px-5 py-3 sm:py-2.5 rounded-md border border-[#FFFBEB]/10 dark:border-black/10 text-[#FFFBEB]/50 dark:text-black/50 hover:text-[#FFFBEB] dark:hover:text-black hover:border-[#FFFBEB]/30 dark:hover:border-black/30 text-sm transition-colors duration-200"
             >
               <Linkedin className="w-4 h-4" />
               LinkedIn
@@ -83,7 +83,7 @@ export default function ContactSection() {
             <a
               href="/Vedant_Subramanian_resume.pdf"
               download
-              className="flex items-center gap-2 px-5 py-2.5 rounded-md bg-amber-400/10 border border-amber-400/30 text-amber-400 hover:bg-amber-400/20 hover:border-amber-400/50 text-sm transition-colors duration-200"
+              className="flex items-center justify-center sm:justify-start gap-2 px-5 py-3 sm:py-2.5 rounded-md bg-amber-400/10 border border-amber-400/30 text-amber-400 hover:bg-amber-400/20 hover:border-amber-400/50 text-sm transition-colors duration-200"
             >
               <Download className="w-4 h-4" />
               Download Resume
