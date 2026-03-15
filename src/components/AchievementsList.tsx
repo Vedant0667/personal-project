@@ -1,7 +1,6 @@
 "use client";
 
 import { memo } from "react";
-import Section from "@/components/Section";
 import { MBox, MLink, MSpan, MUl, MLi } from "@/components/motion/Motion";
 
 interface Achievement {
@@ -15,142 +14,130 @@ interface AchievementsListProps {
   achievements: Achievement[];
 }
 
-// Hoist variants to avoid inline objects
 const containerVariants = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  hidden: { opacity: 0, y: 24 },
   show: {
     opacity: 1,
     y: 0,
-    scale: 1,
-    transition: { 
-      type: "spring" as const,
-      stiffness: 120,
-      damping: 15,
-      duration: 0.6
-    },
+    transition: { type: "spring" as const, stiffness: 100, damping: 18 },
   },
 };
 
 const lineVariants = {
-  hidden: { opacity: 0, y: 15 },
-  show: { 
+  hidden: { opacity: 0, y: 8 },
+  show: {
     opacity: 1,
     y: 0,
-    transition: { 
-      duration: 0.4,
-      ease: "easeOut" as const
-    } 
+    transition: { duration: 0.3, ease: "easeOut" as const },
   },
 };
 
-const cardHoverVariants = { 
-  scale: 1.05, 
-  rotateY: 5,
-  transition: { duration: 0.3 }
-};
-
-const linkHoverVariants = { scale: 1.02 };
-
-const colorSchemes = [
-  { bg: "#FFFDF2", text: "#1f2937", accent: "rgba(251, 146, 60, 0.1)", border: "#f59e0b" },
-  { bg: "#FEF7F0", text: "#1f2937", accent: "rgba(236, 72, 153, 0.08)", border: "#ec4899" },
-  { bg: "#F0F9FF", text: "#1f2937", accent: "rgba(59, 130, 246, 0.08)", border: "#3b82f6" },
-  { bg: "#F0FDF4", text: "#1f2937", accent: "rgba(34, 197, 94, 0.08)", border: "#22c55e" },
-] as const;
-
 function AchievementsList({ achievements }: AchievementsListProps) {
   return (
-    <Section id="achievements" title="Recognition">
+    <div
+      id="achievements"
+      className="w-full bg-black dark:bg-[#FFF9F0] py-20 px-4 md:px-8 lg:px-10 transition-colors"
+    >
+      {/* Section header */}
+      <div className="max-w-7xl mx-auto mb-12">
+        <h2 className="font-sans text-lg md:text-4xl mb-4 text-[#f5f5f5] dark:text-black max-w-4xl">
+          Awards &amp; Honors
+        </h2>
+        <p className="font-sans text-[#f5f5f5]/60 dark:text-black/60 text-sm md:text-base max-w-2xl">
+          Programs, accolades, and recognition along the way.
+        </p>
+      </div>
+
       <MUl
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, amount: 0.25 }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 justify-items-center"
+        viewport={{ once: true, amount: 0.1 }}
+        className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
       >
-        {achievements.map((a, index) => {
-          const colorScheme = colorSchemes[index % colorSchemes.length];
-          return (
-            <MLi
-              key={a.title}
-              variants={cardVariants}
-              whileHover={cardHoverVariants}
-              className="rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden ring-1"
-              style={{ 
-                backgroundColor: colorScheme.bg,
-                borderColor: colorScheme.border + "30",
-                transform: "perspective(1000px)"
+        {achievements.map((a, index) => (
+          <MLi
+            key={a.title}
+            variants={cardVariants}
+            whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
+            className={[
+              "group relative rounded-xl overflow-hidden flex flex-col min-h-[200px]",
+              "shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-default",
+              // dark mode: dark card / light mode: off-white card
+              "bg-[#1a1a1a] dark:bg-[#efefef]",
+              "border border-[#f5f5f5]/[0.06] dark:border-black/[0.08]",
+            ].join(" ")}
+          >
+            {/* Amber accent bar */}
+            <div
+              className="absolute top-0 left-0 right-0 h-[2px] opacity-50 group-hover:opacity-100 transition-opacity duration-300"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(245,158,11,0.9) 0%, rgba(251,191,36,0.5) 55%, transparent 100%)",
               }}
+            />
+
+            {/* Faded index number */}
+            <span
+              className="absolute bottom-2 right-4 font-mono-var font-bold select-none pointer-events-none tabular-nums text-[#f5f5f5]/[0.05] dark:text-black/[0.06]"
+              style={{ fontSize: "5rem", lineHeight: 1, letterSpacing: "-0.05em" }}
             >
-              <div className="p-6 relative h-full flex flex-col">
-                <div 
-                  className="absolute top-0 right-0 w-20 h-20 rounded-full opacity-20"
-                  style={{ background: colorScheme.accent, transform: 'translate(25%, -25%)' }}
-                />
-                <div 
-                  className="absolute bottom-0 left-0 w-16 h-16 rounded-full opacity-10"
-                  style={{ background: colorScheme.accent, transform: 'translate(-25%, 25%)' }}
-                />
-                
-                <MSpan
+              {String(index + 1).padStart(2, "0")}
+            </span>
+
+            <div className="relative p-6 flex flex-col h-full">
+              {/* Kicker pill */}
+              <MSpan
+                variants={lineVariants}
+                className="font-sans text-xs font-medium mb-4 block w-fit rounded-full px-2 py-1 backdrop-blur-sm text-[#f5f5f5] bg-[#f5f5f5]/[0.1] border border-[#f5f5f5]/[0.15] dark:text-black dark:bg-black/[0.08] dark:border-black/[0.15]"
+              >
+                {a.kicker}
+              </MSpan>
+
+              {/* Title */}
+              <MBox
+                variants={lineVariants}
+                className="font-sans text-xl font-bold leading-snug text-[#f5f5f5] dark:text-[#1a1a1a]"
+              >
+                {a.title}
+              </MBox>
+
+              {/* Detail */}
+              {a.detail && (
+                <MBox
                   variants={lineVariants}
-                  className="font-mono-var inline-flex items-center rounded-full px-2 py-0.5 text-[9px] uppercase tracking-wide font-medium mb-3 w-fit"
-                  style={{ 
-                    backgroundColor: colorScheme.accent,
-                    color: colorScheme.border,
-                    border: `1px solid ${colorScheme.border}30`
-                  }}
+                  className="mt-3 text-sm leading-relaxed text-[#f5f5f5]/60 dark:text-black/60"
                 >
-                  {a.kicker}
-                </MSpan>
-
-                <MBox 
-                  variants={lineVariants} 
-                  className="font-display text-xl font-bold leading-tight text-slate-900"
-                >
-                  {a.title}
+                  {a.detail}
                 </MBox>
+              )}
 
-                {a.detail && (
-                  <MBox 
-                    variants={lineVariants} 
-                    className="mt-2 text-sm leading-relaxed text-slate-600"
-                  >
-                    {a.detail}
-                  </MBox>
-                )}
+              <div className="flex-grow" />
 
-                <div className="flex-grow" />
-                {a.link && (
-                  <MLink
-                    variants={lineVariants}
-                    href={a.link.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    whileHover={linkHoverVariants}
-                    className="inline-flex items-center rounded-full px-2 py-1 text-[8px] font-medium uppercase tracking-wide self-start mt-4"
-                    style={{
-                      backgroundColor: colorScheme.accent,
-                      color: colorScheme.border,
-                      border: `1px solid ${colorScheme.border}30`
-                    }}
-                  >
-                    source
-                  </MLink>
-                )}
-              </div>
-            </MLi>
-          );
-        })}
+              {/* Source link */}
+              {a.link && (
+                <MLink
+                  variants={lineVariants}
+                  href={a.link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 mt-5 self-start text-xs font-medium rounded-full px-2.5 py-1 backdrop-blur-sm transition-colors duration-200 text-[#f5f5f5] bg-[#f5f5f5]/[0.08] border border-[#f5f5f5]/[0.15] hover:bg-[#f5f5f5]/[0.16] dark:text-black dark:bg-black/[0.06] dark:border-black/[0.15] dark:hover:bg-black/[0.12]"
+                >
+                  source ↗
+                </MLink>
+              )}
+            </div>
+          </MLi>
+        ))}
       </MUl>
-    </Section>
+    </div>
   );
 }
 

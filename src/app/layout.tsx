@@ -4,6 +4,7 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import ScrollReset from "@/components/ScrollReset";
 import Analytics from "./analytics";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://vedantsubramanian.com'),
@@ -67,27 +68,21 @@ const mono = JetBrains_Mono({
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const bgStyle: React.CSSProperties = {
-    backgroundColor: "#FFFBEB",
-    backgroundImage: `
-      radial-gradient(rgba(245,158,11,0.16) 1.25px, transparent 1.25px),
-      radial-gradient(rgba(245,158,11,0.10) 1.25px, transparent 1.25px)
-    `,
-    backgroundPosition: "0 0, 14px 14px",
-    backgroundSize: "28px 28px",
-    backgroundAttachment: "fixed",
-  };
-
   return (
     <html
       lang="en"
       className={`${sans.variable} ${display.variable} ${mono.variable} scroll-smooth`}
+      suppressHydrationWarning
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Antic&display=swap"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <meta name="theme-color" content="#FFFBEB" />
+        <meta name="theme-color" content="#000000" />
         <link rel="canonical" href="https://vedantsubramanian.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -109,26 +104,33 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body style={bgStyle} className="text-slate-900 antialiased font-sans-var">
-        {/* Google Analytics - External Script */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-VV120HEYG4"
-          strategy="afterInteractive"
-        />
+      <body className="antialiased font-sans-var bg-black text-[#f5f5f5] dark:bg-[#FFFEF9] dark:text-black">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          storageKey="portfolio-theme"
+        >
+          {/* Google Analytics - External Script */}
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-VV120HEYG4"
+            strategy="afterInteractive"
+          />
 
-        {/* Google Analytics - Initialization Script */}
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-VV120HEYG4');
-          `}
-        </Script>
+          {/* Google Analytics - Initialization Script */}
+          <Script id="google-analytics" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-VV120HEYG4');
+            `}
+          </Script>
 
-        <Analytics />
-        <ScrollReset />
-        {children}
+          <Analytics />
+          <ScrollReset />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
