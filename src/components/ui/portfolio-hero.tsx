@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useMemo, useState } from "react";
-import { ChevronDown, Sun, Moon } from "lucide-react";
+import { ChevronDown, Sun, Moon, Github, Linkedin, Download } from "lucide-react";
 import { useTheme } from "next-themes";
 
 // Inline Button component
@@ -88,9 +88,12 @@ const BlurText: React.FC<BlurTextProps> = ({
 export default function Component() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [showButtons, setShowButtons] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const t = setTimeout(() => setShowButtons(true), 1400);
+    return () => clearTimeout(t);
   }, []);
 
   return (
@@ -165,28 +168,83 @@ export default function Component() {
           </div>
         </div>
 
-        {/* Tagline - Proper Distance Below Hero */}
-        <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 lg:bottom-32 xl:bottom-36 left-1/2 -translate-x-1/2 w-full px-6">
-          <div className="flex justify-center">
-            <BlurText
-              text="Creating innovative solutions and meaningful digital experiences"
-              delay={150}
-              animateBy="words"
-              direction="top"
-              className="text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-[#FFFBEB] dark:text-black hover:text-[#FFFBEB] dark:hover:text-black"
-              style={{ fontFamily: "'Antic', sans-serif" }}
-            />
-          </div>
-        </div>
+        {/* Bottom group: tagline + CTAs + socials + scroll */}
+        <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 w-full px-6 flex flex-col items-center gap-4 md:gap-5">
+          <BlurText
+            text="Creating innovative solutions and meaningful digital experiences"
+            delay={150}
+            animateBy="words"
+            direction="top"
+            className="text-[15px] sm:text-[18px] md:text-[20px] lg:text-[22px] text-center transition-colors duration-300 text-[#FFFBEB] dark:text-black"
+            style={{ fontFamily: "'Antic', sans-serif" }}
+          />
 
-        {/* Scroll Indicator */}
-        <button
-          type="button"
-          className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 transition-colors duration-300"
-          aria-label="Scroll down"
-        >
-          <ChevronDown className="w-5 h-5 md:w-8 md:h-8 text-[#f5f5f5]/50 hover:text-[#f5f5f5] dark:text-black/50 dark:hover:text-black transition-colors duration-300" />
-        </button>
+          {/* CTAs */}
+          <div
+            style={{
+              opacity: showButtons ? 1 : 0,
+              transform: showButtons ? "translateY(0)" : "translateY(10px)",
+              transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
+            }}
+            className="flex items-center gap-3"
+          >
+            <a
+              href="#projects"
+              className="px-5 py-2 rounded-md bg-amber-400 text-black text-sm font-semibold tracking-wide hover:bg-amber-300 transition-colors duration-200"
+            >
+              View My Work
+            </a>
+            <a
+              href="#contact"
+              className="px-5 py-2 rounded-md border border-[#FFFBEB]/20 dark:border-black/20 text-[#FFFBEB] dark:text-black text-sm font-medium tracking-wide hover:bg-[#FFFBEB]/5 dark:hover:bg-black/5 hover:border-[#FFFBEB]/40 dark:hover:border-black/40 transition-colors duration-200"
+            >
+              Get In Touch
+            </a>
+            <a
+              href="/Vedant_Subramanian_resume.pdf"
+              download
+              className="flex items-center gap-1.5 px-5 py-2 rounded-md border border-[#FFFBEB]/20 dark:border-black/20 text-[#FFFBEB] dark:text-black text-sm font-medium tracking-wide hover:bg-[#FFFBEB]/5 dark:hover:bg-black/5 hover:border-[#FFFBEB]/40 dark:hover:border-black/40 transition-colors duration-200"
+            >
+              <Download className="w-3.5 h-3.5" />
+              Resume
+            </a>
+          </div>
+
+          {/* Social icons */}
+          <div
+            style={{
+              opacity: showButtons ? 1 : 0,
+              transform: showButtons ? "translateY(0)" : "translateY(10px)",
+              transition: "opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s",
+            }}
+            className="flex items-center gap-3"
+          >
+            <a
+              href="https://github.com/Vedant0667"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-[#FFFBEB]/40 dark:text-black/40 hover:text-[#FFFBEB] dark:hover:text-black transition-colors duration-200 text-xs tracking-wide"
+              aria-label="GitHub"
+            >
+              <Github className="w-3.5 h-3.5" />
+              GitHub
+            </a>
+            <span className="text-[#FFFBEB]/15 dark:text-black/15 text-xs">·</span>
+            <a
+              href="https://www.linkedin.com/in/vedant-subramanian-762715300/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-[#FFFBEB]/40 dark:text-black/40 hover:text-[#FFFBEB] dark:hover:text-black transition-colors duration-200 text-xs tracking-wide"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="w-3.5 h-3.5" />
+              LinkedIn
+            </a>
+          </div>
+
+          {/* Scroll indicator */}
+          <ChevronDown className="w-5 h-5 text-[#f5f5f5]/30 dark:text-black/30 mt-1" />
+        </div>
       </main>
     </div>
   );

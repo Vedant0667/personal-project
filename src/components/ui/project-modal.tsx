@@ -16,6 +16,7 @@ interface ProjectModalProps {
   story: string;
   bullets?: Array<{ strong?: string; text: string }>;
   links?: Array<{ href: string; label: string; kind?: string }>;
+  imagePosition?: string;
 }
 
 export function ProjectModal({
@@ -28,6 +29,7 @@ export function ProjectModal({
   story,
   bullets,
   links,
+  imagePosition = "object-center",
 }: ProjectModalProps) {
   const [mounted, setMounted] = React.useState(false);
 
@@ -67,10 +69,14 @@ export function ProjectModal({
 
   return createPortal(
     <div
+      role="button"
+      tabIndex={0}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 dark:bg-[#FFF8EC]/80 p-4"
       onClick={onClose}
+      onKeyDown={(e) => { if (e.key === "Escape") onClose(); }}
       style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
     >
+      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
         className={cn(
           "relative w-full max-w-6xl max-h-[90vh] overflow-hidden",
@@ -78,6 +84,7 @@ export function ProjectModal({
           "grid grid-cols-1 lg:grid-cols-2"
         )}
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
@@ -93,7 +100,7 @@ export function ProjectModal({
           <img
             src={imageUrl}
             alt={imageAlt}
-            className="absolute inset-0 w-full h-full object-cover"
+            className={`absolute inset-0 w-full h-full object-cover ${imagePosition}`}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent dark:from-[#FFF8EC]/50 dark:to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-black/20 dark:lg:to-[#f5f5f5]/20"></div>
         </div>

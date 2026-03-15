@@ -14,6 +14,7 @@ interface ProjectCardProps extends React.HTMLAttributes<HTMLDivElement> {
   summary?: string;
   story: string;
   onExpand: () => void;
+  imagePosition?: string;
 }
 
 const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
@@ -28,6 +29,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
       summary,
       story,
       onExpand,
+      imagePosition = "object-center",
       ...props
     },
     ref
@@ -35,11 +37,14 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
     return (
       <div
         ref={ref}
+        role="button"
+        tabIndex={0}
         className={cn(
           "relative w-full transition-all duration-300 ease-in-out hover:-translate-y-2 hover:shadow-2xl cursor-pointer",
           className
         )}
         onClick={onExpand}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onExpand?.(); }}
         {...props}
       >
         {/* Inner wrapper with clipping and group */}
@@ -49,7 +54,7 @@ const ProjectCard = React.forwardRef<HTMLDivElement, ProjectCardProps>(
             <img
               src={imageUrl}
               alt={imageAlt}
-              className="h-full w-full object-cover"
+              className={`h-full w-full object-cover ${imagePosition}`}
             />
           </div>
 

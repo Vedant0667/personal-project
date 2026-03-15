@@ -22,6 +22,7 @@ export interface ProjectProps {
   bullets?: Bullet[];
   links?: Link[];
   tags?: string[];
+  imagePosition?: string; // e.g. "object-top", "object-bottom", "object-center"
 }
 
 // Hoist animation variants to avoid inline objects

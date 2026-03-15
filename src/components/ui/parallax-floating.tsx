@@ -7,11 +7,11 @@ import React, {
   ReactNode,
   CSSProperties,
 } from "react";
-import { useAnimationFrame } from "motion/react";
+import { useAnimationFrame } from "framer-motion";
 import { useMousePositionRef } from "@/hooks/use-mouse-position-ref";
 
 type FloatingContextType = {
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
   mousePositionRef: React.RefObject<{ x: number; y: number }>;
   sensitivity: number;
 };

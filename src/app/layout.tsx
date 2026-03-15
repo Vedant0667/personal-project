@@ -107,7 +107,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased font-sans-var bg-black text-[#f5f5f5] dark:bg-[#FFFEF9] dark:text-black">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="dark"
           enableSystem={false}
           storageKey="portfolio-theme"
         >

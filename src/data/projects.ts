@@ -6,11 +6,11 @@ export const projects: ProjectProps[] = [
     imageAlt: "Vedant Subramanian presenting $7,000 check for Shelter Aid TX",
     title: "Shelter Aid TX",
     tags: ["Nonprofit", "Operations", "Community"],
-    summary: "A nonprofit matching shoe donations to shelters across DFW. Raised $7,000 and donated 1200+ shoes to those in need.",
+    summary: "A nonprofit matching shoe donations to shelters across DFW. Raised $7,000 and donated 1400+ shoes to those in need.",
     story:
-      "Shelter Aid TX is a nonprofit I founded to address the critical need for footwear among homeless individuals in the Dallas-Fort Worth area. The organization operates by matching shoe donations from running stores and community drives with shelters across DFW. What started as a simple idea grew into a significant community effort, raising $7,000 through a school pitch competition and donating over 1,200 pairs of shoes to those in need. We've partnered with Fleet Feet locations, CISV Dallas, and various schools to create sustainable donation pipelines that continue to serve multiple shelters throughout the region.",
+      "Shelter Aid TX is a nonprofit I founded to address the critical need for footwear among homeless individuals in the Dallas-Fort Worth area. The organization operates by matching shoe donations from running stores and community drives with shelters across DFW. What started as a simple idea grew into a significant community effort, raising $7,000 through a school pitch competition and donating over 1,400 pairs of shoes to those in need. We've partnered with Fleet Feet locations, CISV Dallas, and various schools to create sustainable donation pipelines that continue to serve multiple shelters throughout the region.",
     bullets: [
-      { strong: "Impact", text: "1200+ shoes donated; 7+ shelters served" },
+      { strong: "Impact", text: "1400+ shoes donated; 7+ shelters served" },
       {
         strong: "Partners",
         text:
@@ -120,17 +120,33 @@ export const projects: ProjectProps[] = [
     imageAlt: "US Tariffs Research Paper",
     title: "Macroeconomic Effects of 2025 US Tariffs",
     tags: ["Economics", "Research", "Policy Analysis"],
-    summary: "Research on 2025 US tariff impacts under a former World Bank economist. Analyzed inflation, consumption, and reshoring patterns. Published on SSRN.",
+    summary: "Research on 2025 US tariff impacts under a former World Bank economist. Analyzed inflation, consumption, and reshoring patterns. Posted to SSRN.",
     story:
-      "Under the mentorship of Professor Sanket Mohapatra (PhD Columbia, former World Bank Senior Economist), I conducted comprehensive research analyzing the macroeconomic effects of proposed 2025 US tariffs. The research examines inflation dynamics, consumption patterns, reshoring effects, and substitution behaviors in response to the tariff policy changes. This work involved econometric modeling, literature review of trade policy impacts, and analysis of historical tariff implementations. The paper has been published on SSRN, contributing to the academic discourse on contemporary trade policy and its broader economic implications.",
+      "Under the mentorship of Professor Sanket Mohapatra (PhD Columbia, former World Bank Senior Economist), I conducted research analyzing the macroeconomic effects of proposed 2025 US tariffs. The research examines inflation dynamics, consumption patterns, reshoring effects, and substitution behaviors in response to the tariff policy changes. This work sources econometric models, reviews trade policy literature, and analyzes historical tariff implementations. The paper has been posted to SSRN.",
     bullets: [
       { strong: "Research Focus", text: "Inflation dynamics, consumption patterns, reshoring effects, and substitution in response to 2025 tariff policy" },
       { strong: "Advisor", text: "Prof. Sanket Mohapatra (PhD Columbia, former World Bank Senior Economist)" },
-      { strong: "Publication", text: "Published on SSRN" },
+      { strong: "Publication", text: "Posted to SSRN" },
     ],
     links: [
       { href: "/tariffs-paper.pdf", label: "Research Paper (PDF)" },
-      { href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5438034", label: "SSRN Publication" },
+      { href: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5438034", label: "SSRN" },
+    ],
+  },
+  {
+    imageSrc: "/peoplenotes.png",
+    imageAlt: "PeopleNotes voice-first personal CRM",
+    title: "PeopleNotes",
+    tags: ["Next.js", "Claude AI", "Voice", "Google Calendar"],
+    imagePosition: "object-top",
+    summary: "A voice-first personal CRM that turns post-meeting voice notes into structured memories, then surfaces them as a briefing before your next conversation.",
+    story:
+      "My dad kept showing up to meetings without context on the people he was meeting with — he's in back-to-back conversations all day and there was no good way to keep track. PeopleNotes is built around a simple loop: record a quick voice note after a meeting, let Claude extract the relevant details, and get a briefing card before the next one. The app uses Google Speech-to-Text for transcription and Claude Haiku to pull out people, active projects, personal details, and suggested follow-ups. The home page shows recent meeting notes from the last 5 hours alongside an upcoming-meeting timeline for the next 24, pulling in calendar and contacts data from Google.",
+    bullets: [
+      { strong: "Core loop", text: "Capture via voice → Claude extracts relationship context → briefing card before next meeting" },
+      { strong: "Extraction", text: "People, projects, personal details (family, hobbies, travel), and suggested follow-up prompts" },
+      { strong: "Integrations", text: "Google Calendar + Google People for automatic meeting linking; Google Cloud Storage for audio" },
+      { strong: "Tech Stack", text: "Next.js 15, React 19, TypeScript, Prisma, Claude Haiku, Google Speech-to-Text, Material UI" },
     ],
   },
   {
