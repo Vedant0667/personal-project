@@ -1,91 +1,94 @@
 "use client"
 
 import { useState } from "react"
-import { ProjectCard } from "@/components/ui/project-card"
+import { motion } from "framer-motion"
 import { ProjectModal } from "@/components/ui/project-modal"
 import { projects } from "@/data/projects"
-import { Building2, Code, Laptop, Smartphone, Brain, Trophy, BookOpen, Video, Mic } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
 
-const projectIcons: Record<number, React.ReactNode> = {
-  0: <Building2 className="h-5 w-5 text-white" />,
-  1: <Laptop className="h-5 w-5 text-white" />,
-  2: <Brain className="h-5 w-5 text-white" />,
-  3: <Smartphone className="h-5 w-5 text-white" />,
-  4: <Code className="h-5 w-5 text-white" />,
-  5: <Trophy className="h-5 w-5 text-orange-300" />,
-  6: <BookOpen className="h-5 w-5 text-white" />,
-  7: <Mic className="h-5 w-5 text-white" />,
-  8: <Video className="h-5 w-5 text-orange-300" />,
+const indexed = projects.map((p, i) => ({ ...p, originalIndex: i }))
+type IndexedProject = (typeof indexed)[number]
+
+const flagships = indexed.filter((p) => p.featured)
+const supporting = indexed.filter((p) => !p.featured)
+
+const cardReveal = {
+  hidden: { opacity: 0, y: 32 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring" as const, stiffness: 90, damping: 20 },
+  },
 }
 
-type FilterCategory = "All" | "Web" | "Mobile" | "Nonprofit" | "Hardware" | "Research" | "Creative"
-
-const projectCategories: Record<number, FilterCategory> = {
-  0: "Nonprofit",
-  1: "Web",
-  2: "Hardware",
-  3: "Mobile",
-  4: "Web",
-  5: "Web",
-  6: "Research",
-  7: "Web",
-  8: "Creative",
+function liveLabel(project: IndexedProject) {
+  const store = project.links?.find((l) => /app store/i.test(l.label))
+  if (store) return "On the App Store"
+  const site = project.links?.find((l) => /website/i.test(l.label))
+  if (site) return "Live"
+  return null
 }
-
-const filterTabs: FilterCategory[] = ["All", "Web", "Mobile", "Nonprofit", "Hardware", "Research", "Creative"]
 
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<number | null>(null)
-  const [activeFilter, setActiveFilter] = useState<FilterCategory>("All")
-
-  const visibleProjects = projects
-    .map((p, i) => ({ ...p, originalIndex: i }))
-    .filter((p) => activeFilter === "All" || projectCategories[p.originalIndex] === activeFilter)
 
   return (
-    <div id="projects" className="w-full bg-black dark:bg-[#FFF9F0] py-20 px-4 md:px-8 lg:px-10 transition-colors">
-      <div className="max-w-7xl mx-auto mb-10">
-        <h2 className="font-sans text-lg md:text-4xl mb-4 text-[#FFFBEB] dark:text-black max-w-4xl">
-          Featured Projects
-        </h2>
-        <p className="font-sans text-[#FFFBEB] dark:text-black text-sm md:text-base max-w-2xl mb-8">
-          From nonprofits to hardware prototypes, here&apos;s what I&apos;ve been building.
-        </p>
-
-        {/* Filter tabs */}
-        <div className="flex flex-wrap gap-2">
-          {filterTabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveFilter(tab)}
-              className={`px-4 py-1.5 rounded-full text-xs font-medium tracking-wide transition-all duration-200 ${
-                activeFilter === tab
-                  ? "bg-amber-400 text-black"
-                  : "border border-[#FFFBEB]/15 dark:border-black/15 text-[#FFFBEB]/50 dark:text-black/50 hover:border-[#FFFBEB]/40 dark:hover:border-black/40 hover:text-[#FFFBEB] dark:hover:text-black"
-              }`}
+    <section
+      id="projects"
+      className="w-full border-t border-hairline bg-bg px-5 py-24 sm:px-8 md:py-32 lg:px-10"
+    >
+      {/* Section header */}
+      <div className="mx-auto mb-14 flex max-w-[78rem] flex-col gap-8 md:mb-20 md:flex-row md:items-end md:justify-between">
+        <div className="max-w-xl">
+          <p className="mb-5 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-accent-ink">
+            Selected work
+          </p>
+          <h2 className="display-soft text-[clamp(2.5rem,6vw,4rem)] font-light leading-[0.98] tracking-[-0.02em] text-ink">
+            Six things worth
+            <br />
+            <span
+              className="italic"
+              style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1, "opsz" 144' }}
             >
-              {tab}
-            </button>
-          ))}
+              showing.
+            </span>
+          </h2>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {visibleProjects.map((project) => (
-          <ProjectCard
+      {/* Flagship work — alternating editorial rows */}
+      <div className="mx-auto flex max-w-[78rem] flex-col gap-16 md:gap-24">
+        {flagships.map((project, i) => (
+          <FlagshipRow
             key={project.title}
-            imageUrl={project.imageSrc}
-            imageAlt={project.imageAlt}
-            icon={projectIcons[project.originalIndex]}
-            title={project.title}
-            tags={project.tags}
-            summary={project.summary}
-            story={project.story}
-            onExpand={() => setSelectedProject(project.originalIndex)}
-            imagePosition={project.imagePosition}
+            project={project}
+            index={i}
+            reverse={i % 2 === 1}
+            onOpen={() => setSelectedProject(project.originalIndex)}
           />
         ))}
       </div>
+
+      {/* Supporting work */}
+      {supporting.length > 0 && (
+        <div className="mx-auto mt-24 max-w-[78rem] md:mt-32">
+          <div className="mb-10 flex items-center gap-5">
+            <h3 className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-muted">
+              Also worth a look
+            </h3>
+            <div className="h-px flex-1 bg-hairline" />
+          </div>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            {supporting.map((project) => (
+              <SupportingCard
+                key={project.title}
+                project={project}
+                onOpen={() => setSelectedProject(project.originalIndex)}
+              />
+            ))}
+          </div>
+        </div>
+      )}
 
       {selectedProject !== null && (
         <ProjectModal
@@ -98,9 +101,170 @@ export default function ProjectsSection() {
           story={projects[selectedProject].story}
           bullets={projects[selectedProject].bullets}
           links={projects[selectedProject].links}
-          imagePosition={projects[selectedProject].imagePosition}
+          imagePosition={projects[selectedProject].modalImagePosition ?? projects[selectedProject].imagePosition}
         />
       )}
-    </div>
+    </section>
+  )
+}
+
+/* ---------------------------------------------------------------- */
+
+function FlagshipRow({
+  project,
+  index,
+  reverse,
+  onOpen,
+}: {
+  project: IndexedProject
+  index: number
+  reverse?: boolean
+  onOpen: () => void
+}) {
+  const live = liveLabel(project)
+
+  return (
+    <motion.article
+      variants={cardReveal}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.25 }}
+      onClick={onOpen}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault()
+          onOpen()
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`${project.title}, view details`}
+      className="group grid cursor-pointer grid-cols-1 items-center gap-7 rounded-[1.25rem] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent md:gap-12 lg:grid-cols-2"
+    >
+      {/* Image */}
+      <div
+        className={`relative overflow-hidden rounded-[1.25rem] border border-hairline bg-sunken shadow-editorial transition-[transform,box-shadow] duration-500 group-hover:-translate-y-1 group-hover:shadow-editorial-lg ${
+          reverse ? "lg:order-2" : ""
+        }`}
+      >
+        <div className="relative aspect-[16/10] w-full">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.imageSrc}
+            alt={project.imageAlt}
+            loading={index === 0 ? "eager" : "lazy"}
+            className={`absolute inset-0 h-full w-full object-cover ${
+              project.imagePosition ?? "object-center"
+            } transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
+          />
+        </div>
+        {live && (
+          <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-hairline bg-surface/90 px-3 py-1 text-[0.7rem] font-medium tracking-wide text-accent-ink backdrop-blur">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+            </span>
+            {live}
+          </span>
+        )}
+      </div>
+
+      {/* Copy */}
+      <div className={reverse ? "lg:order-1" : ""}>
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="font-display text-[2rem] font-normal leading-tight tracking-[-0.01em] text-ink md:text-[2.5rem]">
+            {project.title}
+          </h3>
+          <ArrowUpRight className="mt-2 h-6 w-6 shrink-0 text-muted transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
+        </div>
+
+        <p className="mt-4 max-w-[34rem] text-[1.02rem] leading-relaxed text-muted">
+          {project.summary ?? project.story}
+        </p>
+
+        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2">
+          {project.tags?.map((tag, ti) => (
+            <span
+              key={tag}
+              className="text-[0.8rem] font-medium tracking-wide text-ink/55"
+            >
+              {ti > 0 && (
+                <span className="mr-6 select-none text-hairline-strong" aria-hidden>
+                  ·
+                </span>
+              )}
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.article>
+  )
+}
+
+function SupportingCard({
+  project,
+  onOpen,
+}: {
+  project: IndexedProject
+  onOpen: () => void
+}) {
+  return (
+    <motion.article
+      variants={cardReveal}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.3 }}
+      onClick={onOpen}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault()
+          onOpen()
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-label={`${project.title}, view details`}
+      className="group flex cursor-pointer flex-col overflow-hidden rounded-[1.25rem] border border-hairline bg-surface shadow-editorial transition-[transform,box-shadow,border-color] duration-400 hover:-translate-y-1 hover:border-hairline-strong hover:shadow-editorial-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden bg-sunken">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={project.imageSrc}
+          alt={project.imageAlt}
+          loading="lazy"
+          className={`absolute inset-0 h-full w-full object-cover ${
+            project.imagePosition ?? "object-center"
+          } transition-transform duration-700 ease-out group-hover:scale-[1.04]`}
+        />
+      </div>
+
+      <div className="flex flex-1 flex-col p-6 md:p-7">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="font-display text-[1.6rem] font-normal leading-tight tracking-[-0.01em] text-ink">
+            {project.title}
+          </h3>
+          <ArrowUpRight className="mt-1.5 h-5 w-5 shrink-0 text-muted transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
+        </div>
+        <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
+          {project.summary ?? project.story}
+        </p>
+        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 pt-1">
+          {project.tags?.map((tag, ti) => (
+            <span
+              key={tag}
+              className="text-[0.78rem] font-medium tracking-wide text-ink/55"
+            >
+              {ti > 0 && (
+                <span className="mr-5 select-none text-hairline-strong" aria-hidden>
+                  ·
+                </span>
+              )}
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </motion.article>
   )
 }

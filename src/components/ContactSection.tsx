@@ -18,89 +18,93 @@ export default function ContactSection() {
     <>
       <section
         id="contact"
-        className="w-full bg-black dark:bg-[#FFF9F0] py-24 md:py-32 px-8 md:px-8 lg:px-10 transition-colors border-t border-[#FFFBEB]/5 dark:border-black/5"
+        className="w-full border-t border-hairline bg-bg px-5 py-24 sm:px-8 md:py-32 lg:px-10"
       >
-        <div className="max-w-7xl mx-auto">
-          <p className="text-xs tracking-[0.2em] uppercase text-amber-400 mb-5 font-medium">
+        <div className="mx-auto max-w-[78rem]">
+          <p className="mb-5 text-[0.72rem] font-medium uppercase tracking-[0.22em] text-accent-ink">
             Contact
           </p>
 
-          <h2
-            className="text-[clamp(2.5rem,8vw,6rem)] font-bold text-[#FFFBEB] dark:text-black leading-[0.95] tracking-tight mb-6"
-            style={{ fontFamily: "'Fira Code', monospace", fontWeight: 700 }}
-          >
-            Let&apos;s connect.
+          <h2 className="display-soft max-w-3xl text-[clamp(2.5rem,7vw,5rem)] font-light leading-[0.98] tracking-[-0.025em] text-ink">
+            Say hello.
           </h2>
 
-          <p className="text-[#FFFBEB]/50 dark:text-black/50 text-base md:text-lg max-w-md mb-12 leading-relaxed">
-            Whether it&apos;s a project, internship, or just a conversation — I&apos;d love to hear from you.
+          <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-muted">
+            Open to internships, project work, and a good conversation. Email is the
+            fastest way to reach me.
           </p>
 
           {/* Email copy row */}
-          <div className="flex items-stretch w-full sm:w-fit mb-8 rounded-lg overflow-hidden border border-[#FFFBEB]/10 dark:border-black/10">
-            <span className="flex-1 min-w-0 px-3 sm:px-5 py-3 text-[#FFFBEB]/70 dark:text-black/70 text-xs sm:text-sm font-mono tracking-wide bg-[#FFFBEB]/3 dark:bg-black/3 select-all truncate">
+          <div className="mt-12 flex w-full max-w-md items-stretch overflow-hidden rounded-full border border-hairline bg-surface">
+            <span className="min-w-0 flex-1 select-all truncate px-5 py-3.5 text-sm tracking-wide text-ink">
               {EMAIL}
             </span>
             <button
               onClick={handleCopy}
-              className="flex items-center gap-2 px-4 py-3 bg-amber-400/10 hover:bg-amber-400/20 border-l border-[#FFFBEB]/10 dark:border-black/10 text-amber-400 text-xs font-semibold tracking-widest uppercase transition-colors duration-200"
+              className="flex items-center gap-2 border-l border-hairline bg-accent/[0.07] px-5 py-3.5 text-[0.78rem] font-semibold uppercase tracking-[0.12em] text-accent-ink transition-colors hover:bg-accent/[0.12]"
               aria-label="Copy email address"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5" />
+                  <Check className="h-3.5 w-3.5" />
                   Copied
                 </>
               ) : (
                 <>
-                  <Copy className="w-3.5 h-3.5" />
+                  <Copy className="h-3.5 w-3.5" />
                   Copy
                 </>
               )}
             </button>
           </div>
 
-          {/* Social links + Resume */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
+          {/* Links */}
+          <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:items-center sm:gap-3">
             <a
               href="https://github.com/Vedant0667"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center sm:justify-start gap-2 px-5 py-3 sm:py-2.5 rounded-md border border-[#FFFBEB]/10 dark:border-black/10 text-[#FFFBEB]/50 dark:text-black/50 hover:text-[#FFFBEB] dark:hover:text-black hover:border-[#FFFBEB]/30 dark:hover:border-black/30 text-sm transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-hairline px-5 py-2.5 text-sm text-ink transition-colors hover:border-hairline-strong hover:bg-surface sm:justify-start"
             >
-              <Github className="w-4 h-4" />
+              <Github className="h-4 w-4" />
               GitHub
             </a>
             <a
               href="https://www.linkedin.com/in/vedant-subramanian-762715300/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center sm:justify-start gap-2 px-5 py-3 sm:py-2.5 rounded-md border border-[#FFFBEB]/10 dark:border-black/10 text-[#FFFBEB]/50 dark:text-black/50 hover:text-[#FFFBEB] dark:hover:text-black hover:border-[#FFFBEB]/30 dark:hover:border-black/30 text-sm transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-hairline px-5 py-2.5 text-sm text-ink transition-colors hover:border-hairline-strong hover:bg-surface sm:justify-start"
             >
-              <Linkedin className="w-4 h-4" />
+              <Linkedin className="h-4 w-4" />
               LinkedIn
             </a>
             <a
               href="/Vedant_Subramanian_resume.pdf"
               download
-              className="flex items-center justify-center sm:justify-start gap-2 px-5 py-3 sm:py-2.5 rounded-md bg-amber-400/10 border border-amber-400/30 text-amber-400 hover:bg-amber-400/20 hover:border-amber-400/50 text-sm transition-colors duration-200"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-contrast transition-transform hover:-translate-y-0.5 sm:justify-start"
             >
-              <Download className="w-4 h-4" />
-              Download Resume
+              <Download className="h-4 w-4" />
+              Download résumé
             </a>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="w-full bg-black dark:bg-[#FFF9F0] border-t border-[#FFFBEB]/5 dark:border-black/5 py-6 px-4 md:px-8 lg:px-10 transition-colors">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <span className="text-[#FFFBEB]/20 dark:text-black/20 text-xs">
-            © 2026 Vedant Subramanian
+      <footer className="w-full border-t border-hairline bg-bg px-5 py-7 sm:px-8 lg:px-10">
+        <div className="mx-auto flex max-w-[78rem] items-center justify-between text-[0.78rem] text-muted">
+          <span className="font-display tracking-tight text-ink/70">
+            Vedant Subramanian
           </span>
-          <span className="text-[#FFFBEB]/15 dark:text-black/15 text-xs">
-            Built with Next.js
-          </span>
+          <div className="flex items-center gap-5">
+            <a
+              href="/privacy"
+              className="border-b border-hairline pb-px transition-colors hover:border-hairline-strong hover:text-ink"
+            >
+              Privacy
+            </a>
+            <span>© {new Date().getFullYear()}</span>
+          </div>
         </div>
       </footer>
     </>
