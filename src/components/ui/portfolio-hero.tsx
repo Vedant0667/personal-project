@@ -1,255 +1,263 @@
-import React, { useEffect, useRef, useMemo, useState } from "react";
-import { ChevronDown, Sun, Moon, Github, Linkedin, Download } from "lucide-react";
+"use client";
+
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Sun, Moon, Github, Linkedin, ArrowDownRight } from "lucide-react";
 import { useTheme } from "next-themes";
 
-// Inline Button component
-const Button = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
-  ({ className = "", children, ...props }, ref) => {
-    return (
-      <button
-        ref={ref}
-        className={`inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors ${className}`}
-        {...props}
-      >
-        {children}
-      </button>
-    );
-  }
-);
-Button.displayName = "Button";
+/* ----------------------------------------------------------------
+   Word / letter blur-rise reveal. Runs once on mount.
+   Enhances an already-laid-out heading; reduced-motion shows it whole.
+---------------------------------------------------------------- */
 
-// BlurText animation component
-interface BlurTextProps {
+interface RevealTextProps {
   text: string;
+  as?: "span" | "p";
   delay?: number;
-  animateBy?: "words" | "letters";
-  direction?: "top" | "bottom";
+  step?: number;
   className?: string;
   style?: React.CSSProperties;
+  by?: "words" | "letters";
 }
 
-const BlurText: React.FC<BlurTextProps> = ({
+const RevealText: React.FC<RevealTextProps> = ({
   text,
-  delay = 50,
-  animateBy = "words",
-  direction = "top",
+  as = "span",
+  delay = 0,
+  step = 60,
   className = "",
   style,
+  by = "words",
 }) => {
-  const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLParagraphElement>(null);
+  const [shown, setShown] = useState(false);
+  const reduce = useRef(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
+    reduce.current =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const t = setTimeout(() => setShown(true), 30);
+    return () => clearTimeout(t);
   }, []);
 
-  const segments = useMemo(() => {
-    return animateBy === "words" ? text.split(" ") : text.split("");
-  }, [text, animateBy]);
+  const segments = useMemo(
+    () => (by === "words" ? text.split(" ") : text.split("")),
+    [text, by]
+  );
 
+  const Tag = as;
   return (
-    <p ref={ref} className={`inline-flex flex-wrap ${className}`} style={style}>
-      {segments.map((segment, i) => (
+    <Tag className={className} style={style}>
+      {segments.map((seg, i) => (
         <span
           key={i}
           style={{
             display: "inline-block",
-            filter: inView ? "blur(0px)" : "blur(10px)",
-            opacity: inView ? 1 : 0,
-            transform: inView ? "translateY(0)" : `translateY(${direction === "top" ? "-20px" : "20px"})`,
-            transition: `all 0.5s ease-out ${i * delay}ms`,
+            whiteSpace: "pre",
+            filter: shown || reduce.current ? "blur(0px)" : "blur(10px)",
+            opacity: shown || reduce.current ? 1 : 0,
+            transform:
+              shown || reduce.current ? "translateY(0)" : "translateY(0.5em)",
+            transition: reduce.current
+              ? "none"
+              : `filter 0.7s ease-out ${delay + i * step}ms, opacity 0.7s ease-out ${delay + i * step}ms, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${delay + i * step}ms`,
           }}
         >
-          {segment}
-          {animateBy === "words" && i < segments.length - 1 ? "\u00A0" : ""}
+          {seg}
+          {by === "words" && i < segments.length - 1 ? " " : ""}
         </span>
       ))}
-    </p>
+    </Tag>
   );
 };
 
-export default function Component() {
+/* ----------------------------------------------------------------
+   "Now" — factual, present-tense lines. Not metrics, not hype.
+---------------------------------------------------------------- */
+
+const NOW: { label: string; value: string }[] = [
+  { label: "Building", value: "Stowr, Montir" },
+  { label: "Running", value: "Shelter Aid TX" },
+  { label: "Shipped", value: "CampusLife, on the App Store" },
+];
+
+const NAV = [
+  { href: "#projects", label: "Work" },
+  { href: "#achievements", label: "Recognition" },
+  { href: "#contact", label: "Contact" },
+];
+
+function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [showButtons, setShowButtons] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const t = setTimeout(() => setShowButtons(true), 1400);
-    return () => clearTimeout(t);
-  }, []);
-
+  useEffect(() => setMounted(true), []);
+  if (!mounted) {
+    return <div className="ml-1 h-9 w-9" aria-hidden />;
+  }
+  const isDark = theme === "dark";
   return (
-    <div
-      className="min-h-screen text-foreground transition-colors bg-black dark:bg-[#FFF8EC] text-[#f5f5f5] dark:text-black"
+    <button
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="ml-1 grid h-9 w-9 place-items-center rounded-full border border-hairline text-ink/70 transition-colors hover:border-hairline-strong hover:text-ink"
+      aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
     >
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 px-6 py-6">
-        <nav className="flex items-center justify-between max-w-screen-2xl mx-auto">
-          {/* Signature */}
-          <div className="text-4xl text-[#f5f5f5] dark:text-black" style={{ fontFamily: "'Brush Script MT', 'Lucida Handwriting', cursive" }}>
-            V
-          </div>
+      {isDark ? (
+        <Sun className="h-[1.05rem] w-[1.05rem]" />
+      ) : (
+        <Moon className="h-[1.05rem] w-[1.05rem]" />
+      )}
+    </button>
+  );
+}
 
-          {/* Theme Toggle */}
-          {mounted && (
-            <button
-              onClick={() => {
-                const newTheme = theme === "light" ? "dark" : "light";
-                console.log("Switching theme from", theme, "to", newTheme);
-                setTheme(newTheme);
-              }}
-              className="p-2 rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
-              aria-label="Toggle theme"
+export function SiteHeader() {
+  return (
+    <header className="absolute inset-x-0 top-0 z-40">
+      <nav className="mx-auto flex max-w-[78rem] items-center justify-between px-5 py-5 sm:px-8 lg:px-10">
+        <button
+          type="button"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="font-display text-[1.05rem] font-medium tracking-tight text-ink"
+          aria-label="Vedant Subramanian, back to top"
+        >
+          Vedant Subramanian
+        </button>
+
+        <div className="flex items-center gap-1 sm:gap-2">
+          {NAV.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="hidden px-3 py-1.5 text-sm text-muted transition-colors hover:text-ink sm:block"
             >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5 text-[#f5f5f5]" />
-              ) : (
-                <Sun className="h-5 w-5 text-black" />
-              )}
-            </button>
-          )}
-        </nav>
-      </header>
+              {l.label}
+            </a>
+          ))}
+          <ThemeToggle />
+        </div>
+      </nav>
+    </header>
+  );
+}
 
-      {/* Hero Section */}
-      <main className="relative min-h-screen flex flex-col">
-        {/* Centered Main Name - Always Perfectly Centered */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-4">
-          <div className="relative text-center">
-            <div>
-              <BlurText
-                text="VEDANT"
-                delay={100}
-                animateBy="letters"
-                direction="top"
-                className="text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap text-[#FFFBEB] dark:text-black"
-                style={{ fontFamily: "'Fira Code', monospace", fontWeight: 400 }}
-              />
-            </div>
-            <div>
-              <BlurText
-                text="SUBRAMANIAN"
-                delay={100}
-                animateBy="letters"
-                direction="top"
-                className="text-[100px] sm:text-[140px] md:text-[180px] lg:text-[210px] leading-[0.75] tracking-tighter uppercase justify-center whitespace-nowrap text-[#FFFBEB] dark:text-black"
-                style={{ fontFamily: "'Fira Code', monospace", fontWeight: 400 }}
-              />
-            </div>
+export default function PortfolioHero() {
+  return (
+    <section
+      id="home"
+      className="relative isolate min-h-screen overflow-hidden bg-bg text-ink"
+    >
+      <SiteHeader />
 
-            {/* Profile Picture */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-              <div className="w-[65px] h-[110px] sm:w-[90px] sm:h-[152px] md:w-[110px] md:h-[185px] lg:w-[129px] lg:h-[218px] rounded-full overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-110 cursor-pointer">
-                <img
-                  src="/IMG_0053.png"
-                  alt="Profile"
-                  className="w-full h-full object-cover"
-                />
+      {/* faint column rules behind the masthead */}
+      <div
+        aria-hidden
+        className="paper-rules pointer-events-none absolute inset-x-0 top-0 h-full opacity-50"
+      />
+
+      <main className="relative mx-auto flex min-h-screen max-w-[78rem] flex-col justify-center px-5 pb-16 pt-28 sm:px-8 lg:px-10">
+        <div className="grid grid-cols-1 items-end gap-12 lg:grid-cols-12 lg:gap-10">
+          {/* Left: editorial copy */}
+          <div className="order-2 lg:order-1 lg:col-span-7">
+            <RevealText
+              as="p"
+              text="Developer · Founder"
+              by="letters"
+              step={10}
+              className="mb-7 inline-flex items-center text-[0.78rem] font-medium uppercase tracking-[0.24em] text-accent-ink"
+            />
+
+            <h1 className="display-soft text-[clamp(3rem,9.5vw,5.75rem)] font-light leading-[0.95] tracking-[-0.025em] text-ink">
+              <RevealText text="Vedant" by="letters" step={26} delay={120} className="block" />
+              <RevealText
+                text="Subramanian"
+                by="letters"
+                step={20}
+                delay={360}
+                className="block italic"
+                style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1, "opsz" 144' }}
+              />
+            </h1>
+
+            <RevealText
+              as="p"
+              text="I'm an incoming finance freshman at UT Austin's McCombs School, and most of my free time still goes into building software. I also run Shelter Aid TX, a shoe-donation nonprofit in Dallas that's donated 1,700+ pairs of shoes."
+              step={20}
+              delay={760}
+              className="mt-8 max-w-[34rem] text-lg leading-relaxed text-muted [text-wrap:pretty] md:text-[1.2rem]"
+            />
+
+            <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+              <a
+                href="#projects"
+                className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-[0.95rem] font-medium text-accent-contrast transition-[transform,background-color] duration-300 hover:-translate-y-0.5"
+              >
+                See the work
+                <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+              </a>
+
+              <div className="flex items-center gap-1">
+                <a
+                  href="/Vedant_Subramanian_resume.pdf"
+                  download
+                  className="rounded-full border border-hairline px-5 py-3 text-[0.95rem] font-medium text-ink transition-colors hover:border-hairline-strong hover:bg-surface"
+                >
+                  Résumé
+                </a>
+                <a
+                  href="https://github.com/Vedant0667"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="grid h-11 w-11 place-items-center rounded-full text-muted transition-colors hover:text-ink"
+                  aria-label="GitHub"
+                >
+                  <Github className="h-[1.15rem] w-[1.15rem]" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/vedant-subramanian-762715300/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="grid h-11 w-11 place-items-center rounded-full text-muted transition-colors hover:text-ink"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="h-[1.15rem] w-[1.15rem]" />
+                </a>
               </div>
             </div>
           </div>
+
+          {/* Right: portrait */}
+          <div className="order-1 flex justify-center lg:order-2 lg:col-span-5 lg:justify-end">
+            <figure className="relative w-48 sm:w-60 lg:w-full lg:max-w-[20rem]">
+              {/* oxblood offset frame */}
+              <span
+                aria-hidden
+                className="absolute -bottom-3 -right-3 h-full w-full rounded-[1.25rem] border border-accent/40"
+              />
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem] border border-hairline bg-sunken shadow-editorial">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/headshot-vedant.webp"
+                  alt="Vedant Subramanian"
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
+            </figure>
+          </div>
         </div>
 
-        {/* Bottom group */}
-        <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 w-full max-w-xs sm:max-w-sm md:max-w-none px-6 flex flex-col items-center gap-4 md:gap-5">
-
-
-          {/* Tagline — desktop only */}
-          <BlurText
-            text="Creating innovative solutions and meaningful digital experiences"
-            delay={150}
-            animateBy="words"
-            direction="top"
-            className="hidden md:inline-flex text-[20px] lg:text-[22px] text-center text-[#FFFBEB]/70 dark:text-black/70"
-            style={{ fontFamily: "'Antic', sans-serif" }}
-          />
-
-          {/* Primary CTAs — 2-col grid on mobile, row on desktop */}
-          <div
-            style={{
-              opacity: showButtons ? 1 : 0,
-              transform: showButtons ? "translateY(0)" : "translateY(10px)",
-              transition: "opacity 0.5s ease-out, transform 0.5s ease-out",
-            }}
-            className="flex md:flex-row w-full md:w-auto gap-2 md:gap-3"
-          >
-            <a
-              href="#projects"
-              className="flex items-center justify-center w-full md:w-auto px-5 py-3 rounded-md bg-amber-400 text-black text-base font-semibold tracking-wide hover:bg-amber-300 transition-colors duration-200"
-            >
-              View My Work
-            </a>
-            <a
-              href="#contact"
-              className="hidden md:flex items-center justify-center px-5 py-3 rounded-md border border-[#FFFBEB]/20 dark:border-black/20 text-[#FFFBEB] dark:text-black text-base font-medium tracking-wide hover:bg-[#FFFBEB]/5 dark:hover:bg-black/5 hover:border-[#FFFBEB]/40 dark:hover:border-black/40 transition-colors duration-200"
-            >
-              Get In Touch
-            </a>
-          </div>
-
-          {/* Tertiary row: Resume + socials — all in one line */}
-          <div
-            style={{
-              opacity: showButtons ? 1 : 0,
-              transform: showButtons ? "translateY(0)" : "translateY(10px)",
-              transition: "opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s",
-            }}
-            className="flex items-center gap-4"
-          >
-            <a
-              href="/Vedant_Subramanian_resume.pdf"
-              download
-              className="flex items-center gap-1.5 text-[#FFFBEB]/45 dark:text-black/45 hover:text-[#FFFBEB] dark:hover:text-black transition-colors duration-200 text-sm tracking-wide"
-            >
-              <Download className="w-3.5 h-3.5" />
-              Resume
-            </a>
-            <span className="text-[#FFFBEB]/20 dark:text-black/20 text-sm">·</span>
-            <a
-              href="https://github.com/Vedant0667"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 text-[#FFFBEB]/45 dark:text-black/45 hover:text-[#FFFBEB] dark:hover:text-black transition-colors duration-200 text-sm tracking-wide"
-              aria-label="GitHub"
-            >
-              <Github className="w-3.5 h-3.5" />
-              GitHub
-            </a>
-            <span className="hidden md:inline text-[#FFFBEB]/20 dark:text-black/20 text-sm">·</span>
-            <a
-              href="https://www.linkedin.com/in/vedant-subramanian-762715300/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-1.5 text-[#FFFBEB]/45 dark:text-black/45 hover:text-[#FFFBEB] dark:hover:text-black transition-colors duration-200 text-sm tracking-wide"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-3.5 h-3.5" />
-              LinkedIn
-            </a>
-          </div>
-
-          {/* Scroll indicator */}
-          <ChevronDown className="w-4 h-4 text-[#f5f5f5]/25 dark:text-black/25" />
-        </div>
+        {/* "Now" strip — quiet, factual, editorial */}
+        <dl className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-3">
+          {NOW.map((item) => (
+            <div key={item.label} className="bg-bg px-6 py-5">
+              <dt className="text-[0.72rem] font-medium uppercase tracking-[0.18em] text-accent-ink">
+                {item.label}
+              </dt>
+              <dd className="mt-1.5 font-display text-lg font-normal text-ink">
+                {item.value}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </main>
-    </div>
+    </section>
   );
 }

@@ -2,140 +2,169 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ============================================================
+   Editorial Ivory — quiet-luxury palette (token-driven, both themes)
+   LIGHT is the default; .dark flips every token below site-wide.
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --card: #ffffff;
-  --card-foreground: #171717;
-  --primary: #171717;
-  --primary-foreground: #ffffff;
-  --secondary: #f5f5f5;
-  --secondary-foreground: #171717;
-  --muted: #f5f5f5;
-  --muted-foreground: #737373;
-  --accent: #f5f5f5;
-  --accent-foreground: #171717;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: #171717;
+  /* surfaces */
+  --bg: #f6f2e9;        /* ivory page */
+  --surface: #fbf8f1;   /* raised card */
+  --sunken: #efeadd;    /* recessed wells */
+  /* text */
+  --ink: #16140f;       /* near-black warm ink */
+  --muted: #6b6357;     /* muted body */
+  /* accent (oxblood) */
+  --accent: #6e2a2a;
+  --accent-ink: #6e2a2a;     /* accent used for small text — passes contrast on light */
+  --accent-contrast: #fbf8f1; /* text that sits ON the accent */
+  /* hairlines: ink at low alpha */
+  --hairline: rgba(22, 20, 15, 0.12);
+  --hairline-strong: rgba(22, 20, 15, 0.20);
+  /* soft tints of the accent for fills */
+  --accent-wash: rgba(110, 42, 42, 0.08);
+  --accent-wash-strong: rgba(110, 42, 42, 0.14);
+  /* shadow tuned warm + soft */
+  --shadow-color: 28 22 14;
+
+  color-scheme: light;
 }
+
+.dark {
+  --bg: #161310;        /* warm near-black */
+  --surface: #1e1a16;   /* raised */
+  --sunken: #110e0b;    /* recessed */
+  --ink: #efe9de;       /* warm cream */
+  --muted: #b0a695;     /* muted */
+  --accent: #c05b47;        /* warm clay */
+  --accent-ink: #d2725f;    /* lighter clay for small text on dark */
+  --accent-contrast: #161310;
+  --hairline: rgba(239, 233, 222, 0.12);
+  --hairline-strong: rgba(239, 233, 222, 0.20);
+  --accent-wash: rgba(192, 91, 71, 0.12);
+  --accent-wash-strong: rgba(192, 91, 71, 0.20);
+  --shadow-color: 0 0 0;
+
+  color-scheme: dark;
+}
+
+/* ============================================================
+   Tailwind theme tokens — expose palette as utilities
+   (bg-bg, text-ink, text-muted, text-accent, border-hairline, …)
+   ============================================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
+  --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-hairline: var(--hairline);
+  --color-hairline-strong: var(--hairline-strong);
+
+  --font-display: var(--font-display), ui-serif, Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Disabled prefers-color-scheme to use manual theme toggle only */
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --card: #0a0a0a;
-    --card-foreground: #ededed;
-    --primary: #ededed;
-    --primary-foreground: #0a0a0a;
-    --secondary: #262626;
-    --secondary-foreground: #ededed;
-    --muted: #262626;
-    --muted-foreground: #a3a3a3;
-    --accent: #262626;
-    --accent-foreground: #ededed;
-    --destructive: #dc2626;
-    --destructive-foreground: #ededed;
-    --border: #262626;
-    --input: #262626;
-    --ring: #ededed;
-  }
-} */
+/* ============================================================
+   Base
+   ============================================================ */
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-}
-
-@layer components {
-  .lightbox-img {
-    @apply rounded-2xl ring-1 ring-white/10;
-  }
-}
-
-/* === Site theming (cream / orange) =============================== */
-:root{
-  --cream: #FFFBEB;                 /* base cream */
-  --line: rgba(245,158,11,0.09);    /* grid line color (orange tint) */
-  --dot: rgba(245,158,11,0.14);     /* dot color if you pick dots */
-  --hatch: rgba(245,158,11,0.07);    /* hatch stroke */
-}
-
-/* Use these on <body>. Exactly ONE pattern class at a time.  */
-@layer utilities{
-  /* Default: clean grid lines every 28px */
-  .site-cream-grid{
-    background-color: var(--cream);
-    background-image:
-      linear-gradient(to right, var(--line) 1px, transparent 1px),
-      linear-gradient(to bottom, var(--line) 1px, transparent 1px);
-    background-size: 28px 28px;
-    background-attachment: local;
-  }
-
-  /* Option B: offset micro-dots (toggle in layout if you want) */
-  .site-cream-dots{
-    background-color: var(--cream);
-    background-image:
-      radial-gradient(var(--dot) 1.25px, transparent 1.25px),
-      radial-gradient(var(--dot) 1.25px, transparent 1.25px);
-    background-position: 0 0, 14px 14px;
-    background-size: 28px 28px;
-    background-attachment: local;
-  }
-
-  /* Option C: subtle diagonal hatch (45deg) */
-  .site-cream-hatch{
-    background-color: var(--cream);
-    background-image:
-      repeating-linear-gradient(
-        45deg,
-        var(--hatch) 0 2px,
-        transparent 2px 14px
-      );
-    background-attachment: local;
-  }
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Base stacks bound to CSS variables from next/font */
 @layer base {
-  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
-  h1, h2, h3 { font-family: var(--font-display), ui-serif, Georgia, "Times New Roman", serif; }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-feature-settings: "ss01", "cv05";
+    transition: background-color 0.4s var(--ease-out-quart),
+      color 0.4s var(--ease-out-quart);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display), ui-serif, Georgia, "Times New Roman", serif;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
 }
 
-/* Utilities for targeted font variation without touching Tailwind config */
+/* ============================================================
+   Utilities
+   ============================================================ */
+
 @layer utilities {
-  .font-display { font-family: var(--font-display), ui-serif, Georgia, "Times New Roman", serif; }
-  .font-sans-var { font-family: var(--font-sans), ui-sans-serif, system-ui; }
-  .font-mono-var { font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  .font-display {
+    font-family: var(--font-display), ui-serif, Georgia, "Times New Roman", serif;
+  }
+  .font-sans-var {
+    font-family: var(--font-sans), ui-sans-serif, system-ui;
+  }
+
+  /* Fraunces optical sizing + a touch of softness for display use */
+  .display-soft {
+    font-optical-sizing: auto;
+    font-variation-settings: "SOFT" 0, "WONK" 0, "opsz" 144;
+  }
+
+  /* Editorial paper texture: ultra-faint vertical column rules + grain-free tint.
+     Sits behind content site-wide, intentional and quiet. */
+  .paper-rules {
+    background-image:
+      linear-gradient(var(--hairline) 1px, transparent 1px);
+    background-size: 100% 2.25rem;
+  }
+
+  .border-hairline {
+    border-color: var(--hairline);
+  }
+
+  /* Soft warm elevation */
+  .shadow-editorial {
+    box-shadow:
+      0 1px 2px rgb(var(--shadow-color) / 0.04),
+      0 8px 24px -8px rgb(var(--shadow-color) / 0.12),
+      0 24px 48px -24px rgb(var(--shadow-color) / 0.16);
+  }
+  .shadow-editorial-lg {
+    box-shadow:
+      0 2px 4px rgb(var(--shadow-color) / 0.05),
+      0 16px 40px -12px rgb(var(--shadow-color) / 0.18),
+      0 40px 80px -32px rgb(var(--shadow-color) / 0.24);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -4,7 +4,6 @@ import * as React from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 import { X, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 interface ProjectModalProps {
   isOpen: boolean;
@@ -39,30 +38,21 @@ export function ProjectModal({
 
   React.useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
-
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
   React.useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
+      if (e.key === "Escape") onClose();
     };
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
+    if (isOpen) document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
   }, [isOpen, onClose]);
 
   if (!mounted || !isOpen) return null;
@@ -71,52 +61,58 @@ export function ProjectModal({
     <div
       role="button"
       tabIndex={0}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 dark:bg-[#FFF8EC]/80 p-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-ink/40 p-4 backdrop-blur-md"
       onClick={onClose}
-      onKeyDown={(e) => { if (e.key === "Escape") onClose(); }}
-      style={{ backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") onClose();
+      }}
     >
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div
         className={cn(
-          "relative w-full max-w-6xl h-[90vh] overflow-hidden",
-          "bg-black dark:bg-[#FFF8EC] border border-[#f5f5f5]/[0.08] dark:border-black/[0.08] rounded-xl shadow-2xl",
+          "relative h-[90vh] w-full max-w-5xl overflow-hidden rounded-[1.25rem]",
+          "border border-hairline bg-surface shadow-editorial-lg",
           "grid grid-cols-1 grid-rows-[auto_1fr] lg:grid-cols-2 lg:grid-rows-1"
         )}
         onClick={(e) => e.stopPropagation()}
         onKeyDown={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-[#f5f5f5]/50 hover:bg-[#f5f5f5]/70 dark:bg-black/50 dark:hover:bg-black/70 text-black dark:text-[#f5f5f5] transition-colors"
-          aria-label="Close modal"
+          className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full border border-hairline bg-surface/80 text-ink backdrop-blur transition-colors hover:bg-sunken"
+          aria-label="Close"
         >
-          <X className="h-5 w-5" />
+          <X className="h-4 w-4" />
         </button>
 
-        {/* Left Side: Image */}
-        <div className="relative h-48 lg:h-full">
+        {/* Image */}
+        <div className="relative h-48 bg-sunken lg:h-full">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={imageUrl}
             alt={imageAlt}
-            className={`absolute inset-0 w-full h-full object-cover ${imagePosition}`}
+            className={`absolute inset-0 h-full w-full object-cover ${imagePosition}`}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent dark:from-[#FFF8EC]/50 dark:to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-black/20 dark:lg:to-[#f5f5f5]/20"></div>
         </div>
 
-        {/* Right Side: Content */}
-        <div className="overflow-y-auto p-5 md:p-8 space-y-5 md:space-y-6 min-w-0 min-h-0">
-          {/* Title and Tags */}
+        {/* Content */}
+        <div className="min-h-0 min-w-0 space-y-7 overflow-y-auto p-6 md:p-9">
           <div>
-            <h2 className="font-sans text-4xl font-bold text-[#f5f5f5] dark:text-black mb-3">{title}</h2>
+            <h2 className="font-display text-[2.25rem] font-normal leading-tight tracking-[-0.01em] text-ink">
+              {title}
+            </h2>
             {tags && tags.length > 0 && (
-              <div className="flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5">
                 {tags.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="text-xs px-3 py-1 rounded-full bg-[#f5f5f5]/[0.1] dark:bg-black/[0.1] text-[#f5f5f5] dark:text-black border border-[#f5f5f5]/[0.15] dark:border-black/[0.15]"
+                    className="text-[0.8rem] font-medium tracking-wide text-ink/55"
                   >
+                    {idx > 0 && (
+                      <span className="mr-4 text-hairline-strong" aria-hidden>
+                        ·
+                      </span>
+                    )}
                     {tag}
                   </span>
                 ))}
@@ -124,21 +120,25 @@ export function ProjectModal({
             )}
           </div>
 
-          {/* Story */}
-          <div>
-            <h3 className="font-sans text-lg font-semibold text-[#f5f5f5] dark:text-black mb-2">Story</h3>
-            <p className="font-sans text-[#f5f5f5] dark:text-black text-sm leading-relaxed">{story}</p>
-          </div>
+          <div className="h-px w-full bg-hairline" />
 
-          {/* Bullets */}
+          <p className="text-[0.97rem] leading-relaxed text-muted">{story}</p>
+
           {bullets && bullets.length > 0 && (
             <div>
-              <h3 className="font-sans text-lg font-semibold text-[#f5f5f5] dark:text-black mb-2">Details</h3>
-              <ul className="space-y-2">
+              <h3 className="mb-3 text-[0.72rem] font-medium uppercase tracking-[0.2em] text-accent-ink">
+                Details
+              </h3>
+              <ul className="space-y-2.5">
                 {bullets.map((bullet, idx) => (
-                  <li key={idx} className="font-sans text-sm text-[#f5f5f5] dark:text-black">
+                  <li
+                    key={idx}
+                    className="text-[0.92rem] leading-relaxed text-muted"
+                  >
                     {bullet.strong && (
-                      <span className="font-semibold text-[#f5f5f5] dark:text-black">{bullet.strong}: </span>
+                      <span className="font-semibold text-ink">
+                        {bullet.strong}.{" "}
+                      </span>
                     )}
                     {bullet.text}
                   </li>
@@ -147,21 +147,22 @@ export function ProjectModal({
             </div>
           )}
 
-          {/* Links */}
           {links && links.length > 0 && (
             <div>
-              <h3 className="font-sans text-lg font-semibold text-[#f5f5f5] dark:text-black mb-3">Links</h3>
-              <div className="flex flex-wrap gap-2">
+              <h3 className="mb-3 text-[0.72rem] font-medium uppercase tracking-[0.2em] text-accent-ink">
+                Links
+              </h3>
+              <div className="flex flex-wrap gap-2.5">
                 {links.map((link, idx) => (
                   <a
                     key={idx}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs px-3 py-1.5 rounded-full bg-orange-500/20 text-[#f5f5f5] dark:text-black border border-orange-500/40 hover:bg-orange-500/30 hover:border-orange-500/60 transition-all duration-200"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-hairline px-4 py-2 text-[0.85rem] font-medium text-ink transition-colors hover:border-accent/50 hover:bg-accent/[0.06] hover:text-accent-ink"
                   >
                     {link.label}
-                    <ExternalLink className="h-3 w-3" />
+                    <ExternalLink className="h-3.5 w-3.5" />
                   </a>
                 ))}
               </div>

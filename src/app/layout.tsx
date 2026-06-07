@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import Script from "next/script";
 import ScrollReset from "@/components/ScrollReset";
 import Analytics from "./analytics";
@@ -8,17 +8,17 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://vedantsubramanian.com'),
-  title: "Vedant Subramanian - Student, Developer & Innovator",
-  description: "High school student at Greenhill School creating innovative solutions and meaningful digital experiences. Skilled in Python, Next.js, and community operations.",
-  keywords: "Vedant Subramanian, student developer, Greenhill School, Python, Next.js, web development, innovation",
+  title: "Vedant Subramanian — Developer & Founder",
+  description: "Vedant Subramanian is an incoming finance freshman at UT Austin who builds software and runs Shelter Aid TX, a Dallas shoe-donation nonprofit that has donated 1,700+ pairs of shoes.",
+  keywords: "Vedant Subramanian, UT Austin, McCombs, finance, software developer, Next.js, Shelter Aid TX",
   authors: [{ name: "Vedant Subramanian" }],
   creator: "Vedant Subramanian",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://vedantsubramanian.com",
-    title: "Vedant Subramanian - Student, Developer & Innovator", 
-    description: "High school student at Greenhill School creating innovative solutions and meaningful digital experiences.",
+    title: "Vedant Subramanian — Developer & Founder",
+    description: "Incoming finance freshman at UT Austin who builds software and runs Shelter Aid TX, a Dallas shoe-donation nonprofit.",
     siteName: "Vedant Subramanian",
     images: [{
       url: "/headshot-vedant.jpeg",
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vedant Subramanian - Student, Developer & Innovator",
-    description: "High school student creating innovative solutions and meaningful digital experiences.",
+    title: "Vedant Subramanian — Developer & Founder",
+    description: "Incoming finance freshman at UT Austin. Builds software and runs Shelter Aid TX, a Dallas shoe-donation nonprofit.",
     images: ["/headshot-vedant.jpeg"]
   },
   robots: {
@@ -49,40 +49,33 @@ export const metadata: Metadata = {
   }
 };
 
-const sans = Inter({ 
-  subsets: ["latin"], 
-  variable: "--font-sans", 
-  display: "optional",
-  preload: true 
+const sans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+  preload: true,
 });
-const display = Space_Grotesk({ 
-  subsets: ["latin"], 
-  variable: "--font-display", 
-  display: "optional",
-  preload: true 
-});
-const mono = JetBrains_Mono({ 
-  subsets: ["latin"], 
-  variable: "--font-mono", 
-  display: "optional" 
+
+// High-contrast display serif. Optical size + soft axes for editorial headings.
+const display = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  preload: true,
+  axes: ["opsz", "SOFT", "WONK"],
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${sans.variable} ${display.variable} ${mono.variable} scroll-smooth`}
+      className={`${sans.variable} ${display.variable} scroll-smooth`}
       suppressHydrationWarning
     >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@700&family=Antic&display=swap"
-        />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#f6f2e9" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#161310" media="(prefers-color-scheme: dark)" />
         <link rel="canonical" href="https://vedantsubramanian.com" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -104,10 +97,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="antialiased font-sans-var bg-black text-[#f5f5f5] dark:bg-[#FFFEF9] dark:text-black">
+      <body className="antialiased font-sans-var bg-bg text-ink">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
           storageKey="portfolio-theme"
         >
