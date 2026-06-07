@@ -7,10 +7,10 @@ export type Achievement = {
 
 export const achievements: Achievement[] = [
   {
-    kicker: "Hackathon",
+    kicker: "SpinSci Hackathon",
     title: "2nd of 13 teams — Canary ($2,500)",
     detail: "Built Canary, a CHF hospital-at-home monitoring tool, with Tarik Syed (Duke) and Aamir Tinwala (Stanford); 2nd of 13 teams and a $2,500 prize. I led all technical development.",
-    link: { href: "https://prod.spinsci.ai", label: "Hackathon page" },
+    link: { href: "https://prod.spinsci.ai", label: "SpinSci hackathon" },
   },
   {
     kicker: "Funding",
