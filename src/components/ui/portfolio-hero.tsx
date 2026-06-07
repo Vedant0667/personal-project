@@ -71,13 +71,13 @@ const RevealText: React.FC<RevealTextProps> = ({
 };
 
 /* ----------------------------------------------------------------
-   "Now" — factual, present-tense lines. Not metrics, not hype.
+   "Now" — what I'm building, plus a couple of concrete wins.
 ---------------------------------------------------------------- */
 
 const NOW: { label: string; value: string }[] = [
   { label: "Building", value: "Stowr, Montir" },
-  { label: "Running", value: "Shelter Aid TX" },
-  { label: "Shipped", value: "CampusLife, on the App Store" },
+  { label: "Raised", value: "$7,000 grant, Shelter Aid TX" },
+  { label: "Won", value: "2nd of 13, SpinSci hackathon ($2,500)" },
 ];
 
 const NAV = [
