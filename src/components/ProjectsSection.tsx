@@ -4,7 +4,14 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { ProjectModal } from "@/components/ui/project-modal"
 import { projects } from "@/data/projects"
-import { ArrowUpRight } from "lucide-react"
+import {
+  ArrowUpRight,
+  Smartphone,
+  Globe,
+  HeartHandshake,
+  Cpu,
+  type LucideIcon,
+} from "lucide-react"
 
 const indexed = projects.map((p, i) => ({ ...p, originalIndex: i }))
 type IndexedProject = (typeof indexed)[number]
@@ -27,6 +34,54 @@ function liveLabel(project: IndexedProject) {
   const site = project.links?.find((l) => /website/i.test(l.label))
   if (site) return "Live"
   return null
+}
+
+// Medium-of-the-work symbols that sit beside the project name. Driven by the
+// existing category field; an App Store link adds the store mark alongside the
+// platform symbol (a shipped iOS app reads as phone + Apple).
+type BadgeSymbol = { Icon: LucideIcon; label: string }
+
+function typeBadges(project: IndexedProject): BadgeSymbol[] {
+  switch (project.category) {
+    case "Mobile":
+      return [{ Icon: Smartphone, label: "iOS app" }]
+    case "Web":
+      return [{ Icon: Globe, label: "Web app" }]
+    case "Nonprofit":
+      return [{ Icon: HeartHandshake, label: "Nonprofit" }]
+    case "Hardware":
+      return [{ Icon: Cpu, label: "Hardware" }]
+    default:
+      return []
+  }
+}
+
+function TypeBadge({ project, box = 30 }: { project: IndexedProject; box?: number }) {
+  const symbols = typeBadges(project)
+  if (symbols.length === 0) return null
+  const icon = Math.round(box * 0.52)
+  return (
+    <span
+      className="flex shrink-0 items-center gap-1.5"
+      // Optical nudge: center the boxes on the display serif's cap height
+      // rather than its taller line-box center.
+      style={{ transform: `translateY(${box * 0.06}px)` }}
+    >
+      {symbols.map(({ Icon, label }) => (
+        <span
+          key={label}
+          className="grid place-items-center rounded-[0.55rem] border border-hairline text-accent-ink"
+          style={{ width: box, height: box }}
+          role="img"
+          aria-label={label}
+        >
+          <Icon style={{ width: icon, height: icon }} strokeWidth={1.75} aria-hidden>
+            <title>{label}</title>
+          </Icon>
+        </span>
+      ))}
+    </span>
+  )
 }
 
 export default function ProjectsSection() {
@@ -172,9 +227,12 @@ function FlagshipRow({
       {/* Copy */}
       <div className={reverse ? "lg:order-1" : ""}>
         <div className="flex items-start justify-between gap-4">
-          <h3 className="font-display text-[2rem] font-normal leading-tight tracking-[-0.01em] text-ink md:text-[2.5rem]">
-            {project.title}
-          </h3>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+            <h3 className="font-display text-[2rem] font-normal leading-tight tracking-[-0.01em] text-ink md:text-[2.5rem]">
+              {project.title}
+            </h3>
+            <TypeBadge project={project} box={34} />
+          </div>
           <ArrowUpRight className="mt-2 h-6 w-6 shrink-0 text-muted transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
         </div>
 
@@ -241,9 +299,12 @@ function SupportingCard({
 
       <div className="flex flex-1 flex-col p-6 md:p-7">
         <div className="flex items-start justify-between gap-3">
-          <h3 className="font-display text-[1.6rem] font-normal leading-tight tracking-[-0.01em] text-ink">
-            {project.title}
-          </h3>
+          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
+            <h3 className="font-display text-[1.6rem] font-normal leading-tight tracking-[-0.01em] text-ink">
+              {project.title}
+            </h3>
+            <TypeBadge project={project} box={28} />
+          </div>
           <ArrowUpRight className="mt-1.5 h-5 w-5 shrink-0 text-muted transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
         </div>
         <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">

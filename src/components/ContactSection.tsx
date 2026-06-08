@@ -26,7 +26,7 @@ export default function ContactSection() {
           </p>
 
           <h2 className="display-soft max-w-3xl text-[clamp(2.5rem,7vw,5rem)] font-light leading-[0.98] tracking-[-0.025em] text-ink">
-            Say hello.
+            Say hello!
           </h2>
 
           <p className="mt-6 max-w-md text-[1.05rem] leading-relaxed text-muted">
