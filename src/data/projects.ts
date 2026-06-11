@@ -68,6 +68,9 @@ export const projects: ProjectProps[] = [
         text: "Expo (React Native), Expo Router, React 19, TypeScript, Supabase, Trakt, EAS",
       },
     ],
+    links: [
+      { href: "https://apps.apple.com/us/app/montir/id6776378113", label: "App Store" },
+    ],
   },
   {
     imageSrc: "/shelteraid-check.webp",
