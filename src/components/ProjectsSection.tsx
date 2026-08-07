@@ -99,13 +99,13 @@ export default function ProjectsSection() {
             Selected work
           </p>
           <h2 className="display-soft text-[clamp(2.5rem,6vw,4rem)] font-light leading-[0.98] tracking-[-0.02em] text-ink">
-            Six things worth
+            What I&apos;m working on
             <br />
             <span
               className="italic"
               style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1, "opsz" 144' }}
             >
-              showing.
+              now.
             </span>
           </h2>
         </div>

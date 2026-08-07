@@ -16,6 +16,10 @@ Mark in-progress BEFORE starting; mark done IMMEDIATELY after. -->
 
 ## Done
 
+### 2026-08-07 — Projects section headline
+- [x] `ProjectsSection.tsx:102` headline "Six things worth / *showing.*" → "What I&apos;m working on / *now.*", keeping the two-line plain/italic split and the WONK font-variation on the second line. Incidentally kills a stale hardcoded count — there are 7 projects, not 6. Eyebrow above it still reads "Selected work" (left as-is; user asked only for the headline).
+- [x] Verified in prerendered HTML: new headline present, "Six things worth" gone. tsc + next build clean.
+
 ### 2026-08-07 — Role bylines on project cards
 - [x] New optional `role?: string` on `ProjectProps` (`src/components/ProjectCard.tsx`) — my title on each project.
 - [x] Populated in `src/data/projects.ts`: Stowr "Founder", Montir "Co-Founder, CEO & CTO", Shelter Aid TX "Founder", CampusLife "Co-Founder". Supporting projects (PeopleNotes, THIɅK Clear, Canary) intentionally have none — field is optional so they render unchanged.
