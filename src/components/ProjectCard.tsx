@@ -17,6 +17,7 @@ export interface ProjectProps {
   imageSrc: string; // served from /public
   imageAlt: string;
   title: string;
+  role?: string; // my title on the project, shown as a byline above the name
   summary?: string; // short version for card preview
   story: string; // full version for modal
   bullets?: Bullet[];
