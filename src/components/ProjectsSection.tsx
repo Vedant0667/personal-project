@@ -152,6 +152,7 @@ export default function ProjectsSection() {
           imageUrl={projects[selectedProject].imageSrc}
           imageAlt={projects[selectedProject].imageAlt}
           title={projects[selectedProject].title}
+          role={projects[selectedProject].role}
           tags={projects[selectedProject].tags}
           story={projects[selectedProject].story}
           bullets={projects[selectedProject].bullets}
@@ -227,11 +228,18 @@ function FlagshipRow({
       {/* Copy */}
       <div className={reverse ? "lg:order-1" : ""}>
         <div className="flex items-start justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-            <h3 className="font-display text-[2rem] font-normal leading-tight tracking-[-0.01em] text-ink md:text-[2.5rem]">
-              {project.title}
-            </h3>
-            <TypeBadge project={project} box={34} />
+          <div>
+            {project.role && (
+              <p className="mb-2.5 text-[0.7rem] font-medium uppercase tracking-[0.22em] text-accent-ink">
+                {project.role}
+              </p>
+            )}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <h3 className="font-display text-[2rem] font-normal leading-tight tracking-[-0.01em] text-ink md:text-[2.5rem]">
+                {project.title}
+              </h3>
+              <TypeBadge project={project} box={34} />
+            </div>
           </div>
           <ArrowUpRight className="mt-2 h-6 w-6 shrink-0 text-muted transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
         </div>
@@ -299,11 +307,18 @@ function SupportingCard({
 
       <div className="flex flex-1 flex-col p-6 md:p-7">
         <div className="flex items-start justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
-            <h3 className="font-display text-[1.6rem] font-normal leading-tight tracking-[-0.01em] text-ink">
-              {project.title}
-            </h3>
-            <TypeBadge project={project} box={28} />
+          <div>
+            {project.role && (
+              <p className="mb-2 text-[0.65rem] font-medium uppercase tracking-[0.22em] text-accent-ink">
+                {project.role}
+              </p>
+            )}
+            <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
+              <h3 className="font-display text-[1.6rem] font-normal leading-tight tracking-[-0.01em] text-ink">
+                {project.title}
+              </h3>
+              <TypeBadge project={project} box={28} />
+            </div>
           </div>
           <ArrowUpRight className="mt-1.5 h-5 w-5 shrink-0 text-muted transition-[color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
         </div>

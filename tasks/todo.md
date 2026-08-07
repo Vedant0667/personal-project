@@ -16,6 +16,12 @@ Mark in-progress BEFORE starting; mark done IMMEDIATELY after. -->
 
 ## Done
 
+### 2026-08-07 — Role bylines on project cards
+- [x] New optional `role?: string` on `ProjectProps` (`src/components/ProjectCard.tsx`) — my title on each project.
+- [x] Populated in `src/data/projects.ts`: Stowr "Founder", Montir "Co-Founder, CEO & CTO", Shelter Aid TX "Founder", CampusLife "Co-Founder". Supporting projects (PeopleNotes, THIɅK Clear, Canary) intentionally have none — field is optional so they render unchanged.
+- [x] Rendered as an uppercase letterspaced eyebrow above the title (matches the existing "Selected work" eyebrow style, `text-accent-ink`) in three places: `FlagshipRow` + `SupportingCard` (`ProjectsSection.tsx`) and `ProjectModal` (`ui/project-modal.tsx`, new `role` prop threaded through from ProjectsSection).
+- [x] Verified in the prerendered HTML: exactly 4 role bylines in card order, plus the 3 pre-existing section eyebrows. tsc + next build clean.
+
 ### 2026-08-07 — Stat refresh (Montir + Shelter Aid) + resume
 - [x] Shelter Aid TX shoe count 1,700+ → 2,500+ in all 5 live copy sites: `src/data/projects.ts` (summary, story, Impact bullet), `src/components/ui/portfolio-hero.tsx:182` hero bio, `src/app/layout.tsx:12` SEO description. (Dead components About.tsx/Projects.tsx not in the render tree — left alone.)
 - [x] Montir: added `Traction` bullet — "2,500+ movies and TV shows ranked by users since the App Store launch" — as the first bullet on its card in `src/data/projects.ts`.

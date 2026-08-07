@@ -11,6 +11,7 @@ interface ProjectModalProps {
   imageUrl: string;
   imageAlt: string;
   title: string;
+  role?: string;
   tags?: string[];
   story: string;
   bullets?: Array<{ strong?: string; text: string }>;
@@ -24,6 +25,7 @@ export function ProjectModal({
   imageUrl,
   imageAlt,
   title,
+  role,
   tags,
   story,
   bullets,
@@ -98,6 +100,11 @@ export function ProjectModal({
         {/* Content */}
         <div className="min-h-0 min-w-0 space-y-7 overflow-y-auto p-6 md:p-9">
           <div>
+            {role && (
+              <p className="mb-2.5 text-[0.7rem] font-medium uppercase tracking-[0.22em] text-accent-ink">
+                {role}
+              </p>
+            )}
             <h2 className="font-display text-[2.25rem] font-normal leading-tight tracking-[-0.01em] text-ink">
               {title}
             </h2>
