@@ -52,6 +52,10 @@ export const projects: ProjectProps[] = [
       "Star ratings compress everything into a vague 3.5. Montir replaces them with forced pairwise comparison. Search a title (Trakt-backed), pick a coarse tier (Liked it / Fine / Didn't like it), then place it exactly via 5 to 7 head-to-head matchups against titles you've already ranked. The result is a personal, ordered list with a 0 to 10 score per title. A social layer lets you follow friends, see their ranked lists, and spot \"friends liked it\" signals, with data-driven recommendations as the user base grows. The whole logging loop is built to take under 30 seconds.",
     bullets: [
       {
+        strong: "Traction",
+        text: "2,500+ movies and TV shows ranked by users since the App Store launch",
+      },
+      {
         strong: "Core mechanic",
         text: "Binary-insertion ranking: place a new title in 7 comparisons or fewer",
       },
@@ -81,11 +85,11 @@ export const projects: ProjectProps[] = [
     icon: "Building2",
     featured: true,
     summary:
-      "A nonprofit I founded matching shoe donations to shelters across Dallas-Fort Worth. 1,700+ pairs donated, $7,000 raised.",
+      "A nonprofit I founded matching shoe donations to shelters across Dallas-Fort Worth. 2,500+ pairs donated, $7,000 raised.",
     story:
-      "Shelter Aid TX is a nonprofit I founded to address the need for footwear among homeless individuals in the Dallas-Fort Worth area. It works by matching shoe donations from running stores and community drives with shelters across DFW. What started as a simple idea grew into a real community effort: $7,000 raised through a school pitch competition and over 1,700 pairs of shoes donated. We've partnered with Fleet Feet locations, CISV Dallas, and several schools to build donation pipelines that continue to serve shelters across the region.",
+      "Shelter Aid TX is a nonprofit I founded to address the need for footwear among homeless individuals in the Dallas-Fort Worth area. It works by matching shoe donations from running stores and community drives with shelters across DFW. What started as a simple idea grew into a real community effort: $7,000 raised through a school pitch competition and over 2,500 pairs of shoes donated. We've partnered with Fleet Feet locations, CISV Dallas, and several schools to build donation pipelines that continue to serve shelters across the region.",
     bullets: [
-      { strong: "Impact", text: "1,700+ pairs of shoes donated; 7+ shelters served" },
+      { strong: "Impact", text: "2,500+ pairs of shoes donated; 7+ shelters served" },
       {
         strong: "Partners",
         text:
