@@ -16,6 +16,13 @@ Mark in-progress BEFORE starting; mark done IMMEDIATELY after. -->
 
 ## Done
 
+### 2026-09-02 — Sep 2026 resume + status/stat refresh
+- [x] Replaced `public/Vedant_Subramanian_resume.pdf` with `~/Downloads/Vedant_Subramanian_Resume_Sep2026.pdf` (137KB, 1 page). Filename kept so both links keep working (ContactSection.tsx:82, portfolio-hero.tsx:199). `cmp` byte-identical. Only one resume asset on the site.
+- [x] "Incoming" dropped + major finance -> business administration in all 5 copy sites: `src/app/layout.tsx` (SEO description, keywords, OG, Twitter) and `portfolio-hero.tsx:182` hero bio. ("Unspecified" is the McCombs concentration designation - kept on the resume, left out of prose where it reads as an error.)
+- [x] Stowr: new first `Traction` bullet - "Live B2B SaaS for self-storage operators; $1.2K ARR" (`src/data/projects.ts`), matching Montir's traction-bullet pattern.
+- [x] Shelter Aid: $7,000 de-attributed from the school pitch competition - story line and `Funding` bullet in `projects.ts`, plus hero NOW stat "$7,000 grant" -> "$7,000". `Achievements.ts` "$7,000 pitch grant" left untouched per request.
+- [x] tsc --noEmit clean; next build clean.
+
 ### 2026-08-07 — Projects section headline
 - [x] `ProjectsSection.tsx:102` headline "Six things worth / *showing.*" → "What I&apos;m working on / *now.*", keeping the two-line plain/italic split and the WONK font-variation on the second line. Incidentally kills a stale hardcoded count — there are 7 projects, not 6. Eyebrow above it still reads "Selected work" (left as-is; user asked only for the headline).
 - [x] Verified in prerendered HTML: new headline present, "Six things worth" gone. tsc + next build clean.
