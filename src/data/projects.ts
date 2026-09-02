@@ -17,6 +17,10 @@ export const projects: ProjectProps[] = [
       "Self-storage operators have no easy way to know what competitors charge. Stowr automates it: on onboarding it discovers nearby facilities via Google Places, scrapes their pricing with a multi-stage AI pipeline, and seeds the data to Supabase. A daily GitHub Actions cron re-scrapes every competitor, and the dashboard surfaces market averages, 7-day price trends, and a filterable competitor table (standard vs. climate-controlled, REIT vs. independent). Admins can manage tracked competitors and hide outlier prices without losing history.",
     bullets: [
       {
+        strong: "Traction",
+        text: "Live B2B SaaS for self-storage operators; $1.2K ARR",
+      },
+      {
         strong: "Scraper pipeline",
         text: "5 adaptive stages: static fetch, pricing-subpage probe, Playwright with API interception, Claude-generated parse functions, agentic Claude fallback",
       },
@@ -90,7 +94,7 @@ export const projects: ProjectProps[] = [
     summary:
       "A nonprofit I founded matching shoe donations to shelters across Dallas-Fort Worth. 2,500+ pairs donated, $7,000 raised.",
     story:
-      "Shelter Aid TX is a nonprofit I founded to address the need for footwear among homeless individuals in the Dallas-Fort Worth area. It works by matching shoe donations from running stores and community drives with shelters across DFW. What started as a simple idea grew into a real community effort: $7,000 raised through a school pitch competition and over 2,500 pairs of shoes donated. We've partnered with Fleet Feet locations, CISV Dallas, and several schools to build donation pipelines that continue to serve shelters across the region.",
+      "Shelter Aid TX is a nonprofit I founded to address the need for footwear among homeless individuals in the Dallas-Fort Worth area. It works by matching shoe donations from running stores and community drives with shelters across DFW. What started as a simple idea grew into a real community effort: $7,000 raised and over 2,500 pairs of shoes donated. We've partnered with Fleet Feet locations, CISV Dallas, and several schools to build donation pipelines that continue to serve shelters across the region.",
     bullets: [
       { strong: "Impact", text: "2,500+ pairs of shoes donated; 7+ shelters served" },
       {
@@ -98,7 +102,7 @@ export const projects: ProjectProps[] = [
         text:
           "Fleet Feet Plano and Preston/Forest; CISV Dallas youth project; Greenhill annual drives; Prince of Peace Plano XC drive",
       },
-      { strong: "Funding", text: "$7,000 from a school pitch competition" },
+      { strong: "Funding", text: "$7,000 raised" },
     ],
     links: [
       { href: "https://shelteraidtx.org", label: "Website" },

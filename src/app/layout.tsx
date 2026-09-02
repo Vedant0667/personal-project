@@ -9,8 +9,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 export const metadata: Metadata = {
   metadataBase: new URL('https://vedantsubramanian.com'),
   title: "Vedant Subramanian — Developer & Founder",
-  description: "Vedant Subramanian is an incoming finance freshman at UT Austin who builds software and runs Shelter Aid TX, a Dallas shoe-donation nonprofit that has donated 2,500+ pairs of shoes.",
-  keywords: "Vedant Subramanian, UT Austin, McCombs, finance, software developer, Next.js, Shelter Aid TX",
+  description: "Vedant Subramanian is a business administration freshman at UT Austin who builds software and runs Shelter Aid TX, a Dallas shoe-donation nonprofit that has donated 2,500+ pairs of shoes.",
+  keywords: "Vedant Subramanian, UT Austin, McCombs, business administration, software developer, Next.js, Shelter Aid TX",
   authors: [{ name: "Vedant Subramanian" }],
   creator: "Vedant Subramanian",
   openGraph: {
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://vedantsubramanian.com",
     title: "Vedant Subramanian — Developer & Founder",
-    description: "Incoming finance freshman at UT Austin who builds software and runs Shelter Aid TX, a Dallas shoe-donation nonprofit.",
+    description: "Business administration freshman at UT Austin who builds software and runs Shelter Aid TX, a Dallas shoe-donation nonprofit.",
     siteName: "Vedant Subramanian",
     images: [{
       url: "/headshot-vedant.jpeg",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Vedant Subramanian — Developer & Founder",
-    description: "Incoming finance freshman at UT Austin. Builds software and runs Shelter Aid TX, a Dallas shoe-donation nonprofit.",
+    description: "Business administration freshman at UT Austin. Builds software and runs Shelter Aid TX, a Dallas shoe-donation nonprofit.",
     images: ["/headshot-vedant.jpeg"]
   },
   robots: {
