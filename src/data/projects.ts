@@ -86,7 +86,7 @@ export const projects: ProjectProps[] = [
     imageSrc: "/shelteraid-check.webp",
     imageAlt: "Vedant Subramanian presenting a $7,000 check for Shelter Aid TX",
     title: "Shelter Aid TX",
-    role: "Founder",
+    role: "Founder & Board Chair",
     tags: ["Nonprofit", "Operations", "Community"],
     category: "Nonprofit",
     icon: "Building2",

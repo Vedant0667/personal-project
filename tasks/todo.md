@@ -16,6 +16,9 @@ Mark in-progress BEFORE starting; mark done IMMEDIATELY after. -->
 
 ## Done
 
+### 2026-09-03 - Shelter Aid byline matches resume
+- [x] `src/data/projects.ts:89` role "Founder" -> "Founder & Board Chair", matching the Sep 2026 resume. Renders in the flagship row eyebrow and the modal. tsc + build clean; verified in prerendered HTML.
+
 ### 2026-09-03 - Resume re-upload (one-pager fix)
 - [x] Replaced `public/Vedant_Subramanian_resume.pdf` with the 18:11 re-export (138,488 bytes, 1 page). `cmp` byte-identical. Fixes the 2-page orphan from the 18:07 version.
 - [x] Text delta vs the 2-page version: Shelter Aid bullet now ends "featured on Dallas Morning News, print edition" (site card already links that feature). Nothing else changed.
