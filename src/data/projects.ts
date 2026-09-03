@@ -38,7 +38,28 @@ export const projects: ProjectProps[] = [
       },
     ],
     links: [
-      { href: "https://stowr-landing.vercel.app", label: "Website" },
+      { href: "https://landing.stowr.app", label: "Website" },
+    ],
+  },
+  {
+    imageSrc: "/canary.webp",
+    imageAlt: "Canary CHF hospital-at-home monitoring dashboard",
+    title: "Canary",
+    tags: ["React", "TypeScript", "Claude AI", "FHIR"],
+    category: "Web",
+    icon: "Activity",
+    featured: false,
+    summary:
+      "A CHF hospital-at-home tool that scores discharge readiness and catches deterioration from vitals trajectories, not single thresholds. 2nd of 13 teams at the SpinSci hackathon.",
+    story:
+      "Canary closes the gap between hospital discharge and home recovery for congestive heart failure patients. It runs a three-stage loop: an AI reads the discharge packet and a deterministic rules engine scores home-readiness (every number traceable on screen), the structured record is packaged as FHIR and handed to a second demo EHR, and a monitoring dashboard tracks daily vitals, firing a trajectory-based alert on day 4 before any single vital looks alarming. Accept and Override carry equal weight so the interface never nudges the clinical call, and it degrades gracefully — falling back to cached extractions when the API is unavailable. Two pieces are stubbed for the demo rather than fully built — the live EHR integration and real device ingestion — and stand in for where the product goes next (see Prototype scope below). I was the developer responsible for all technical work at the SpinSci hackathon, where Canary placed 2nd of 13 teams.",
+    bullets: [
+      { strong: "Readiness scoring", text: "A deterministic rules engine scores home-readiness from a live AI-extracted discharge packet; every number traces to a threshold on screen, and the same engine scores any pasted or generated note" },
+      { strong: "FHIR hand-off", text: "The continuity record is serialized to correctly-shaped FHIR R4 resources and transferred into a second demo EHR so nothing is re-collected" },
+      { strong: "Trajectory alerts", text: "A real trend engine escalates on converging multi-signal vitals before any single threshold is breached — the day-4 catch fires while each individual vital still reads normal" },
+      { strong: "Prototype scope", text: "Genuinely built and running: the live Claude extraction, the scoring engine, the trend detection, and an Express + SQLite monitoring backend. Mocked for the demo and part of the broader product vision — a live EHR integration (the FHIR resources are real shapes, the hand-off between systems is simulated) and real device ingestion (the home-vitals series is scripted sample data the real engine runs on)" },
+      { strong: "Team", text: "2nd of 13 teams and a $2,500 prize, built with Tarik Syed (Duke) and Aamir Tinwala (Stanford); I led all technical work" },
+      { strong: "Tech Stack", text: "React 19, TypeScript, Vite, Express, SQLite, Claude (Anthropic SDK), FHIR" },
     ],
   },
   {
@@ -182,27 +203,6 @@ export const projects: ProjectProps[] = [
       { href: "https://devpost.com/software/thi-k-clear", label: "Devpost" },
       { href: "/thinkclear-financial-model.xlsx", label: "Financial Model" },
       { href: "/thinkclear-gtm-strategy.pdf", label: "Go-to-Market Strategy" },
-    ],
-  },
-  {
-    imageSrc: "/canary.webp",
-    imageAlt: "Canary CHF hospital-at-home monitoring dashboard",
-    title: "Canary",
-    tags: ["React", "TypeScript", "Claude AI", "FHIR"],
-    category: "Web",
-    icon: "Activity",
-    featured: false,
-    summary:
-      "A CHF hospital-at-home tool that scores discharge readiness and catches deterioration from vitals trajectories, not single thresholds. 2nd of 13 teams at the SpinSci hackathon.",
-    story:
-      "Canary closes the gap between hospital discharge and home recovery for congestive heart failure patients. It runs a three-stage loop: an AI reads the discharge packet and a deterministic rules engine scores home-readiness (every number traceable on screen), the structured record is packaged as FHIR and handed to a second demo EHR, and a monitoring dashboard tracks daily vitals, firing a trajectory-based alert on day 4 before any single vital looks alarming. Accept and Override carry equal weight so the interface never nudges the clinical call, and it degrades gracefully — falling back to cached extractions when the API is unavailable. Two pieces are stubbed for the demo rather than fully built — the live EHR integration and real device ingestion — and stand in for where the product goes next (see Prototype scope below). I was the developer responsible for all technical work at the SpinSci hackathon, where Canary placed 2nd of 13 teams.",
-    bullets: [
-      { strong: "Readiness scoring", text: "A deterministic rules engine scores home-readiness from a live AI-extracted discharge packet; every number traces to a threshold on screen, and the same engine scores any pasted or generated note" },
-      { strong: "FHIR hand-off", text: "The continuity record is serialized to correctly-shaped FHIR R4 resources and transferred into a second demo EHR so nothing is re-collected" },
-      { strong: "Trajectory alerts", text: "A real trend engine escalates on converging multi-signal vitals before any single threshold is breached — the day-4 catch fires while each individual vital still reads normal" },
-      { strong: "Prototype scope", text: "Genuinely built and running: the live Claude extraction, the scoring engine, the trend detection, and an Express + SQLite monitoring backend. Mocked for the demo and part of the broader product vision — a live EHR integration (the FHIR resources are real shapes, the hand-off between systems is simulated) and real device ingestion (the home-vitals series is scripted sample data the real engine runs on)" },
-      { strong: "Team", text: "2nd of 13 teams and a $2,500 prize, built with Tarik Syed (Duke) and Aamir Tinwala (Stanford); I led all technical work" },
-      { strong: "Tech Stack", text: "React 19, TypeScript, Vite, Express, SQLite, Claude (Anthropic SDK), FHIR" },
     ],
   },
 ];

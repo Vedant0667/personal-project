@@ -16,6 +16,12 @@ Mark in-progress BEFORE starting; mark done IMMEDIATELY after. -->
 
 ## Done
 
+### 2026-09-03 - Stowr custom domain + Canary leads supporting grid
+- [x] Stowr Website link `https://stowr-landing.vercel.app` -> `https://landing.stowr.app` (`src/data/projects.ts:41`). Verified the domain returns 200. The "Live" card badge keys off the link's "Website" label, so it is unaffected.
+- [x] Moved the Canary object to index 1 in the `projects` array so it leads "Also worth a look" (order is array-driven). New array: Stowr, Canary, Montir, Shelter Aid TX, CampusLife, PeopleNotes, THIAK Clear.
+- [x] Flagship rows unchanged (Stowr, Shelter Aid TX) since Canary is non-featured. Modal indexing uses `originalIndex` off the same array, so reordering is safe; blurData is keyed by image name, not index.
+- [x] Verified supporting order in prerendered HTML: Canary, Montir, CampusLife, PeopleNotes, THIAK Clear. tsc + build clean.
+
 ### 2026-09-03 - Drop role bylines from Montir + CampusLife
 - [x] Removed the optional `role` field from both entries in `src/data/projects.ts`. Supporting cards are now uniformly byline-free (matches PeopleNotes / THIAK Clear / Canary); only the two flagships carry a role.
 - [x] Verified: no "Co-Founder" string left in the prerendered HTML; Stowr "Founder" and Shelter Aid "Founder & Board Chair" remain. tsc + build clean.
