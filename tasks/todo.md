@@ -16,6 +16,11 @@ Mark in-progress BEFORE starting; mark done IMMEDIATELY after. -->
 
 ## Done
 
+### 2026-09-03 - Resume re-upload (Sep 2026 v2)
+- [x] Replaced `public/Vedant_Subramanian_resume.pdf` with the re-uploaded `~/Downloads/Vedant_Subramanian_Resume_Sep2026.pdf` (138KB, created Sep 3 18:07). `cmp` byte-identical.
+- [x] Only text change vs the prior version: Shelter Aid TX title "Co-Founder & President" -> "Founder & Board Chair". Site card still says role "Founder" (accurate subset) - flagged to Vedant, not changed unilaterally.
+- [x] NOTE: this version is 2 pages - the UPenn M&TSI bullet (2 lines) orphans onto page 2. Prior version was 1 page. Flagged to Vedant.
+
 ### 2026-09-03 - Reshuffle flagship vs supporting projects
 - [x] Montir + CampusLife demoted `featured: true` -> `false` in `src/data/projects.ts`. Rendering is filter-driven (`ProjectsSection.tsx:19-20`), so no component changes were needed.
 - [x] Main "What I'm working on now" rows are now Stowr (normal) then Shelter Aid TX (reversed) - the alternating layout still alternates. "Also worth a look" grid is Montir, CampusLife, PeopleNotes, THIAK Clear, Canary (5 cards in 2 cols, so the last one sits alone on its row).
