@@ -50,7 +50,7 @@ export const projects: ProjectProps[] = [
     imagePosition: "object-top",
     category: "Mobile",
     icon: "Film",
-    featured: true,
+    featured: false,
     modalImagePosition: "object-[center_38%]",
     summary:
       "A social film and TV ranking app that drops star ratings for fast, forced head-to-head comparisons.",
@@ -124,7 +124,7 @@ export const projects: ProjectProps[] = [
     tags: ["React Native", "Expo", "Firebase"],
     category: "Mobile",
     icon: "Smartphone",
-    featured: true,
+    featured: false,
     summary:
       "A family wellness tracker that keeps college students connected with parents. Live on the App Store.",
     story:
