@@ -16,6 +16,17 @@ Mark in-progress BEFORE starting; mark done IMMEDIATELY after. -->
 
 ## Done
 
+### 2026-09-03 - Resume re-upload (Sep 2026 v2)
+- [x] Replaced `public/Vedant_Subramanian_resume.pdf` with the re-uploaded `~/Downloads/Vedant_Subramanian_Resume_Sep2026.pdf` (138KB, created Sep 3 18:07). `cmp` byte-identical.
+- [x] Only text change vs the prior version: Shelter Aid TX title "Co-Founder & President" -> "Founder & Board Chair". Site card still says role "Founder" (accurate subset) - flagged to Vedant, not changed unilaterally.
+- [x] NOTE: this version is 2 pages - the UPenn M&TSI bullet (2 lines) orphans onto page 2. Prior version was 1 page. Flagged to Vedant.
+
+### 2026-09-03 - Reshuffle flagship vs supporting projects
+- [x] Montir + CampusLife demoted `featured: true` -> `false` in `src/data/projects.ts`. Rendering is filter-driven (`ProjectsSection.tsx:19-20`), so no component changes were needed.
+- [x] Main "What I'm working on now" rows are now Stowr (normal) then Shelter Aid TX (reversed) - the alternating layout still alternates. "Also worth a look" grid is Montir, CampusLife, PeopleNotes, THIAK Clear, Canary (5 cards in 2 cols, so the last one sits alone on its row).
+- [x] Hero NOW stat `Building` "Stowr, Montir" -> "Stowr, Shelter Aid" (`portfolio-hero.tsx:78`).
+- [x] Verified order + stat in the prerendered HTML by byte offset; tsc --noEmit clean, next build clean.
+
 ### 2026-09-02 — Sep 2026 resume + status/stat refresh
 - [x] Replaced `public/Vedant_Subramanian_resume.pdf` with `~/Downloads/Vedant_Subramanian_Resume_Sep2026.pdf` (137KB, 1 page). Filename kept so both links keep working (ContactSection.tsx:82, portfolio-hero.tsx:199). `cmp` byte-identical. Only one resume asset on the site.
 - [x] "Incoming" dropped + major finance -> business administration in all 5 copy sites: `src/app/layout.tsx` (SEO description, keywords, OG, Twitter) and `portfolio-hero.tsx:182` hero bio. ("Unspecified" is the McCombs concentration designation - kept on the resume, left out of prose where it reads as an error.)

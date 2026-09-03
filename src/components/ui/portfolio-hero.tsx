@@ -75,7 +75,7 @@ const RevealText: React.FC<RevealTextProps> = ({
 ---------------------------------------------------------------- */
 
 const NOW: { label: string; value: string }[] = [
-  { label: "Building", value: "Stowr, Montir" },
+  { label: "Building", value: "Stowr, Shelter Aid" },
   { label: "Raised", value: "$7,000, Shelter Aid TX" },
   { label: "Won", value: "$2,500, SpinSci hackathon (2nd of 13)" },
 ];
