@@ -16,6 +16,10 @@ Mark in-progress BEFORE starting; mark done IMMEDIATELY after. -->
 
 ## Done
 
+### 2026-09-03 - Drop role bylines from Montir + CampusLife
+- [x] Removed the optional `role` field from both entries in `src/data/projects.ts`. Supporting cards are now uniformly byline-free (matches PeopleNotes / THIAK Clear / Canary); only the two flagships carry a role.
+- [x] Verified: no "Co-Founder" string left in the prerendered HTML; Stowr "Founder" and Shelter Aid "Founder & Board Chair" remain. tsc + build clean.
+
 ### 2026-09-03 - Shelter Aid byline matches resume
 - [x] `src/data/projects.ts:89` role "Founder" -> "Founder & Board Chair", matching the Sep 2026 resume. Renders in the flagship row eyebrow and the modal. tsc + build clean; verified in prerendered HTML.
 
