@@ -16,6 +16,10 @@ Mark in-progress BEFORE starting; mark done IMMEDIATELY after. -->
 
 ## Done
 
+### 2026-09-03 - Resume re-upload (one-pager fix)
+- [x] Replaced `public/Vedant_Subramanian_resume.pdf` with the 18:11 re-export (138,488 bytes, 1 page). `cmp` byte-identical. Fixes the 2-page orphan from the 18:07 version.
+- [x] Text delta vs the 2-page version: Shelter Aid bullet now ends "featured on Dallas Morning News, print edition" (site card already links that feature). Nothing else changed.
+
 ### 2026-09-03 - Resume re-upload (Sep 2026 v2)
 - [x] Replaced `public/Vedant_Subramanian_resume.pdf` with the re-uploaded `~/Downloads/Vedant_Subramanian_Resume_Sep2026.pdf` (138KB, created Sep 3 18:07). `cmp` byte-identical.
 - [x] Only text change vs the prior version: Shelter Aid TX title "Co-Founder & President" -> "Founder & Board Chair". Site card still says role "Founder" (accurate subset) - flagged to Vedant, not changed unilaterally.
