@@ -16,6 +16,12 @@ Mark in-progress BEFORE starting; mark done IMMEDIATELY after. -->
 
 ## Done
 
+### 2026-09-13 — Sep 2026 resume + Shelter Aid 14k stat
+- [x] Replace `public/Vedant_Subramanian_resume.pdf` with `~/Downloads/Vedant_Subramanian_Resume_Sep2026.pdf` (same filename so both links keep working).
+- [x] Shelter Aid TX: "2,500+ pairs donated" → "14,000+ pairs of shoes collected for those in need" in all 5 live copy sites: `src/data/projects.ts` (summary, story, Impact bullet), `src/components/ui/portfolio-hero.tsx:182` hero bio, `src/app/layout.tsx:12` SEO description. Dead `About.tsx` left alone (not in render tree).
+- [x] Verified: no 2,500/2.5k stragglers in src or prerendered HTML; tsc --noEmit clean; next build clean (7/7 static, pre-existing lint warnings only). Resume text independently says "14k+ pairs of shoes collected for local shelters" — site and resume agree.
+- [ ] Not committed — awaiting review.
+
 ### 2026-09-03 - Stowr custom domain + Canary leads supporting grid
 - [x] Stowr Website link `https://stowr-landing.vercel.app` -> `https://landing.stowr.app` (`src/data/projects.ts:41`). Verified the domain returns 200. The "Live" card badge keys off the link's "Website" label, so it is unaffected.
 - [x] Moved the Canary object to index 1 in the `projects` array so it leads "Also worth a look" (order is array-driven). New array: Stowr, Canary, Montir, Shelter Aid TX, CampusLife, PeopleNotes, THIAK Clear.

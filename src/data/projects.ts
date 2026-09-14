@@ -112,11 +112,11 @@ export const projects: ProjectProps[] = [
     icon: "Building2",
     featured: true,
     summary:
-      "A nonprofit I founded matching shoe donations to shelters across Dallas-Fort Worth. 2,500+ pairs donated, $7,000 raised.",
+      "A nonprofit I founded matching shoe donations to shelters across Dallas-Fort Worth. 14,000+ pairs of shoes collected for those in need, $7,000 raised.",
     story:
-      "Shelter Aid TX is a nonprofit I founded to address the need for footwear among homeless individuals in the Dallas-Fort Worth area. It works by matching shoe donations from running stores and community drives with shelters across DFW. What started as a simple idea grew into a real community effort: $7,000 raised and over 2,500 pairs of shoes donated. We've partnered with Fleet Feet locations, CISV Dallas, and several schools to build donation pipelines that continue to serve shelters across the region.",
+      "Shelter Aid TX is a nonprofit I founded to address the need for footwear among homeless individuals in the Dallas-Fort Worth area. It works by matching shoe donations from running stores and community drives with shelters across DFW. What started as a simple idea grew into a real community effort: $7,000 raised and over 14,000 pairs of shoes collected for those in need. We've partnered with Fleet Feet locations, CISV Dallas, and several schools to build donation pipelines that continue to serve shelters across the region.",
     bullets: [
-      { strong: "Impact", text: "2,500+ pairs of shoes donated; 7+ shelters served" },
+      { strong: "Impact", text: "14,000+ pairs of shoes collected for those in need; 7+ shelters served" },
       {
         strong: "Partners",
         text:
