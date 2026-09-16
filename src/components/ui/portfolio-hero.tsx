@@ -179,7 +179,7 @@ export default function PortfolioHero() {
 
             <RevealText
               as="p"
-              text="I'm a business administration freshman at UT Austin's McCombs School, and most of my free time still goes into building software. I also run Shelter Aid TX, a shoe-donation nonprofit in Dallas that's collected 14,000+ pairs of shoes for those in need."
+              text="I'm a business administration freshman at UT Austin's McCombs School, and most of my free time still goes into building software. I also run Shelter Aid TX, a shoe-donation nonprofit in Dallas that's collected 8,000+ pairs of shoes for those in need."
               step={20}
               delay={760}
               className="mt-8 max-w-[34rem] text-lg leading-relaxed text-muted [text-wrap:pretty] md:text-[1.2rem]"
