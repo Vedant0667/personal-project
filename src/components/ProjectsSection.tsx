@@ -180,7 +180,7 @@ function FlagshipRow({
   const live = liveLabel(project)
 
   return (
-    <motion.article
+    <motion.div
       variants={cardReveal}
       initial="hidden"
       whileInView="show"
@@ -264,7 +264,7 @@ function FlagshipRow({
           ))}
         </div>
       </div>
-    </motion.article>
+    </motion.div>
   )
 }
 
@@ -276,7 +276,7 @@ function SupportingCard({
   onOpen: () => void
 }) {
   return (
-    <motion.article
+    <motion.div
       variants={cardReveal}
       initial="hidden"
       whileInView="show"
@@ -341,6 +341,6 @@ function SupportingCard({
           ))}
         </div>
       </div>
-    </motion.article>
+    </motion.div>
   )
 }
