@@ -63,6 +63,32 @@ export const projects: ProjectProps[] = [
     ],
   },
   {
+    imageSrc: "/outpacef1.webp",
+    imageAlt: "OutpaceF1 logo",
+    title: "OutpaceF1",
+    tags: ["Next.js", "TypeScript", "Python", "Postgres"],
+    category: "Web",
+    icon: "Flag",
+    featured: false,
+    summary:
+      "A race-night party game where friends make F1 pit calls from their phones and get scored on what actually happened. Built in under 24 hours at HackTX 2026.",
+    story:
+      "OutpaceF1 puts a group of friends on the pit wall during an F1 race. When a strategy moment comes up (a safety car, a rival pitting, an undercut window, worn tyres, rain), everyone calls \"box\" or \"stay out\" from their phone and records a voice note of up to 30 seconds saying why. At the flag, each call is scored against how comparable cars that made the other call finished, Muse Spark grades the reasoning, and a leaderboard ranks the group against a Python engine and the real F1 team. The demo replays real data from the 2025 Qatar and 2026 Singapore Grands Prix; running it lap by lap during live races is the next step. We built and deployed it in under 24 hours at HackTX 2026, and I was the developer responsible for all the technical work.",
+    bullets: [
+      { strong: "Decision moments", text: "A Python trigger script reads Jolpica F1 and OpenF1 data and prompts players on safety cars, nearby pit stops, undercut windows, tyre fade, and rain" },
+      { strong: "Benchmark engine", text: "Makes its own call at each moment using only data available at that lap; across 81 decision points it was right about 54% of the time, the real teams about 58%" },
+      { strong: "Scoring", text: "Calls stay hidden until the flag, and reasoning counts for more than the call, so a well-argued wrong call usually beats a lucky right one" },
+      { strong: "Joining", text: "Friends join from their phones with a QR code or a 4-letter code, no app or account; AI spending caps and rate limits guard against misuse" },
+      { strong: "Team", text: "Built at HackTX 2026 with Anika Gopal and Ekaksh Bansal; I did all the technical work" },
+      { strong: "Tech Stack", text: "Next.js, TypeScript, Tailwind, Python, Neon Postgres, Muse Spark 1.3, Muse Voice Transcribe, Vercel" },
+    ],
+    links: [
+      { href: "https://outpacef1.vercel.app", label: "Website" },
+      { href: "https://github.com/Vedant0667/hacktx26", label: "GitHub" },
+      { href: "https://devpost.com/software/outpacef1", label: "Devpost" },
+    ],
+  },
+  {
     imageSrc: "/montir.webp",
     imageAlt: "Montir social film and TV ranking app",
     title: "Montir",
